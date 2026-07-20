@@ -187,6 +187,39 @@
 
 /* 放大效果 */
 .carousel-item.active { transform: scale(1.3); z-index: 10; }
+        /* 左輪容器設定 */
+.carousel-stage { 
+    perspective: 1000px; 
+    height: 400px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 50px;
+}
+.carousel-container { 
+    width: 250px; 
+    height: 300px; 
+    position: relative; 
+    transform-style: preserve-3d; 
+    transition: transform 0.5s; 
+    cursor: grab; 
+}
+.carousel-item { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 0.5s; 
+}
+.carousel-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+}
+
+/* 放大效果 */
+.carousel-item.active { transform: scale(1.3); z-index: 10; }
     </style>
 </head>
 <body>
@@ -253,6 +286,32 @@
     <footer>
         <p>&copy; 2026 詹沅叡 Studio. All rights reserved.</p>
     </footer>
+<script>
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    let rotation = 0;
+
+    // 將圖片排成圓形
+    items.forEach((item, index) => {
+        const angle = (360 / items.length) * index;
+        item.style.transform = `rotateY(${angle}deg) translateZ(300px)`;
+    });
+
+    // 簡單的滑鼠拖曳旋轉
+    let isDragging = false;
+    let startX;
+    
+    carousel.onmousedown = (e) => { isDragging = true; startX = e.pageX; };
+    window.onmouseup = () => isDragging = false;
+    window.onmousemove = (e) => {
+        if(isDragging) {
+            const diff = (e.pageX - startX) * 0.5;
+            rotation += diff;
+            carousel.style.transform = `rotateY(${rotation}deg)`;
+            startX = e.pageX;
+        }
+    };
+</script>
 <script>
     const carousel = document.getElementById('carousel');
     const items = document.querySelectorAll('.carousel-item');
