@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的個人網站 | My One-Page Portfolio</title>
     <style>
-        /* 基礎全域設定與平滑滾動 */
+        /* 基礎設定 */
         html { scroll-behavior: smooth; }
         body { font-family: 'Helvetica Neue', Arial, "PingFang TC", sans-serif; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; line-height: 1.6; }
 
@@ -17,17 +17,21 @@
         .nav-links li { margin-left: 20px; }
         .nav-links a { text-decoration: none; color: #555; font-weight: 500; }
 
-        /* 區塊設定 */
+        /* 區塊與左輪設定 */
         section { padding: 100px 20px 80px 20px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h2 { font-size: 2.5rem; color: #2c3e50; }
-
-        /* 左輪容器設定 */
-        .carousel-stage { perspective: 1000px; height: 400px; display: flex; align-items: center; justify-content: center; margin-top: 50px; overflow: hidden; }
-        .carousel-container { width: 250px; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.5s; cursor: grab; }
-        .carousel-item { position: absolute; width: 100%; height: 100%; transition: transform 0.5s; }
+        .carousel-stage { perspective: 1000px; height: 400px; display: flex; align-items: center; justify-content: center; margin-top: 50px; }
+        .carousel-container { width: 250px; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        
+        .carousel-item { 
+            position: absolute; width: 100%; height: 100%; 
+            transition: transform 0.8s, opacity 0.5s;
+            cursor: pointer;
+            opacity: 0.6;
+        }
         .carousel-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .carousel-item.active { transform: scale(1.3); z-index: 10; }
+        
+        /* 正面放大效果 */
+        .carousel-item.active { transform: scale(1.3) !important; opacity: 1; z-index: 10; }
     </style>
 </head>
 <body>
@@ -39,20 +43,9 @@
                 <li><a href="#home">首頁</a></li>
                 <li><a href="#about">關於我</a></li>
                 <li><a href="#portfolio">精選作品</a></li>
-                <li><a href="#contact">聯絡方式</a></li>
             </ul>
         </nav>
     </header>
-
-    <section id="home">
-        <h1>哈囉！我是 詹沅叡(小卷)</h1>
-        <p>一名平面設計與影片創作的設計師</p>
-    </section>
-
-    <section id="about">
-        <h2>關於我</h2>
-        <p>簡短自我介紹。</p>
-    </section>
 
     <section id="portfolio">
         <h2>精選作品</h2>
@@ -68,24 +61,36 @@
     <script>
         const carousel = document.getElementById('carousel');
         const items = document.querySelectorAll('.carousel-item');
-        let rotation = 0;
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const angleStep = 360 / items.length;
+            const rotation = -angleStep * currentIndex;
+            carousel.style.transform = `rotateY(${rotation}deg)`;
+
+            items.forEach((item, index) => {
+                const angle = angleStep * index;
+                // 設定圖片在圓形上的基本旋轉與距離
+                item.style.transform = `rotateY(${angle}deg) translateZ(300px)`;
+                
+                // 切換 active class 來觸發 CSS 的放大效果
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
 
         items.forEach((item, index) => {
-            const angle = (360 / items.length) * index;
-            item.style.transform = `rotateY(${angle}deg) translateZ(300px)`;
+            item.onclick = () => {
+                currentIndex = index;
+                updateCarousel();
+            };
         });
 
-        let isDragging = false;
-        let startX;
-        carousel.onmousedown = (e) => { isDragging = true; startX = e.pageX; };
-        window.onmouseup = () => isDragging = false;
-        window.onmousemove = (e) => {
-            if(isDragging) {
-                rotation += (e.pageX - startX) * 0.5;
-                carousel.style.transform = `rotateY(${rotation}deg)`;
-                startX = e.pageX;
-            }
-        };
+        // 初始化
+        updateCarousel();
     </script>
 </body>
 </html>
