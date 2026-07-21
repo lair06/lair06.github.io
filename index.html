@@ -48,7 +48,6 @@
             border-color: #3498db;
             color: #3498db;
         }
-        /* 當牌子被選中時的樣式 */
         .tab-btn.active-tab {
             background-color: #3498db;
             color: white;
@@ -74,6 +73,7 @@
             height: 340px; 
             position: relative; 
             transform-style: preserve-3d; 
+            /* 讓旋轉動畫更加滑順自然 */
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
         }
 
@@ -143,7 +143,7 @@
         <!-- 3D 旋轉舞台 -->
         <div class="carousel-stage">
             <div class="carousel-container" id="carousel">
-                <!-- 圖片會透過 JavaScript 自動根據分類載入 -->
+                <!-- 圖片會自動載入 -->
             </div>
         </div>
     </section>
@@ -155,45 +155,51 @@
     </section>
 
     <!-- ==========================================
-       【3. 分類資料庫與互動邏輯】
+       【3. 邏輯與累積旋轉角度升級】
        ========================================== -->
     <script>
-        // 這裡可以設定每個分類裡面的圖片清單與說明
+        // 💡 這裡可以隨意增加更多圖片！只要照著格式貼上下一張即可
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品2" },
-                { src: "images/FB/FB-03.jpg", alt: "FB作品3" }
+                { src: "images/FB/FB-03.jpg", alt: "FB作品3" },
+                { src: "images/FB/FB-01.jpg", alt: "FB作品4" }, // 示範增加第4張
+                { src: "images/FB/FB-02.jpg", alt: "FB作品5" }  // 示範增加第5張
             ],
             line: [
-                { src: "images/FB/FB-01.jpg", alt: "LINE作品1" }, // 之後可改為 images/LINE/...
-                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" }
+                { src: "images/FB/FB-01.jpg", alt: "LINE作品1" },
+                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" },
+                { src: "images/FB/FB-03.jpg", alt: "LINE作品3" }
             ],
             banner: [
-                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" } // 之後可改為 images/Banner/...
+                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" },
+                { src: "images/FB/FB-01.jpg", alt: "Banner作品2" }
             ],
             package: [
-                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" }
+                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" },
+                { src: "images/FB/FB-02.jpg", alt: "包裝設計2" }
             ],
             pop: [
-                { src: "images/FB/FB-02.jpg", alt: "POP作品1" }
+                { src: "images/FB/FB-02.jpg", alt: "POP作品1" },
+                { src: "images/FB/FB-03.jpg", alt: "POP作品2" }
             ]
         };
 
         const carousel = document.getElementById('carousel');
         let currentCategory = 'fb';
         let currentIndex = 0;
-        const radius = 350; // 圓形半徑大小
+        let accumulatedRotation = 0; // 用來累積旋轉角度，確保永遠朝同一個方向順向轉動
+        const radius = 380;          // 圓形半徑（如果圖片變多，半徑可以稍微調大一點讓間距更好看）
 
-        // 載入並渲染當前分類的圖片
         function loadCategory(categoryKey) {
             currentCategory = categoryKey;
-            currentIndex = 0; // 切換分類時，預設回到第一張
+            currentIndex = 0;
+            accumulatedRotation = 0; // 切換分類時歸零角度
             
             const images = portfolioData[categoryKey];
-            carousel.innerHTML = ''; // 清空原本的圖片
+            carousel.innerHTML = ''; 
 
-            // 動態建立 HTML 結構
             images.forEach((imgData, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'carousel-item';
@@ -205,9 +211,24 @@
 
                 itemDiv.appendChild(img);
 
-                // 綁定點擊事件：點擊任一張圖片可以轉到它
+                // 點擊事件：改用計算差值來確保永遠順向旋轉
                 itemDiv.onclick = () => {
+                    const totalItems = images.length;
+                    
+                    // 計算點擊的目標與當前位置的距離差
+                    let diff = index - currentIndex;
+                    
+                    // 核心技巧：透過數學邏輯修正，讓跨越頭尾（最後一張到第一張）時保持單向旋轉
+                    if (diff > totalItems / 2) {
+                        diff -= totalItems;
+                    } else if (diff < -totalItems / 2) {
+                        diff += totalItems;
+                    }
+
                     currentIndex = index;
+                    const angleStep = 360 / totalItems;
+                    accumulatedRotation -= diff * angleStep; // 累積角度，達成流暢單向旋轉
+
                     updateCarousel();
                 };
 
@@ -222,12 +243,10 @@
             if (items.length === 0) return;
 
             const angleStep = 360 / items.length;
-            const currentRotation = -angleStep * currentIndex;
             
-            // 旋轉容器
-            carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            // 套用累積角度，實現永遠順向轉動
+            carousel.style.transform = `rotateY(${accumulatedRotation}deg)`;
 
-            // 計算每張圖片的角度與正面平行校正
             items.forEach((item, index) => {
                 const angle = angleStep * index;
                 
@@ -241,20 +260,15 @@
             });
         }
 
-        // 點擊牌子時觸發的切換函式
         function switchCategory(categoryKey, btnElement) {
-            // 移除其他按鈕的 active 狀態
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active-tab');
             });
-            // 幫當前點擊的按鈕加上 active 狀態
             btnElement.classList.add('active-tab');
-
-            // 重新載入該分類的圖片
             loadCategory(categoryKey);
         }
 
-        // 網頁一打開預設載入 FB 圖文
+        // 初始預設載入
         loadCategory('fb');
     </script>
 </body>
