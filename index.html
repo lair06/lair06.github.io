@@ -23,7 +23,7 @@
         h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
 
         /* ==========================================
-           【1. 分類標籤（牌子）設計】
+           【可調整】1. 分類標籤（牌子）設計
            ========================================== */
         .category-tabs {
             display: flex;
@@ -35,9 +35,9 @@
         .tab-btn {
             background-color: #fff;
             border: 2px solid #ddd;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.95rem;
+            padding: 8px 18px;            /* 調整按鈕內距（大小） */
+            border-radius: 20px;          /* 調整按鈕圓角程度 */
+            font-size: 0.95rem;           /* 調整按鈕文字大小 */
             font-weight: bold;
             color: #555;
             cursor: pointer;
@@ -56,47 +56,85 @@
         }
 
         /* ==========================================
-           【2. 3D 舞台與左輪容器設定】
+           【可調整】2. 橫向圖庫展示區與按鈕外框
            ========================================== */
-        .carousel-stage { 
-            perspective: 1200px; 
-            height: 450px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+        .gallery-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;            /* 整個圖庫展示區的最大寬度 */
             width: 100%;
-            overflow: hidden; 
+            margin: 0 auto;
         }
 
-        .carousel-container { 
-            width: 260px; 
-            height: 340px; 
-            position: relative; 
-            transform-style: preserve-3d; 
-            /* 讓旋轉動畫更加滑順自然 */
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        /* 圖片網格容器（一字排開） */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 預設一列排 6 張圖片 */
+            gap: 20px;                     /* 【可調整】圖片與圖片之間的間距 */
+            width: 100%;
+            padding: 10px;
+            transition: opacity 0.4s ease, transform 0.4s ease; /* 切換組別時的淡入淡出動畫時間 */
         }
 
-        .carousel-item { 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s;
-            cursor: pointer; 
-            opacity: 0.4; 
+        /* 單張圖片卡片樣式 */
+        .gallery-item {
+            background: #fff;
+            border-radius: 10px;           /* 【可調整】卡片外框圓角大小 */
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 【可調整】卡片陰影深淺 */
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);   /* 滑鼠移上去時卡片浮起的距離 */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 180px;                 /* 【可調整】圖片的高度 */
+            object-fit: cover;             /* 確保圖片不變形填滿 */
+            display: block;
         }
 
-        .carousel-item img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            border-radius: 12px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25); 
+        /* ==========================================
+           【可調整】3. 左右圓形箭頭按鈕設計
+           ========================================== */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;                   /* 【可調整】按鈕圓圈的寬度 */
+            height: 50px;                  /* 【可調整】按鈕圓圈的高度 */
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 50%;            /* 保持 50% 才會是正圓形 */
+            font-size: 1.2rem;             /* 箭頭符號的大小 */
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .arrow-btn:hover {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .left-arrow {
+            left: -25px;                   /* 【可調整】左按鈕距離圖片左側的距離（負值代表往外突出一半） */
+        }
+        .right-arrow {
+            right: -25px;                  /* 【可調整】右按鈕距離圖片右側的距離 */
         }
 
-        .carousel-item.active { 
-            opacity: 1; 
-            z-index: 10; 
+        /* 頁碼提示文字（例如：第 1 頁 / 共 3 頁） */
+        .page-indicator {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #777;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -117,7 +155,7 @@
 
     <!-- 首頁區塊 -->
     <section id="home">
-        <h1>哈囉！我是 詹沅叡(小卷)</h1>
+        <h1>哈囉! 我是 詹沅叡(小卷)</h1>
         <p>一名平面設計與影片創作的設計師</p>
     </section>
 
@@ -140,12 +178,22 @@
             <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
         </div>
 
-        <!-- 3D 旋轉舞台 -->
-        <div class="carousel-stage">
-            <div class="carousel-container" id="carousel">
-                <!-- 圖片會自動載入 -->
+        <!-- 橫向圖庫與左右按鈕包裝容器 -->
+        <div class="gallery-wrapper">
+            <!-- 向左箭頭按鈕 -->
+            <button class="arrow-btn left-arrow" onclick="prevPage()">&#10094;</button>
+            
+            <!-- 圖片一字排開的網格容器 -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 圖片會由 JavaScript 動態填入 -->
             </div>
+
+            <!-- 向右箭頭按鈕 -->
+            <button class="arrow-btn right-arrow" onclick="nextPage()">&#10095;</button>
         </div>
+
+        <!-- 頁碼顯示 -->
+        <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
     </section>
 
     <!-- 聯絡方式區塊 -->
@@ -155,121 +203,111 @@
     </section>
 
     <!-- ==========================================
-       【3. 邏輯與累積旋轉角度升級】
+       【可調整】4. JavaScript 資料庫與分組切換邏輯
        ========================================== -->
     <script>
-        // 💡 這裡可以隨意增加更多圖片！只要照著格式貼上下一張即可
+        // 💡 這裡可以隨意增加更多圖片！不管放幾張，程式會自動每 6 張為一組分頁
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品2" },
                 { src: "images/FB/FB-03.jpg", alt: "FB作品3" },
-                { src: "images/FB/FB-01.jpg", alt: "FB作品4" }, // 示範增加第4張
-                { src: "images/FB/FB-02.jpg", alt: "FB作品5" }  // 示範增加第5張
+                { src: "images/FB/FB-01.jpg", alt: "FB作品4" },
+                { src: "images/FB/FB-02.jpg", alt: "FB作品5" },
+                { src: "images/FB/FB-03.jpg", alt: "FB作品6" },
+                { src: "images/FB/FB-01.jpg", alt: "FB作品7" }, // 示範超過 6 張會自動分到第二頁
+                { src: "images/FB/FB-02.jpg", alt: "FB作品8" }
             ],
             line: [
                 { src: "images/FB/FB-01.jpg", alt: "LINE作品1" },
-                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" },
-                { src: "images/FB/FB-03.jpg", alt: "LINE作品3" }
+                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" }
             ],
             banner: [
-                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" },
-                { src: "images/FB/FB-01.jpg", alt: "Banner作品2" }
+                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" }
             ],
             package: [
-                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" },
-                { src: "images/FB/FB-02.jpg", alt: "包裝設計2" }
+                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" }
             ],
             pop: [
-                { src: "images/FB/FB-02.jpg", alt: "POP作品1" },
-                { src: "images/FB/FB-03.jpg", alt: "POP作品2" }
+                { src: "images/FB/FB-02.jpg", alt: "POP作品1" }
             ]
         };
 
-        const carousel = document.getElementById('carousel');
         let currentCategory = 'fb';
-        let currentIndex = 0;
-        let accumulatedRotation = 0; // 用來累積旋轉角度，確保永遠朝同一個方向順向轉動
-        const radius = 380;          // 圓形半徑（如果圖片變多，半徑可以稍微調大一點讓間距更好看）
+        let currentPage = 0;
+        const itemsPerPage = 6; // 【可調整】每一組要顯示幾張圖片（目前設定為 6 張一組）
 
-        function loadCategory(categoryKey) {
-            currentCategory = categoryKey;
-            currentIndex = 0;
-            accumulatedRotation = 0; // 切換分類時歸零角度
+        // 載入當前分類的圖片
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const indicator = document.getElementById('pageIndicator');
+            const images = portfolioData[currentCategory];
             
-            const images = portfolioData[categoryKey];
-            carousel.innerHTML = ''; 
+            // 計算總共有幾頁
+            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
+            
+            // 確保當前頁碼不超出範圍
+            if (currentPage >= totalPages) {
+                currentPage = totalPages - 1;
+            }
 
-            images.forEach((imgData, index) => {
+            // 取出目前這一頁要顯示的 6 張圖片
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentImages = images.slice(start, end);
+
+            // 清空並重新組裝 HTML
+            grid.innerHTML = '';
+            currentImages.forEach(imgData => {
                 const itemDiv = document.createElement('div');
-                itemDiv.className = 'carousel-item';
-                if (index === 0) itemDiv.classList.add('active');
+                itemDiv.className = 'gallery-item';
 
                 const img = document.createElement('img');
                 img.src = imgData.src;
                 img.alt = imgData.alt;
 
                 itemDiv.appendChild(img);
-
-                // 點擊事件：改用計算差值來確保永遠順向旋轉
-                itemDiv.onclick = () => {
-                    const totalItems = images.length;
-                    
-                    // 計算點擊的目標與當前位置的距離差
-                    let diff = index - currentIndex;
-                    
-                    // 核心技巧：透過數學邏輯修正，讓跨越頭尾（最後一張到第一張）時保持單向旋轉
-                    if (diff > totalItems / 2) {
-                        diff -= totalItems;
-                    } else if (diff < -totalItems / 2) {
-                        diff += totalItems;
-                    }
-
-                    currentIndex = index;
-                    const angleStep = 360 / totalItems;
-                    accumulatedRotation -= diff * angleStep; // 累積角度，達成流暢單向旋轉
-
-                    updateCarousel();
-                };
-
-                carousel.appendChild(itemDiv);
+                grid.appendChild(itemDiv);
             });
 
-            updateCarousel();
+            // 更新頁碼文字提示
+            indicator.innerText = `第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁`;
         }
 
-        function updateCarousel() {
-            const items = carousel.querySelectorAll('.carousel-item');
-            if (items.length === 0) return;
-
-            const angleStep = 360 / items.length;
+        // 點擊向左箭頭按鈕
+        function prevPage() {
+            const images = portfolioData[currentCategory];
+            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
             
-            // 套用累積角度，實現永遠順向轉動
-            carousel.style.transform = `rotateY(${accumulatedRotation}deg)`;
-
-            items.forEach((item, index) => {
-                const angle = angleStep * index;
-                
-                if (index === currentIndex) {
-                    item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) scale(1.25)`;
-                    item.classList.add('active');
-                } else {
-                    item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) scale(0.9)`;
-                    item.classList.remove('active');
-                }
-            });
+            // 順向循環：如果在第一頁，按向左會直接循環跳到最後一頁
+            currentPage = (currentPage - 1 + totalPages) % totalPages;
+            renderGallery();
         }
 
+        // 點擊向右箭頭按鈕
+        function nextPage() {
+            const images = portfolioData[currentCategory];
+            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
+            
+            // 順向循環：如果在最後一頁，按向右會順向回到第一頁
+            currentPage = (currentPage + 1) % totalPages;
+            renderGallery();
+        }
+
+        // 點擊上方分類牌子時觸發
         function switchCategory(categoryKey, btnElement) {
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active-tab');
             });
             btnElement.classList.add('active-tab');
-            loadCategory(categoryKey);
+
+            currentCategory = categoryKey;
+            currentPage = 0; // 換分類時歸零到第一頁
+            renderGallery();
         }
 
-        // 初始預設載入
-        loadCategory('fb');
+        // 網頁一打開預設載入 FB
+        renderGallery();
     </script>
 </body>
 </html>
