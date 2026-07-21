@@ -35,9 +35,9 @@
         .tab-btn {
             background-color: #fff;
             border: 2px solid #ddd;
-            padding: 8px 18px;            /* 調整按鈕內距（大小） */
-            border-radius: 20px;          /* 調整按鈕圓角程度 */
-            font-size: 0.95rem;           /* 調整按鈕文字大小 */
+            padding: 8px 18px;            /* 【可調整】按鈕內距（大小） */
+            border-radius: 20px;          /* 【可調整】按鈕圓角程度 */
+            font-size: 0.95rem;           /* 【可調整】按鈕文字大小 */
             font-weight: bold;
             color: #555;
             cursor: pointer;
@@ -62,7 +62,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            max-width: 1200px;            /* 整個圖庫展示區的最大寬度 */
+            max-width: 1200px;            /* 【可調整】整個圖庫展示區的最大寬度 */
             width: 100%;
             margin: 0 auto;
         }
@@ -70,11 +70,10 @@
         /* 圖片網格容器（一字排開） */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr); /* 預設一列排 6 張圖片 */
+            grid-template-columns: repeat(6, 1fr); /* 【可調整】預設一列排幾張圖片（目前為 6 張） */
             gap: 20px;                     /* 【可調整】圖片與圖片之間的間距 */
             width: 100%;
             padding: 10px;
-            transition: opacity 0.4s ease, transform 0.4s ease; /* 切換組別時的淡入淡出動畫時間 */
         }
 
         /* 單張圖片卡片樣式 */
@@ -84,14 +83,15 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 【可調整】卡片陰影深淺 */
             transition: transform 0.3s ease;
+            cursor: pointer;               /* 鼠標移上去變手指，提示可點擊放大 */
         }
         .gallery-item:hover {
             transform: translateY(-5px);   /* 滑鼠移上去時卡片浮起的距離 */
         }
         .gallery-item img {
             width: 100%;
-            height: 180px;                 /* 【可調整】圖片的高度 */
-            object-fit: cover;             /* 確保圖片不變形填滿 */
+            height: 180px;                 /* 【可調整】縮圖固定高度 */
+            object-fit: cover;             /* 確保縮圖不變形填滿 */
             display: block;
         }
 
@@ -123,18 +123,47 @@
             border-color: #3498db;
         }
         .left-arrow {
-            left: -25px;                   /* 【可調整】左按鈕距離圖片左側的距離（負值代表往外突出一半） */
+            left: -25px;                   /* 【可調整】左按鈕距離圖片左側的距離 */
         }
         .right-arrow {
             right: -25px;                  /* 【可調整】右按鈕距離圖片右側的距離 */
         }
 
-        /* 頁碼提示文字（例如：第 1 頁 / 共 3 頁） */
+        /* 頁碼提示文字 */
         .page-indicator {
             margin-top: 15px;
             font-size: 0.9rem;
             color: #777;
             font-weight: 500;
+        }
+
+        /* ==========================================
+           【可調整】4. 點擊放大燈箱（Lightbox）樣式
+           ========================================== */
+        .lightbox-modal {
+            display: none;                 /* 預設隱藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 【可調整】遮罩顏色與透明度：這裡設定為 50% 黑色 */
+            z-index: 9999;                 /* 確保蓋在整個網頁的最上層 */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .lightbox-modal.active {
+            display: flex;                 /* 啟動時顯示為彈性置中佈局 */
+        }
+        .lightbox-content {
+            max-width: 90%;                /* 【可調整】放大圖片在畫面上的最大寬度限制 */
+            max-height: 90vh;              /* 【可調整】放大圖片在畫面上的最大高度限制 */
+            object-fit: contain;           /* 保持原圖長寬比例，不變形 */
+            border-radius: 8px;            /* 【可調整】放大圖片的圓角 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 放大圖片的立體陰影 */
+            background-color: #fff;
         }
     </style>
 </head>
@@ -155,7 +184,7 @@
 
     <!-- 首頁區塊 -->
     <section id="home">
-        <h1>哈囉! 我是 詹沅叡(小卷)</h1>
+        <h1>哈囉！我是 詹沅叡(小卷)</h1>
         <p>一名平面設計與影片創作的設計師</p>
     </section>
 
@@ -202,11 +231,16 @@
         <p>有任何合作機會或想聊聊的嗎？歡迎隨時與我聯絡！</p>
     </section>
 
+    <!-- 【新增】點擊放大燈箱（Lightbox）容器 -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+        <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖">
+    </div>
+
     <!-- ==========================================
-       【可調整】4. JavaScript 資料庫與分組切換邏輯
+       【可調整】5. JavaScript 資料庫與互動邏輯
        ========================================== -->
     <script>
-        // 💡 這裡可以隨意增加更多圖片！不管放幾張，程式會自動每 6 張為一組分頁
+        // 💡 這裡可以隨意增加更多圖片！程式會自動每 6 張為一組分頁
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
@@ -215,7 +249,7 @@
                 { src: "images/FB/FB-01.jpg", alt: "FB作品4" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品5" },
                 { src: "images/FB/FB-03.jpg", alt: "FB作品6" },
-                { src: "images/FB/FB-01.jpg", alt: "FB作品7" }, // 示範超過 6 張會自動分到第二頁
+                { src: "images/FB/FB-01.jpg", alt: "FB作品7" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品8" }
             ],
             line: [
@@ -235,28 +269,24 @@
 
         let currentCategory = 'fb';
         let currentPage = 0;
-        const itemsPerPage = 6; // 【可調整】每一組要顯示幾張圖片（目前設定為 6 張一組）
+        const itemsPerPage = 6; // 【可調整】每一組要顯示幾張圖片
 
-        // 載入當前分類的圖片
+        // 渲染當前分類的圖片
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
             const indicator = document.getElementById('pageIndicator');
             const images = portfolioData[currentCategory];
             
-            // 計算總共有幾頁
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
             
-            // 確保當前頁碼不超出範圍
             if (currentPage >= totalPages) {
                 currentPage = totalPages - 1;
             }
 
-            // 取出目前這一頁要顯示的 6 張圖片
             const start = currentPage * itemsPerPage;
             const end = start + itemsPerPage;
             const currentImages = images.slice(start, end);
 
-            // 清空並重新組裝 HTML
             grid.innerHTML = '';
             currentImages.forEach(imgData => {
                 const itemDiv = document.createElement('div');
@@ -266,35 +296,49 @@
                 img.src = imgData.src;
                 img.alt = imgData.alt;
 
+                // 【新增】點擊縮圖時，開啟燈箱並帶入該張圖片的完整來源
+                itemDiv.onclick = () => {
+                    openLightbox(imgData.src);
+                };
+
                 itemDiv.appendChild(img);
                 grid.appendChild(itemDiv);
             });
 
-            // 更新頁碼文字提示
             indicator.innerText = `第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁`;
         }
 
-        // 點擊向左箭頭按鈕
+        // 開啟燈箱函式
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            modalImg.src = imgSrc;
+            modal.classList.add('active'); // 顯示燈箱
+        }
+
+        // 關閉燈箱函式（點擊半透明黑底或圖片旁空白處時觸發）
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active'); // 隱藏燈箱
+        }
+
+        // 點擊向左箭頭
         function prevPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            
-            // 順向循環：如果在第一頁，按向左會直接循環跳到最後一頁
             currentPage = (currentPage - 1 + totalPages) % totalPages;
             renderGallery();
         }
 
-        // 點擊向右箭頭按鈕
+        // 點擊向右箭頭
         function nextPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            
-            // 順向循環：如果在最後一頁，按向右會順向回到第一頁
             currentPage = (currentPage + 1) % totalPages;
             renderGallery();
         }
 
-        // 點擊上方分類牌子時觸發
+        // 切換上方分類牌子
         function switchCategory(categoryKey, btnElement) {
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active-tab');
@@ -302,11 +346,11 @@
             btnElement.classList.add('active-tab');
 
             currentCategory = categoryKey;
-            currentPage = 0; // 換分類時歸零到第一頁
+            currentPage = 0;
             renderGallery();
         }
 
-        // 網頁一打開預設載入 FB
+        // 網頁一打開預設載入
         renderGallery();
     </script>
 </body>
