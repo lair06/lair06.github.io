@@ -20,18 +20,89 @@
         /* 區塊設定 */
         section { padding: 100px 20px 80px 20px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .container { max-width: 800px; margin: 0 auto; }
-        h2 { font-size: 2.5rem; color: #2c3e50; }
+        h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
 
-        /* 左輪容器設定 */
-        .carousel-stage { perspective: 1000px; height: 400px; display: flex; align-items: center; justify-content: center; margin-top: 50px; overflow: hidden; }
-        .carousel-container { width: 250px; height: 300px; position: relative; transform-style: preserve-3d; transition: transform 0.5s; cursor: grab; }
-        .carousel-item { position: absolute; width: 100%; height: 100%; transition: transform 0.5s; }
-        .carousel-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .carousel-item.active { transform: scale(1.3); z-index: 10; }
+        /* ==========================================
+           【1. 分類標籤（牌子）設計】
+           ========================================== */
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .tab-btn {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .tab-btn:hover {
+            border-color: #3498db;
+            color: #3498db;
+        }
+        /* 當牌子被選中時的樣式 */
+        .tab-btn.active-tab {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        /* ==========================================
+           【2. 3D 舞台與左輪容器設定】
+           ========================================== */
+        .carousel-stage { 
+            perspective: 1200px; 
+            height: 450px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        .carousel-container { 
+            width: 260px; 
+            height: 340px; 
+            position: relative; 
+            transform-style: preserve-3d; 
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+
+        .carousel-item { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s;
+            cursor: pointer; 
+            opacity: 0.4; 
+        }
+
+        .carousel-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25); 
+        }
+
+        .carousel-item.active { 
+            opacity: 1; 
+            z-index: 10; 
+        }
     </style>
 </head>
 <body>
 
+    <!-- 導覽列 -->
     <header>
         <nav>
             <div class="logo">詹沅叡 Studio</div>
@@ -44,48 +115,147 @@
         </nav>
     </header>
 
+    <!-- 首頁區塊 -->
     <section id="home">
         <h1>哈囉！我是 詹沅叡(小卷)</h1>
         <p>一名平面設計與影片創作的設計師</p>
     </section>
 
+    <!-- 關於我區塊 -->
     <section id="about">
         <h2>關於我</h2>
         <p>簡短自我介紹。</p>
     </section>
 
+    <!-- 作品集區塊 -->
     <section id="portfolio">
         <h2>精選作品</h2>
+        
+        <!-- 5個分類牌子按鈕 -->
+        <div class="category-tabs">
+            <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
+            <button class="tab-btn" onclick="switchCategory('line', this)">LINE圖文</button>
+            <button class="tab-btn" onclick="switchCategory('banner', this)">BANNER</button>
+            <button class="tab-btn" onclick="switchCategory('package', this)">包裝設計</button>
+            <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
+        </div>
+
+        <!-- 3D 旋轉舞台 -->
         <div class="carousel-stage">
             <div class="carousel-container" id="carousel">
-                <div class="carousel-item"><img src="images/FB/FB-01.jpg" alt="作品1"></div>
-                <div class="carousel-item"><img src="images/FB/FB-02.jpg" alt="作品2"></div>
-                <div class="carousel-item"><img src="images/FB/FB-03.jpg" alt="作品3"></div>
+                <!-- 圖片會透過 JavaScript 自動根據分類載入 -->
             </div>
         </div>
     </section>
 
+    <!-- 聯絡方式區塊 -->
+    <section id="contact">
+        <h2>聯絡方式</h2>
+        <p>有任何合作機會或想聊聊的嗎？歡迎隨時與我聯絡！</p>
+    </section>
+
+    <!-- ==========================================
+       【3. 分類資料庫與互動邏輯】
+       ========================================== -->
     <script>
-        const carousel = document.getElementById('carousel');
-        const items = document.querySelectorAll('.carousel-item');
-        let rotation = 0;
-
-        items.forEach((item, index) => {
-            const angle = (360 / items.length) * index;
-            item.style.transform = `rotateY(${angle}deg) translateZ(300px)`;
-        });
-
-        let isDragging = false;
-        let startX;
-        carousel.onmousedown = (e) => { isDragging = true; startX = e.pageX; };
-        window.onmouseup = () => isDragging = false;
-        window.onmousemove = (e) => {
-            if(isDragging) {
-                rotation += (e.pageX - startX) * 0.5;
-                carousel.style.transform = `rotateY(${rotation}deg)`;
-                startX = e.pageX;
-            }
+        // 這裡可以設定每個分類裡面的圖片清單與說明
+        const portfolioData = {
+            fb: [
+                { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
+                { src: "images/FB/FB-02.jpg", alt: "FB作品2" },
+                { src: "images/FB/FB-03.jpg", alt: "FB作品3" }
+            ],
+            line: [
+                { src: "images/FB/FB-01.jpg", alt: "LINE作品1" }, // 之後可改為 images/LINE/...
+                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" }
+            ],
+            banner: [
+                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" } // 之後可改為 images/Banner/...
+            ],
+            package: [
+                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" }
+            ],
+            pop: [
+                { src: "images/FB/FB-02.jpg", alt: "POP作品1" }
+            ]
         };
+
+        const carousel = document.getElementById('carousel');
+        let currentCategory = 'fb';
+        let currentIndex = 0;
+        const radius = 350; // 圓形半徑大小
+
+        // 載入並渲染當前分類的圖片
+        function loadCategory(categoryKey) {
+            currentCategory = categoryKey;
+            currentIndex = 0; // 切換分類時，預設回到第一張
+            
+            const images = portfolioData[categoryKey];
+            carousel.innerHTML = ''; // 清空原本的圖片
+
+            // 動態建立 HTML 結構
+            images.forEach((imgData, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'carousel-item';
+                if (index === 0) itemDiv.classList.add('active');
+
+                const img = document.createElement('img');
+                img.src = imgData.src;
+                img.alt = imgData.alt;
+
+                itemDiv.appendChild(img);
+
+                // 綁定點擊事件：點擊任一張圖片可以轉到它
+                itemDiv.onclick = () => {
+                    currentIndex = index;
+                    updateCarousel();
+                };
+
+                carousel.appendChild(itemDiv);
+            });
+
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const items = carousel.querySelectorAll('.carousel-item');
+            if (items.length === 0) return;
+
+            const angleStep = 360 / items.length;
+            const currentRotation = -angleStep * currentIndex;
+            
+            // 旋轉容器
+            carousel.style.transform = `rotateY(${currentRotation}deg)`;
+
+            // 計算每張圖片的角度與正面平行校正
+            items.forEach((item, index) => {
+                const angle = angleStep * index;
+                
+                if (index === currentIndex) {
+                    item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) scale(1.25)`;
+                    item.classList.add('active');
+                } else {
+                    item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) scale(0.9)`;
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // 點擊牌子時觸發的切換函式
+        function switchCategory(categoryKey, btnElement) {
+            // 移除其他按鈕的 active 狀態
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+            });
+            // 幫當前點擊的按鈕加上 active 狀態
+            btnElement.classList.add('active-tab');
+
+            // 重新載入該分類的圖片
+            loadCategory(categoryKey);
+        }
+
+        // 網頁一打開預設載入 FB 圖文
+        loadCategory('fb');
     </script>
 </body>
 </html>
