@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>詹沅叡 Studio | 視覺設計師作品集</title>
-    <!-- 【調整】引入 Google Fonts 英文現代俐落字型 -->
+    <!-- 引入 Google Fonts 英文現代俐落字型 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================
            1. 全域基礎設定
            ========================================== */
-        html { scroll-behavior: smooth; } /* 平滑滾動效果 */
         body { 
             font-family: 'Montserrat', 'Helvetica Neue', Arial, "PingFang TC", sans-serif; 
             margin: 0; padding: 0; 
             color: #333; 
-            background-color: #f7f8fa; /* 【調整】全站背景底色 */
+            background-color: #f7f8fa; 
             line-height: 1.6; 
         }
 
@@ -24,226 +23,185 @@
            ========================================== */
         header { 
             position: fixed; top: 0; width: 100%; 
-            background-color: rgba(255, 255, 255, 0.9); /* 導覽列半透明背景 */
+            background-color: rgba(255, 255, 255, 0.95); 
             box-shadow: 0 2px 15px rgba(0,0,0,0.04); 
             z-index: 1000; 
-            backdrop-filter: blur(8px); /* 背景毛玻璃模糊效果 */
+            backdrop-filter: blur(8px); 
         }
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            max-width: 1200px; margin: 0 auto; padding: 20px 30px; 
+            max-width: 1200px; margin: 0 auto; padding: 18px 30px; 
         }
-        .logo { font-weight: 700; font-size: 1.2rem; color: #111; letter-spacing: 1px; }
+        .logo { font-weight: 700; font-size: 1.2rem; color: #111; letter-spacing: 1px; cursor: pointer; }
         .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
         .nav-links li { margin-left: 35px; }
-        .nav-links a { text-decoration: none; color: #666; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
-        .nav-links a:hover { color: #3498db; } /* 【調整】滑鼠移至導覽文字時的顏色 */
+        .nav-links a { 
+            text-decoration: none; color: #666; font-weight: 600; font-size: 0.95rem; 
+            transition: color 0.3s; cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.active-link { color: #3498db; }
 
         /* ==========================================
-           3. 各大區塊通用樣式
+           3. 獨立頁面 (Page Views) 控制機制
            ========================================== */
-        section { 
-            padding: 130px 20px 100px 20px; 
-            min-height: 90vh; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            text-align: center; box-sizing: border-box; 
-            border-bottom: 1px solid #eee; 
+        .page-view {
+            display: none; /* 預設隱藏所有獨立頁面 */
+            padding-top: 80px; /* 預留給頂部導覽列的高度 */
+            min-height: calc(100vh - 80px);
+            box-sizing: border-box;
         }
-        h2 { font-size: 2.6rem; color: #111; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px; }
-        
-        /* 首頁 Banner 區塊 */
-        #home { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); } /* 【調整】首頁漸層背景色 */
-        #home h1 { font-size: 3.2rem; color: #111; margin-bottom: 15px; font-weight: 700; }
-        #home p { font-size: 1.2rem; color: #555; }
-
-        /* 關於我區塊 */
-        #about .about-content { max-width: 680px; font-size: 1.05rem; color: #666; line-height: 1.9; margin-top: 20px; }
+        .page-view.active-page {
+            display: block; /* 僅顯示當前被選中的頁面 */
+        }
 
         /* ==========================================
-           4. 精選作品區塊 (Gallery & Tabs)
+           4. 【首頁】mimi.png 滿版/半滿版大封面設定
            ========================================== */
-        #portfolio { background-color: #ffffff; width: 100%; }
-        
-        /* 分類標籤切換按鈕 */
-        .category-tabs {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-        .tab-btn {
-            background-color: #fff;
-            border: 2px solid #e5e5e5;
-            padding: 10px 24px;          /* 【調整】分類按鈕大小 */
-            border-radius: 30px;        /* 【調整】按鈕圓角 (30px為膠囊狀) */
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .tab-btn:hover {
-            border-color: #3498db;
-            color: #3498db;
-        }
-        .tab-btn.active-tab {
-            background-color: #111;     /* 【調整】選中時的按鈕背景色 (預設黑灰俐落風) */
-            color: white;
-            border-color: #111;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 圖片網格容器 */
-        .gallery-wrapper {
+        .hero-banner {
             position: relative;
-            display: flex;
-            align-items: center;
-            max-width: 1200px;          /* 【調整】作品集展示區最大寬度 */
             width: 100%;
-            margin: 0 auto;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 【調整】每列顯示幾張圖 (預設3張) */
-            gap: 25px;                   /* 【調整】圖片卡片之間的間距 */
-            width: 100%;
-            padding: 10px;
-        }
-
-        /* 單張作品卡片 */
-        .gallery-item {
-            background: #fff;
-            border-radius: 12px;         /* 【調整】卡片圓角大小 */
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* 【調整】卡片陰影深淺 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-        .gallery-item:hover {
-            transform: translateY(-8px); /* 滑鼠懸停時卡片向上浮起的高度 */
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 220px;               /* 【調整】縮圖固定高度 */
-            object-fit: cover;           /* 確保圖片不變形填滿格子 */
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        /* 滑鼠懸停圖片時微放大 */
-        .gallery-item:hover img {
-            transform: scale(1.03);
-        }
-
-        /* 卡片懸停時的遮罩與提示字 */
-        .gallery-item::after {
-            content: "查看作品";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(17, 17, 17, 0.4); /* 【調整】懸停遮罩顏色與透明度 */
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
+            height: calc(100vh - 80px); /* 【可調整】封面高度，現為整張螢幕滿版 */
+            background-image: url('images/mimi/mimi.png'); /* 你的首頁封面圖檔路徑 */
+            background-size: cover;       /* 確保圖片填滿封面 */
+            background-position: center;  /* 置中對齊 */
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .gallery-item:hover::after {
-            opacity: 1; /* 移上去時顯示遮罩文字 */
+            text-align: center;
         }
 
-        /* 左右切換分頁箭頭按鈕 */
-        .arrow-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;                 /* 【調整】箭頭按鈕寬度 */
-            height: 50px;                /* 【調整】箭頭按鈕高度 */
-            background-color: white;
-            border: 1px solid #eaeaea;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            color: #333;
-            cursor: pointer;
+        /* 封面圖上的遮罩與文字內容 */
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.4); /* 【可調整】封面暗色遮罩透明度，讓文字更清晰 */
+            width: 100%;
+            height: 100%;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        .arrow-btn:hover {
-            background-color: #111;
-            color: white;
-            border-color: #111;
-        }
-        .left-arrow { left: -35px; }     /* 【調整】左箭頭距離外側的位置 */
-        .right-arrow { right: -35px; }   /* 【調整】右箭頭距離外側的位置 */
-
-        .page-indicator {
-            margin-top: 25px;
-            font-size: 0.95rem;
-            color: #888;
-            font-weight: 500;
-        }
-
-        /* ==========================================
-           5. 聯絡方式區塊
-           ========================================== */
-        #contact { background-color: #111; color: white; } /* 【調整】聯絡區塊背景色 (深色系) */
-        #contact h2 { color: white; }
-        #contact p { color: #aaa; font-size: 1.05rem; max-width: 550px; margin-bottom: 30px; }
-        .contact-btn {
-            display: inline-block;
-            background-color: #3498db;  /* 【調整】按鈕底色 */
-            color: white;
-            padding: 14px 32px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-        }
-        .contact-btn:hover { background-color: #2980b9; }
-
-        /* ==========================================
-           6. 燈箱效果 (Lightbox 點擊放大檢視)
-           ========================================== */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* 【調整】點擊放大後的背景黑幕透明度 (0.85 代表 85%不透明) */
-            z-index: 9999;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 20px;
             box-sizing: border-box;
-            backdrop-filter: blur(5px);
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 30px;
+        }
+        .hero-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .hero-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================
+           5. 【關於我】獨立頁面
+           ========================================== */
+        .content-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            color: #111;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* ==========================================
+           6. 【精選作品】獨立頁面
+           ========================================== */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .category-tabs {
+            display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;
+        }
+        .tab-btn {
+            background-color: #fff; border: 2px solid #e5e5e5; padding: 10px 24px;
+            border-radius: 30px; font-size: 0.95rem; font-weight: 600; color: #666;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .tab-btn:hover { border-color: #3498db; color: #3498db; }
+        .tab-btn.active-tab {
+            background-color: #111; color: white; border-color: #111;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .gallery-wrapper {
+            position: relative; display: flex; align-items: center; width: 100%;
+        }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; padding: 10px;
+        }
+        .gallery-item {
+            background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; position: relative;
+        }
+        .gallery-item:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .gallery-item::after {
+            content: "查看作品"; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(17, 17, 17, 0.4); color: white; font-weight: 600; font-size: 0.95rem;
+            display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+
+        .arrow-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background-color: white; border: 1px solid #eaeaea;
+            border-radius: 50%; font-size: 1.2rem; color: #333; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); z-index: 10;
+        }
+        .arrow-btn:hover { background-color: #111; color: white; border-color: #111; }
+        .left-arrow { left: -30px; }
+        .right-arrow { right: -30px; }
+        .page-indicator { margin-top: 25px; font-size: 0.95rem; color: #888; font-weight: 500; }
+
+        /* ==========================================
+           7. 【聯絡方式】獨立頁面
+           ========================================== */
+        .contact-box {
+            background-color: #111; color: white; padding: 60px 30px; border-radius: 16px; margin-top: 30px;
+        }
+        .contact-btn {
+            display: inline-block; background-color: #3498db; color: white; padding: 14px 32px;
+            border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px;
+        }
+
+        /* 燈箱視窗 */
+        .lightbox-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); z-index: 9999; flex-direction: column;
+            justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; backdrop-filter: blur(5px);
         }
         .lightbox-modal.active { display: flex; }
-        .lightbox-content {
-            max-width: 85%;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 6px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            background-color: #fff;
-        }
-        /* 燈箱下方的作品標題說明文字 */
-        .lightbox-caption {
-            color: #fff;
-            margin-top: 20px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
+        .lightbox-content { max-width: 85%; max-height: 75vh; object-fit: contain; border-radius: 6px; }
+        .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -251,66 +209,73 @@
     <!-- 頂部導覽列 -->
     <header>
         <nav>
-            <div class="logo">詹沅叡 Studio</div>
+            <div class="logo" onclick="navigateTo('home')">詹沅叡 Studio</div>
             <ul class="nav-links">
-                <li><a href="#home">首頁</a></li>
-                <li><a href="#about">關於我</a></li>
-                <li><a href="#portfolio">精選作品</a></li>
-                <li><a href="#contact">聯絡方式</a></li>
+                <li><a id="link-home" class="active-link" onclick="navigateTo('home')">首頁</a></li>
+                <li><a id="link-about" onclick="navigateTo('about')">關於我</a></li>
+                <li><a id="link-portfolio" onclick="navigateTo('portfolio')">精選作品</a></li>
+                <li><a id="link-contact" onclick="navigateTo('contact')">聯絡方式</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 1. 首頁區塊 -->
-    <section id="home">
-        <div class="container">
-            <h1>哈囉！我是 詹沅叡 (小卷)</h1>
-            <p>專注於平面設計與動態影片創作的視覺設計師</p>
-        </div>
-    </section>
-
-    <!-- 2. 關於我區塊 -->
-    <section id="about">
-        <div class="container">
-            <h2>關於我</h2>
-            <div class="about-content">
-                <p>嗨！我是小卷。擁有多年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。無論是社群圖文、吸睛 Banner、精美包裝還是 POP，我都致力於為每個專案注入獨特的靈魂與美感。</p>
+    <!-- 1. 【首頁】 - 包含 mimi.png 大封面 -->
+    <div id="page-home" class="page-view active-page">
+        <div class="hero-banner">
+            <div class="hero-overlay">
+                <div class="hero-title">詹沅叡 (小卷)</div>
+                <div class="hero-subtitle">平面設計 / 多媒體視覺創作 / 動態視覺</div>
+                <a class="hero-btn" onclick="navigateTo('portfolio')">瀏覽精選作品</a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 3. 精選作品區塊 -->
-    <section id="portfolio">
-        <h2>精選作品</h2>
-        
-        <!-- 分類標籤切換按鈕 -->
-        <div class="category-tabs">
-            <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
-            <button class="tab-btn" onclick="switchCategory('line', this)">LINE圖文</button>
-            <button class="tab-btn" onclick="switchCategory('banner', this)">BANNER</button>
-            <button class="tab-btn" onclick="switchCategory('package', this)">包裝設計</button>
-            <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
+    <!-- 2. 【關於我】獨立頁面 -->
+    <div id="page-about" class="page-view">
+        <div class="content-container">
+            <div class="page-title">關於我</div>
+            <p style="font-size: 1.1rem; color: #555; line-height: 2;">
+                嗨！我是小卷。擁有多年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。<br>
+                無論是社群圖文、吸睛 Banner、精美包裝還是 POP，我都致力於為每個專案注入獨特的靈魂與美感。
+            </p>
         </div>
+    </div>
 
-        <!-- 橫向圖庫與左右按鈕外框 -->
-        <div class="gallery-wrapper">
-            <button class="arrow-btn left-arrow" onclick="prevPage()">&#10094;</button>
-            <div class="gallery-grid" id="galleryGrid"></div>
-            <button class="arrow-btn right-arrow" onclick="nextPage()">&#10095;</button>
+    <!-- 3. 【精選作品】獨立頁面 -->
+    <div id="page-portfolio" class="page-view">
+        <div class="portfolio-container">
+            <div class="page-title">精選作品</div>
+            
+            <div class="category-tabs">
+                <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
+                <button class="tab-btn" onclick="switchCategory('line', this)">LINE圖文</button>
+                <button class="tab-btn" onclick="switchCategory('banner', this)">BANNER</button>
+                <button class="tab-btn" onclick="switchCategory('package', this)">包裝設計</button>
+                <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
+            </div>
+
+            <div class="gallery-wrapper">
+                <button class="arrow-btn left-arrow" onclick="prevPage()">&#10094;</button>
+                <div class="gallery-grid" id="galleryGrid"></div>
+                <button class="arrow-btn right-arrow" onclick="nextPage()">&#10095;</button>
+            </div>
+
+            <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
         </div>
+    </div>
 
-        <!-- 頁碼顯示 -->
-        <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
-    </section>
+    <!-- 4. 【聯絡方式】獨立頁面 -->
+    <div id="page-contact" class="page-view">
+        <div class="content-container">
+            <div class="contact-box">
+                <div class="page-title" style="color: white;">聯絡方式</div>
+                <p style="color: #ccc;">有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
+                <a href="mailto:your-email@example.com" class="contact-btn">發送電子郵件</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- 4. 聯絡方式區塊 -->
-    <section id="contact">
-        <h2>聯絡方式</h2>
-        <p>有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
-        <a href="mailto:your-email@example.com" class="contact-btn">發送電子郵件</a>
-    </section>
-
-    <!-- 燈箱放大檢視視窗 (點擊黑幕任一處可關閉) -->
+    <!-- 燈箱放大視窗 -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
         <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖">
         <div class="lightbox-caption" id="lightboxCaption">專案名稱</div>
@@ -318,7 +283,23 @@
 
     <!-- 互動邏輯 Script -->
     <script>
-        // 【調整】各分類作品的圖檔路徑與顯示名稱 (alt)
+        // 頁面切換機制
+        function navigateTo(pageId) {
+            // 隱藏所有頁面
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active-page'));
+            // 移除所有導覽按鈕高亮
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
+
+            // 顯示目標頁面與高亮按鈕
+            document.getElementById(`page-${pageId}`).classList.add('active-page');
+            const targetLink = document.getElementById(`link-${pageId}`);
+            if (targetLink) targetLink.classList.add('active-link');
+
+            // 每次切換頁面置頂
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 作品集資料
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB 社群宣傳圖文 01" },
@@ -387,9 +368,8 @@
 
         let currentCategory = 'fb';
         let currentPage = 0;
-        const itemsPerPage = 6; // 【調整】每頁顯示幾張圖 (目前設定為 6 張)
+        const itemsPerPage = 6;
 
-        // 渲染作品畫格與分頁
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
             const indicator = document.getElementById('pageIndicator');
@@ -411,7 +391,6 @@
                 img.src = imgData.src;
                 img.alt = imgData.alt;
 
-                // 點擊卡片開啟燈箱放大，並帶入說明文字
                 itemDiv.onclick = () => openLightbox(imgData.src, imgData.alt);
                 itemDiv.appendChild(img);
                 grid.appendChild(itemDiv);
@@ -420,7 +399,6 @@
             indicator.innerText = `第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁`;
         }
 
-        // 開啟燈箱
         function openLightbox(imgSrc, captionText) {
             const modal = document.getElementById('lightboxModal');
             const modalImg = document.getElementById('lightboxImg');
@@ -431,12 +409,10 @@
             modal.classList.add('active');
         }
 
-        // 關閉燈箱
         function closeLightbox() {
             document.getElementById('lightboxModal').classList.remove('active');
         }
 
-        // 上一頁按鈕邏輯
         function prevPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
@@ -444,7 +420,6 @@
             renderGallery();
         }
 
-        // 下一頁按鈕邏輯
         function nextPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
@@ -452,7 +427,6 @@
             renderGallery();
         }
 
-        // 切換分類按鈕邏輯
         function switchCategory(categoryKey, btnElement) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
             btnElement.classList.add('active-tab');
@@ -461,7 +435,6 @@
             renderGallery();
         }
 
-        // 初始化載入
         renderGallery();
     </script>
 </body>
