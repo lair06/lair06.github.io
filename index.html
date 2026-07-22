@@ -14,7 +14,7 @@
             font-family: 'Montserrat', 'Helvetica Neue', Arial, "PingFang TC", sans-serif; 
             margin: 0; padding: 0; 
             color: #333; 
-            background-color: #f7f8fa; 
+            background-color: #111; /* 【調整】將首頁全站底色設為質感深色，讓偏右的貓咪主圖更突顯 */
             line-height: 1.6; 
         }
 
@@ -23,7 +23,7 @@
            ========================================== */
         .page-view {
             display: none; 
-            padding-top: 0; /* 移除導覽列空間，圖片直接頂到最上方 */
+            padding-top: 0; 
             min-height: 100vh;
             box-sizing: border-box;
         }
@@ -32,25 +32,30 @@
         }
 
         /* ==========================================
-           3. 【首頁】mimi.png 滿版封面設定
+           3. 【首頁】mimi.png 縮小 40% 且置中偏右設定
            ========================================== */
         .hero-banner {
             position: relative;
             width: 100%;
-            height: 100vh; /* 滿版全螢幕高度 */
-            background-image: url('images/mimi/mimi.png'); /* 你的首頁封面圖檔路徑 */
-            background-size: cover;       
-            background-position: center;  
+            height: 100vh;
+            background-image: url('images/mimi/mimi.png'); 
+            
+            /* 【核心調整】縮小約 40%（改為原本尺寸的 60% 左右，可隨意調成 containment 或具體百分比） */
+            background-size: contain; 
+            
+            /* 【核心調整】位置設為：水平 65% (置中偏右)、垂直 50% (置中) */
+            background-position: 65% center;  
             background-repeat: no-repeat;
+            
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
         }
 
-        /* 封面圖上的暗色遮罩與文字內容 */
+        /* 封面圖上的文字與按鈕內容 */
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.35); /* 封面暗色遮罩透明度 (可隨意調成 0 變全透) */
+            background-color: rgba(0, 0, 0, 0.45); /* 輕微暗色遮罩，增加文字閱讀性 */
             width: 100%;
             height: 100%;
             display: flex;
@@ -65,12 +70,13 @@
             color: #ffffff;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
         .hero-subtitle {
             font-size: 1.3rem;
             color: #f0f0f0;
             margin-bottom: 30px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
         .hero-btn {
             display: inline-block;
@@ -92,6 +98,7 @@
         /* ==========================================
            4. 【關於我】頁面
            ========================================== */
+        #page-about { background-color: #f7f8fa; }
         .content-container {
             max-width: 800px;
             margin: 60px auto;
@@ -108,6 +115,7 @@
         /* ==========================================
            5. 【精選作品】頁面
            ========================================== */
+        #page-portfolio { background-color: #ffffff; }
         .portfolio-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -162,6 +170,7 @@
         /* ==========================================
            6. 【聯絡方式】頁面
            ========================================== */
+        #page-contact { background-color: #f7f8fa; }
         .contact-box {
             background-color: #111; color: white; padding: 60px 30px; border-radius: 16px; margin-top: 30px;
         }
@@ -183,7 +192,7 @@
 </head>
 <body>
 
-    <!-- 1. 【首頁】 - 滿版 mimi.png 封面 (已移除 Header 導覽列) -->
+    <!-- 1. 【首頁】 - mimi.png 縮小偏右版 -->
     <div id="page-home" class="page-view active-page">
         <div class="hero-banner">
             <div class="hero-overlay">
