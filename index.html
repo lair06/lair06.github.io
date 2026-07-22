@@ -46,8 +46,8 @@
         .tab-btn {
             background-color: #fff;
             border: 2px solid #e0e0e0;
-            padding: 10px 22px;
-            border-radius: 30px;
+            padding: 10px 22px;            /* 【可調整】按鈕大小 */
+            border-radius: 30px;          /* 【可調整】按鈕圓角 */
             font-size: 1rem;
             font-weight: bold;
             color: #666;
@@ -71,7 +71,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1200px;            /* 【可調整】展示區最大寬度 */
             width: 100%;
             margin: 0 auto;
         }
@@ -79,32 +79,32 @@
         /* 圖片網格 (每頁6張) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 預設電腦上一列 3 張，或可改 6 張 */
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr); /* 【可調整】一列排幾張圖 (預設3張，共兩行組成6張) */
+            gap: 25px;                     /* 【可調整】圖片間距 */
             width: 100%;
             padding: 10px;
         }
         @media (min-width: 900px) {
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); } /* 舒適的 3x2 排版 */
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         /* 單張圖片卡片 */
         .gallery-item {
             background: #fff;
-            border-radius: 12px;
+            border-radius: 12px;           /* 【可調整】卡片圓角 */
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06); /* 【可調整】卡片陰影 */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
         .gallery-item:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px);   /* 滑鼠懸停浮起高度 */
             box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
         .gallery-item img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
+            height: 220px;                 /* 【可調整】縮圖固定高度 */
+            object-fit: cover;             /* 確保圖片不變形填滿 */
             display: block;
         }
 
@@ -113,11 +113,11 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 55px;
-            height: 55px;
+            width: 55px;                   /* 【可調整】按鈕寬度 */
+            height: 55px;                  /* 【可調整】按鈕高度 */
             background-color: white;
             border: 1px solid #eaeaea;
-            border-radius: 50%;
+            border-radius: 50%;            /* 正圓形 */
             font-size: 1.3rem;
             color: #333;
             cursor: pointer;
@@ -133,8 +133,8 @@
             color: white;
             border-color: #3498db;
         }
-        .left-arrow { left: -30px; }
-        .right-arrow { right: -30px; }
+        .left-arrow { left: -30px; }       /* 【可調整】左按鈕位置 */
+        .right-arrow { right: -30px; }     /* 【可調整】右按鈕位置 */
 
         .page-indicator {
             margin-top: 25px;
@@ -163,14 +163,14 @@
         .contact-btn:hover { background-color: #2980b9; }
 
         /* ==========================================
-           燈箱效果 (Lightbox)
+           燈箱效果 (Lightbox) 點擊放大原圖
            ========================================== */
         .lightbox-modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* 50%~60% 黑色半透明遮罩 */
+            background-color: rgba(0, 0, 0, 0.5); /* 【可調整】原圖以外區域：不透明50%黑色 */
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -180,11 +180,12 @@
         }
         .lightbox-modal.active { display: flex; }
         .lightbox-content {
-            max-width: 85%;
-            max-height: 85vh;
-            object-fit: contain;
+            max-width: 90%;                /* 【可調整】放大原圖最大寬度 */
+            max-height: 90vh;              /* 【可調整】放大原圖最大高度 */
+            object-fit: contain;           /* 符合原圖長寬比例，不變形 */
             border-radius: 6px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            background-color: #fff;
         }
     </style>
 </head>
@@ -207,7 +208,7 @@
     <section id="home">
         <div class="container">
             <h1>哈囉！我是 詹沅叡 (小卷)</h1>
-            <p>專注於平面設計與動態影片創作的視覺設計師</p>
+            <p>平面設計與動態影片創作的視覺設計師</p>
         </div>
     </section>
 
@@ -216,7 +217,7 @@
         <div class="container">
             <h2>關於我</h2>
             <div class="about-content">
-                <p>嗨！我是小卷。擁有多年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。無論是社群圖文、吸睛 Banner、精美包裝還是吸睛 POP，我都致力於為每個專案注入獨特的靈魂與美感。</p>
+                <p>嗨！我是小卷。擁有3年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。無論是社群圖文、吸睛 Banner、精美包裝還是 POP，我都致力於為每個專案注入獨特的靈魂與美感。</p>
             </div>
         </div>
     </section>
@@ -252,34 +253,76 @@
         <a href="mailto:your-email@example.com" class="contact-btn">發送電子郵件</a>
     </section>
 
-    <!-- 燈箱視窗 (Lightbox) -->
+    <!-- 燈箱視窗 (Lightbox) -> 點擊半透明黑底或任一處可關閉 -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
         <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖">
     </div>
 
-    <!-- 互動邏輯 Script -->
+    <!-- 互動邏輯 Script (已載入你的真實圖檔路徑) -->
     <script>
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品2" },
                 { src: "images/FB/FB-03.jpg", alt: "FB作品3" },
-                { src: "images/FB/FB-01.jpg", alt: "FB作品4" },
-                { src: "images/FB/FB-02.jpg", alt: "FB作品5" },
-                { src: "images/FB/FB-03.jpg", alt: "FB作品6" }
+                { src: "images/FB/FB-04.jpg", alt: "FB作品4" },
+                { src: "images/FB/FB-05.jpg", alt: "FB作品5" },
+                { src: "images/FB/FB-06.jpg", alt: "FB作品6" },
+                { src: "images/FB/FB-07.jpg", alt: "FB作品7" }
             ],
             line: [
-                { src: "images/FB/FB-01.jpg", alt: "LINE作品1" },
-                { src: "images/FB/FB-02.jpg", alt: "LINE作品2" }
+                { src: "images/LINE/LINE-01.jpg", alt: "LINE作品1" },
+                { src: "images/LINE/LINE-02.jpg", alt: "LINE作品2" },
+                { src: "images/LINE/LINE-03.jpg", alt: "LINE作品3" },
+                { src: "images/LINE/LINE-04.jpg", alt: "LINE作品4" },
+                { src: "images/LINE/LINE-05.jpg", alt: "LINE作品5" },
+                { src: "images/LINE/LINE-06.jpg", alt: "LINE作品6" },
+                { src: "images/LINE/LINE-07.jpg", alt: "LINE作品7" },
+                { src: "images/LINE/LINE-08.jpg", alt: "LINE作品8" },
+                { src: "images/LINE/LINE-09.jpg", alt: "LINE作品9" },
+                { src: "images/LINE/LINE-10.jpg", alt: "LINE作品10" },
+                { src: "images/LINE/LINE-11.jpg", alt: "LINE作品11" },
+                { src: "images/LINE/LINE-12.jpg", alt: "LINE作品12" },
+                { src: "images/LINE/LINE-13.jpg", alt: "LINE作品13" },
+                { src: "images/LINE/LINE-14.jpg", alt: "LINE作品14" },
+                { src: "images/LINE/LINE-15.jpg", alt: "LINE作品15" }
             ],
             banner: [
-                { src: "images/FB/FB-03.jpg", alt: "Banner作品1" }
+                { src: "images/Banner/BANNER-01.jpg", alt: "Banner作品1" },
+                { src: "images/Banner/BANNER-02.jpg", alt: "Banner作品2" },
+                { src: "images/Banner/BANNER-03.jpg", alt: "Banner作品3" },
+                { src: "images/Banner/BANNER-04.jpg", alt: "Banner作品4" },
+                { src: "images/Banner/BANNER-05.jpg", alt: "Banner作品5" },
+                { src: "images/Banner/BANNER-06.jpg", alt: "Banner作品6" },
+                { src: "images/Banner/BANNER-07.jpg", alt: "Banner作品7" },
+                { src: "images/Banner/BANNER-08.jpg", alt: "Banner作品8" },
+                { src: "images/Banner/BANNER-09.jpg", alt: "Banner作品9" },
+                { src: "images/Banner/BANNER-10.jpg", alt: "Banner作品10" },
+                { src: "images/Banner/BANNER-11.jpg", alt: "Banner作品11" },
+                { src: "images/Banner/BANNER-12.jpg", alt: "Banner作品12" }
             ],
             package: [
-                { src: "images/FB/FB-01.jpg", alt: "包裝設計1" }
+                { src: "images/Packaging Design/Packaging Design-02.jpg", alt: "包裝設計2" },
+                { src: "images/Packaging Design/Packaging Design-03.jpg", alt: "包裝設計3" },
+                { src: "images/Packaging Design/Packaging Design-04.jpg", alt: "包裝設計4" },
+                { src: "images/Packaging Design/Packaging Design-05.jpg", alt: "包裝設計5" },
+                { src: "images/Packaging Design/Packaging Design-06.jpg", alt: "包裝設計6" }
             ],
             pop: [
-                { src: "images/FB/FB-02.jpg", alt: "POP作品1" }
+                { src: "images/POP/POP-01.jpg", alt: "POP作品1" },
+                { src: "images/POP/POP-02.jpg", alt: "POP作品2" },
+                { src: "images/POP/POP-03.jpg", alt: "POP作品3" },
+                { src: "images/POP/POP-04.jpg", alt: "POP作品4" },
+                { src: "images/POP/POP-05.jpg", alt: "POP作品5" },
+                { src: "images/POP/POP-06.jpg", alt: "POP作品6" },
+                { src: "images/POP/POP-07.jpg", alt: "POP作品7" },
+                { src: "images/POP/POP-08.jpg", alt: "POP作品8" },
+                { src: "images/POP/POP-09.jpg", alt: "POP作品9" },
+                { src: "images/POP/POP-010.jpg", alt: "POP作品10" },
+                { src: "images/POP/POP-11.jpg", alt: "POP作品11" },
+                { src: "images/POP/POP-12.jpg", alt: "POP作品12" },
+                { src: "images/POP/POP-13.jpg", alt: "POP作品13" },
+                { src: "images/POP/POP-14.jpg", alt: "POP作品14" }
             ]
         };
 
