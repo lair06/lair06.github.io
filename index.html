@@ -3,46 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的個人網站 | My One-Page Portfolio</title>
+    <title>詹沅叡 Studio | 設計師個人作品集</title>
     <style>
         /* 基礎全域設定與平滑滾動 */
         html { scroll-behavior: smooth; }
         body { font-family: 'Helvetica Neue', Arial, "PingFang TC", sans-serif; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; line-height: 1.6; }
 
         /* 導覽列 */
-        header { position: fixed; top: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 15px 20px; }
-        .logo { font-weight: bold; font-size: 1.2rem; color: #2c3e50; }
+        header { position: fixed; top: 0; width: 100%; background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; backdrop-filter: blur(5px); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 20px 30px; }
+        .logo { font-weight: bold; font-size: 1.3rem; color: #2c3e50; letter-spacing: 1px; }
         .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
-        .nav-links li { margin-left: 20px; }
-        .nav-links a { text-decoration: none; color: #555; font-weight: 500; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #3498db; }
 
-        /* 區塊設定 */
-        section { padding: 100px 20px 80px 20px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
+        /* 一頁式區塊共通樣式 */
+        section { padding: 120px 20px 100px 20px; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box; border-bottom: 1px solid #eee; }
+        h2 { font-size: 2.8rem; color: #2c3e50; margin-bottom: 15px; font-weight: 700; }
+        
+        /* 首頁區塊 */
+        #home { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        #home h1 { font-size: 3.5rem; color: #2c3e50; margin-bottom: 15px; }
+        #home p { font-size: 1.3rem; color: #555; }
+
+        /* 關於我區塊 */
+        #about .about-content { max-width: 700px; font-size: 1.1rem; color: #666; line-height: 1.8; margin-top: 20px; }
 
         /* ==========================================
-           【可調整】1. 分類標籤（牌子）設計
+           精選作品區塊
            ========================================== */
+        #portfolio { background-color: #ffffff; width: 100%; }
+        
+        /* 分類牌子 */
         .category-tabs {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .tab-btn {
             background-color: #fff;
-            border: 2px solid #ddd;
-            padding: 8px 18px;            /* 【可調整】按鈕內距（大小） */
-            border-radius: 20px;          /* 【可調整】按鈕圓角程度 */
-            font-size: 0.95rem;           /* 【可調整】按鈕文字大小 */
+            border: 2px solid #e0e0e0;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 1rem;
             font-weight: bold;
-            color: #555;
+            color: #666;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .tab-btn:hover {
             border-color: #3498db;
@@ -52,68 +63,68 @@
             background-color: #3498db;
             color: white;
             border-color: #3498db;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
         }
 
-        /* ==========================================
-           【可調整】2. 橫向圖庫展示區與按鈕外框
-           ========================================== */
+        /* 橫向圖庫與左右按鈕容器 */
         .gallery-wrapper {
             position: relative;
             display: flex;
             align-items: center;
-            max-width: 1200px;            /* 【可調整】整個圖庫展示區的最大寬度 */
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
         }
 
-        /* 圖片網格容器（一字排開） */
+        /* 圖片網格 (每頁6張) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr); /* 【可調整】預設一列排幾張圖片（目前為 6 張） */
-            gap: 20px;                     /* 【可調整】圖片與圖片之間的間距 */
+            grid-template-columns: repeat(3, 1fr); /* 預設電腦上一列 3 張，或可改 6 張 */
+            gap: 25px;
             width: 100%;
             padding: 10px;
         }
+        @media (min-width: 900px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); } /* 舒適的 3x2 排版 */
+        }
 
-        /* 單張圖片卡片樣式 */
+        /* 單張圖片卡片 */
         .gallery-item {
             background: #fff;
-            border-radius: 10px;           /* 【可調整】卡片外框圓角大小 */
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 【可調整】卡片陰影深淺 */
-            transition: transform 0.3s ease;
-            cursor: pointer;               /* 鼠標移上去變手指，提示可點擊放大 */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         .gallery-item:hover {
-            transform: translateY(-5px);   /* 滑鼠移上去時卡片浮起的距離 */
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
         .gallery-item img {
             width: 100%;
-            height: 180px;                 /* 【可調整】縮圖固定高度 */
-            object-fit: cover;             /* 確保縮圖不變形填滿 */
+            height: 220px;
+            object-fit: cover;
             display: block;
         }
 
-        /* ==========================================
-           【可調整】3. 左右圓形箭頭按鈕設計
-           ========================================== */
+        /* 左右箭頭按鈕 */
         .arrow-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 50px;                   /* 【可調整】按鈕圓圈的寬度 */
-            height: 50px;                  /* 【可調整】按鈕圓圈的高度 */
+            width: 55px;
+            height: 55px;
             background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 50%;            /* 保持 50% 才會是正圓形 */
-            font-size: 1.2rem;             /* 箭頭符號的大小 */
+            border: 1px solid #eaeaea;
+            border-radius: 50%;
+            font-size: 1.3rem;
             color: #333;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             z-index: 10;
             transition: all 0.3s ease;
         }
@@ -122,54 +133,64 @@
             color: white;
             border-color: #3498db;
         }
-        .left-arrow {
-            left: -25px;                   /* 【可調整】左按鈕距離圖片左側的距離 */
-        }
-        .right-arrow {
-            right: -25px;                  /* 【可調整】右按鈕距離圖片右側的距離 */
-        }
+        .left-arrow { left: -30px; }
+        .right-arrow { right: -30px; }
 
-        /* 頁碼提示文字 */
         .page-indicator {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #777;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: #888;
             font-weight: 500;
         }
 
         /* ==========================================
-           【可調整】4. 點擊放大燈箱（Lightbox）樣式
+           聯絡方式區塊
+           ========================================== */
+        #contact { background-color: #2c3e50; color: white; }
+        #contact h2 { color: white; }
+        #contact p { color: #cbd5e1; font-size: 1.1rem; max-width: 600px; margin-bottom: 30px; }
+        .contact-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .contact-btn:hover { background-color: #2980b9; }
+
+        /* ==========================================
+           燈箱效果 (Lightbox)
            ========================================== */
         .lightbox-modal {
-            display: none;                 /* 預設隱藏 */
+            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* 【可調整】遮罩顏色與透明度：這裡設定為 50% 黑色 */
-            z-index: 9999;                 /* 確保蓋在整個網頁的最上層 */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* 50%~60% 黑色半透明遮罩 */
+            z-index: 9999;
             justify-content: center;
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
+            backdrop-filter: blur(3px);
         }
-        .lightbox-modal.active {
-            display: flex;                 /* 啟動時顯示為彈性置中佈局 */
-        }
+        .lightbox-modal.active { display: flex; }
         .lightbox-content {
-            max-width: 90%;                /* 【可調整】放大圖片在畫面上的最大寬度限制 */
-            max-height: 90vh;              /* 【可調整】放大圖片在畫面上的最大高度限制 */
-            object-fit: contain;           /* 保持原圖長寬比例，不變形 */
-            border-radius: 8px;            /* 【可調整】放大圖片的圓角 */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* 放大圖片的立體陰影 */
-            background-color: #fff;
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- 導覽列 -->
+    <!-- 頂部導覽列 -->
     <header>
         <nav>
             <div class="logo">詹沅叡 Studio</div>
@@ -182,23 +203,29 @@
         </nav>
     </header>
 
-    <!-- 首頁區塊 -->
+    <!-- 1. 首頁區塊 -->
     <section id="home">
-        <h1>哈囉！我是 詹沅叡(小卷)</h1>
-        <p>一名平面設計與影片創作的設計師</p>
+        <div class="container">
+            <h1>哈囉！我是 詹沅叡 (小卷)</h1>
+            <p>專注於平面設計與動態影片創作的視覺設計師</p>
+        </div>
     </section>
 
-    <!-- 關於我區塊 -->
+    <!-- 2. 關於我區塊 -->
     <section id="about">
-        <h2>關於我</h2>
-        <p>簡短自我介紹。</p>
+        <div class="container">
+            <h2>關於我</h2>
+            <div class="about-content">
+                <p>嗨！我是小卷。擁有多年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。無論是社群圖文、吸睛 Banner、精美包裝還是吸睛 POP，我都致力於為每個專案注入獨特的靈魂與美感。</p>
+            </div>
+        </div>
     </section>
 
-    <!-- 作品集區塊 -->
+    <!-- 3. 精選作品區塊 -->
     <section id="portfolio">
         <h2>精選作品</h2>
         
-        <!-- 5個分類牌子按鈕 -->
+        <!-- 分類牌子按鈕 -->
         <div class="category-tabs">
             <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
             <button class="tab-btn" onclick="switchCategory('line', this)">LINE圖文</button>
@@ -207,17 +234,10 @@
             <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
         </div>
 
-        <!-- 橫向圖庫與左右按鈕包裝容器 -->
+        <!-- 橫向圖庫與左右按鈕外框 -->
         <div class="gallery-wrapper">
-            <!-- 向左箭頭按鈕 -->
             <button class="arrow-btn left-arrow" onclick="prevPage()">&#10094;</button>
-            
-            <!-- 圖片一字排開的網格容器 -->
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- 圖片會由 JavaScript 動態填入 -->
-            </div>
-
-            <!-- 向右箭頭按鈕 -->
+            <div class="gallery-grid" id="galleryGrid"></div>
             <button class="arrow-btn right-arrow" onclick="nextPage()">&#10095;</button>
         </div>
 
@@ -225,32 +245,28 @@
         <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
     </section>
 
-    <!-- 聯絡方式區塊 -->
+    <!-- 4. 聯絡方式區塊 -->
     <section id="contact">
         <h2>聯絡方式</h2>
-        <p>有任何合作機會或想聊聊的嗎？歡迎隨時與我聯絡！</p>
+        <p>有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
+        <a href="mailto:your-email@example.com" class="contact-btn">發送電子郵件</a>
     </section>
 
-    <!-- 【新增】點擊放大燈箱（Lightbox）容器 -->
+    <!-- 燈箱視窗 (Lightbox) -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
         <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖">
     </div>
 
-    <!-- ==========================================
-       【可調整】5. JavaScript 資料庫與互動邏輯
-       ========================================== -->
+    <!-- 互動邏輯 Script -->
     <script>
-        // 💡 這裡可以隨意增加更多圖片！程式會自動每 6 張為一組分頁
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB作品1" },
                 { src: "images/FB/FB-02.jpg", alt: "FB作品2" },
                 { src: "images/FB/FB-03.jpg", alt: "FB作品3" },
-                { src: "images/FB/FB-04.jpg", alt: "FB作品4" },
-                { src: "images/FB/FB-05.jpg", alt: "FB作品5" },
-                { src: "images/FB/FB-06.jpg", alt: "FB作品6" },
-                { src: "images/FB/FB-07.jpg", alt: "FB作品7" },
-                { src: "images/FB/FB-02.jpg", alt: "FB作品8" }
+                { src: "images/FB/FB-01.jpg", alt: "FB作品4" },
+                { src: "images/FB/FB-02.jpg", alt: "FB作品5" },
+                { src: "images/FB/FB-03.jpg", alt: "FB作品6" }
             ],
             line: [
                 { src: "images/FB/FB-01.jpg", alt: "LINE作品1" },
@@ -269,19 +285,15 @@
 
         let currentCategory = 'fb';
         let currentPage = 0;
-        const itemsPerPage = 6; // 【可調整】每一組要顯示幾張圖片
+        const itemsPerPage = 6; // 每頁顯示 6 張
 
-        // 渲染當前分類的圖片
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
             const indicator = document.getElementById('pageIndicator');
             const images = portfolioData[currentCategory];
             
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            
-            if (currentPage >= totalPages) {
-                currentPage = totalPages - 1;
-            }
+            if (currentPage >= totalPages) currentPage = totalPages - 1;
 
             const start = currentPage * itemsPerPage;
             const end = start + itemsPerPage;
@@ -296,11 +308,7 @@
                 img.src = imgData.src;
                 img.alt = imgData.alt;
 
-                // 【新增】點擊縮圖時，開啟燈箱並帶入該張圖片的完整來源
-                itemDiv.onclick = () => {
-                    openLightbox(imgData.src);
-                };
-
+                itemDiv.onclick = () => openLightbox(imgData.src);
                 itemDiv.appendChild(img);
                 grid.appendChild(itemDiv);
             });
@@ -308,21 +316,17 @@
             indicator.innerText = `第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁`;
         }
 
-        // 開啟燈箱函式
         function openLightbox(imgSrc) {
             const modal = document.getElementById('lightboxModal');
             const modalImg = document.getElementById('lightboxImg');
             modalImg.src = imgSrc;
-            modal.classList.add('active'); // 顯示燈箱
+            modal.classList.add('active');
         }
 
-        // 關閉燈箱函式（點擊半透明黑底或圖片旁空白處時觸發）
         function closeLightbox() {
-            const modal = document.getElementById('lightboxModal');
-            modal.classList.remove('active'); // 隱藏燈箱
+            document.getElementById('lightboxModal').classList.remove('active');
         }
 
-        // 點擊向左箭頭
         function prevPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
@@ -330,7 +334,6 @@
             renderGallery();
         }
 
-        // 點擊向右箭頭
         function nextPage() {
             const images = portfolioData[currentCategory];
             const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
@@ -338,19 +341,14 @@
             renderGallery();
         }
 
-        // 切換上方分類牌子
         function switchCategory(categoryKey, btnElement) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active-tab');
-            });
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
             btnElement.classList.add('active-tab');
-
             currentCategory = categoryKey;
             currentPage = 0;
             renderGallery();
         }
 
-        // 網頁一打開預設載入
         renderGallery();
     </script>
 </body>
