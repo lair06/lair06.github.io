@@ -32,23 +32,26 @@
         }
 
         /* ==========================================
-           3. 【首頁】mimi.png 無遮罩、原圖無透明度版
+           3. 【首頁】恢復原本滿版 cover、無遮罩透明度
            ========================================== */
         .hero-banner {
             position: relative;
             width: 100%;
             height: 100vh;
-            background-image: url('images/mimi/mimi.png'); 
-            background-size: contain; 
-            background-position: 65% center;  
+            background-image: url('images/mimi/mimi2.png'); 
+            
+            /* 【恢復原本設定】滿版且置中 */
+            background-size: cover; 
+            background-position: center;  
             background-repeat: no-repeat;
+            
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
         }
 
-        /* 【核心修改】將背景遮罩色設為 transparent（無透明度/無遮罩） */
+        /* 無透明遮罩設定 */
         .hero-overlay {
             background-color: transparent; 
             width: 100%;
@@ -65,7 +68,7 @@
             color: #ffffff;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.8); /* 加上清晰陰影，確保沒有暗色遮罩時文字依然清晰 */
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8);
         }
         .hero-subtitle {
             font-size: 1.3rem;
@@ -187,7 +190,7 @@
 </head>
 <body>
 
-    <!-- 1. 【首頁】 - mimi.png 原圖無遮罩版 -->
+    <!-- 1. 【首頁】 - 恢復原本滿版大小與置中 -->
     <div id="page-home" class="page-view active-page">
         <div class="hero-banner">
             <div class="hero-overlay">
