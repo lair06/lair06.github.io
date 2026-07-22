@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>詹沅叡 Studio | 視覺設計師作品集</title>
-    <!-- 引入 Google Fonts 英文現代俐落字型 -->
+    <!-- 引入 Google Fonts 英文字型 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================
@@ -19,51 +19,28 @@
         }
 
         /* ==========================================
-           2. 頂部導覽列設定
-           ========================================== */
-        header { 
-            position: fixed; top: 0; width: 100%; 
-            background-color: rgba(255, 255, 255, 0.95); 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.04); 
-            z-index: 1000; 
-            backdrop-filter: blur(8px); 
-        }
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            max-width: 1200px; margin: 0 auto; padding: 18px 30px; 
-        }
-        .logo { font-weight: 700; font-size: 1.2rem; color: #111; letter-spacing: 1px; cursor: pointer; }
-        .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
-        .nav-links li { margin-left: 35px; }
-        .nav-links a { 
-            text-decoration: none; color: #666; font-weight: 600; font-size: 0.95rem; 
-            transition: color 0.3s; cursor: pointer;
-        }
-        .nav-links a:hover, .nav-links a.active-link { color: #3498db; }
-
-        /* ==========================================
-           3. 獨立頁面 (Page Views) 控制機制
+           2. 頁面控制與無導覽列置頂設定
            ========================================== */
         .page-view {
-            display: none; /* 預設隱藏所有獨立頁面 */
-            padding-top: 0px; /* 預留給頂部導覽列的高度 */
-            min-height: calc(100vh - 80px);
+            display: none; 
+            padding-top: 0; /* 移除導覽列空間，圖片直接頂到最上方 */
+            min-height: 100vh;
             box-sizing: border-box;
         }
         .page-view.active-page {
-            display: block; /* 僅顯示當前被選中的頁面 */
+            display: block; 
         }
 
         /* ==========================================
-           4. 【首頁】mimi.png 滿版/半滿版大封面設定
+           3. 【首頁】mimi.png 滿版封面設定
            ========================================== */
         .hero-banner {
             position: relative;
             width: 100%;
-            height: 100px; /* 【可調整】封面高度，現為整張螢幕滿版 */
+            height: 100vh; /* 滿版全螢幕高度 */
             background-image: url('images/mimi/mimi.png'); /* 你的首頁封面圖檔路徑 */
-            background-size: cover;       /* 確保圖片填滿封面 */
-            background-position: center;  /* 置中對齊 */
+            background-size: cover;       
+            background-position: center;  
             background-repeat: no-repeat;
             display: flex;
             align-items: center;
@@ -71,9 +48,9 @@
             text-align: center;
         }
 
-        /* 封面圖上的遮罩與文字內容 */
+        /* 封面圖上的暗色遮罩與文字內容 */
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.4); /* 【可調整】封面暗色遮罩透明度，讓文字更清晰 */
+            background-color: rgba(0, 0, 0, 0.35); /* 封面暗色遮罩透明度 (可隨意調成 0 變全透) */
             width: 100%;
             height: 100%;
             display: flex;
@@ -88,7 +65,7 @@
             color: #ffffff;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
         .hero-subtitle {
             font-size: 1.3rem;
@@ -99,7 +76,7 @@
             display: inline-block;
             background-color: #3498db;
             color: white;
-            padding: 12px 30px;
+            padding: 12px 32px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
@@ -113,12 +90,12 @@
         }
 
         /* ==========================================
-           5. 【關於我】獨立頁面
+           4. 【關於我】頁面
            ========================================== */
         .content-container {
             max-width: 800px;
             margin: 60px auto;
-            padding: 0 20px;
+            padding: 40px 20px;
             text-align: center;
         }
         .page-title {
@@ -129,12 +106,12 @@
         }
 
         /* ==========================================
-           6. 【精選作品】獨立頁面
+           5. 【精選作品】頁面
            ========================================== */
         .portfolio-container {
             max-width: 1200px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 40px 20px;
             text-align: center;
         }
         .category-tabs {
@@ -183,7 +160,7 @@
         .page-indicator { margin-top: 25px; font-size: 0.95rem; color: #888; font-weight: 500; }
 
         /* ==========================================
-           7. 【聯絡方式】獨立頁面
+           6. 【聯絡方式】頁面
            ========================================== */
         .contact-box {
             background-color: #111; color: white; padding: 60px 30px; border-radius: 16px; margin-top: 30px;
@@ -206,20 +183,7 @@
 </head>
 <body>
 
-    <!-- 頂部導覽列 -->
-    <header>
-        <nav>
-            <div class="logo" onclick="navigateTo('home')">詹沅叡 Studio</div>
-            <ul class="nav-links">
-                <li><a id="link-home" class="active-link" onclick="navigateTo('home')">首頁</a></li>
-                <li><a id="link-about" onclick="navigateTo('about')">關於我</a></li>
-                <li><a id="link-portfolio" onclick="navigateTo('portfolio')">精選作品</a></li>
-                <li><a id="link-contact" onclick="navigateTo('contact')">聯絡方式</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- 1. 【首頁】 - 包含 mimi.png 大封面 -->
+    <!-- 1. 【首頁】 - 滿版 mimi.png 封面 (已移除 Header 導覽列) -->
     <div id="page-home" class="page-view active-page">
         <div class="hero-banner">
             <div class="hero-overlay">
@@ -230,7 +194,7 @@
         </div>
     </div>
 
-    <!-- 2. 【關於我】獨立頁面 -->
+    <!-- 2. 【關於我】頁面 -->
     <div id="page-about" class="page-view">
         <div class="content-container">
             <div class="page-title">關於我</div>
@@ -238,10 +202,12 @@
                 嗨！我是小卷。擁有多年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。<br>
                 無論是社群圖文、吸睛 Banner、精美包裝還是 POP，我都致力於為每個專案注入獨特的靈魂與美感。
             </p>
+            <br>
+            <a class="hero-btn" onclick="navigateTo('home')">返回首頁</a>
         </div>
     </div>
 
-    <!-- 3. 【精選作品】獨立頁面 -->
+    <!-- 3. 【精選作品】頁面 -->
     <div id="page-portfolio" class="page-view">
         <div class="portfolio-container">
             <div class="page-title">精選作品</div>
@@ -261,16 +227,20 @@
             </div>
 
             <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
+            <br><br>
+            <a class="hero-btn" onclick="navigateTo('home')">返回首頁</a>
         </div>
     </div>
 
-    <!-- 4. 【聯絡方式】獨立頁面 -->
+    <!-- 4. 【聯絡方式】頁面 -->
     <div id="page-contact" class="page-view">
         <div class="content-container">
             <div class="contact-box">
                 <div class="page-title" style="color: white;">聯絡方式</div>
                 <p style="color: #ccc;">有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
                 <a href="mailto:your-email@example.com" class="contact-btn">發送電子郵件</a>
+                <br><br>
+                <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
             </div>
         </div>
     </div>
@@ -285,17 +255,8 @@
     <script>
         // 頁面切換機制
         function navigateTo(pageId) {
-            // 隱藏所有頁面
             document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active-page'));
-            // 移除所有導覽按鈕高亮
-            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
-
-            // 顯示目標頁面與高亮按鈕
             document.getElementById(`page-${pageId}`).classList.add('active-page');
-            const targetLink = document.getElementById(`link-${pageId}`);
-            if (targetLink) targetLink.classList.add('active-link');
-
-            // 每次切換頁面置頂
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
