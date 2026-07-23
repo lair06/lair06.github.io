@@ -74,7 +74,7 @@
             text-shadow: 0 1px 5px rgba(255,255,255,0.8);
         }
 
-        /* 【新增】多按鈕組合容器 */
+        /* 多按鈕組合容器 */
         .hero-btn-group {
             display: flex;
             gap: 15px;
@@ -98,7 +98,7 @@
             border-color: #2980b9;
             transform: translateY(-2px);
         }
-        /* 次要按鈕樣式（如：關於我、聯絡我） */
+        /* 次要按鈕樣式 */
         .hero-btn.btn-secondary {
             background-color: rgba(255, 255, 255, 0.85);
             color: #111111;
@@ -126,11 +126,10 @@
             color: #111;
             font-weight: 700;
             margin-bottom: 20px;
-            /* 💡 若需要在「關於我」頁面也加上英文輔助說明，可參考作品頁面的結構 */
         }
 
         /* ==========================================
-           5. 【作品】頁面 (已更新標題樣式)
+           5. 【作品】頁面 (已更新為彩色大色塊區)
            ========================================== */
         #page-portfolio { background-color: #ffffff; }
         .portfolio-container {
@@ -140,7 +139,6 @@
             text-align: center;
         }
         
-        /* 【新增】作品集標題樣式 */
         .portfolio-title-wrapper {
             margin-bottom: 30px;
             display: flex;
@@ -155,57 +153,140 @@
             margin: 0;
         }
         .portfolio-sub-title {
-            font-size: 1.1rem; /* 較小的字體 */
-            color: #888;       /* 較淡的顏色 */
+            font-size: 1.1rem;
+            color: #888;
             font-weight: 400;
-            margin-top: 10px;  /* 與中文字微調對齊 */
+            margin-top: 10px;
         }
 
-        /* 分類籤切換按鈕 */
-        .category-tabs {
-            display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;
-        }
-        .tab-btn {
-            background-color: #fff; border: 2px solid #e5e5e5; padding: 10px 24px;
-            border-radius: 30px; font-size: 0.95rem; font-weight: 600; color: #666;
-            cursor: pointer; transition: all 0.3s ease;
-        }
-        .tab-btn:hover { border-color: #3498db; color: #3498db; }
-        .tab-btn.active-tab {
-            background-color: #111; color: white; border-color: #111;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        /* 大色塊選單容器 */
+        .color-tiles-container {
+            display: flex;
+            width: 100%;
+            height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
         }
 
-        .gallery-wrapper {
-            position: relative; display: flex; align-items: center; width: 100%;
+        .color-tile {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 35px;
+            cursor: pointer;
+            transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+            user-select: none;
         }
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; padding: 10px;
-        }
-        .gallery-item {
-            background: #fff; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer; position: relative;
-        }
-        .gallery-item:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; }
-        .gallery-item::after {
-            content: "查看作品"; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(17, 17, 17, 0.4); color: white; font-weight: 600; font-size: 0.95rem;
-            display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
-        }
-        .gallery-item:hover::after { opacity: 1; }
 
-        .arrow-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 50px; height: 50px; background-color: white; border: 1px solid #eaeaea;
-            border-radius: 50%; font-size: 1.2rem; color: #333; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); z-index: 10;
+        .color-tile:hover {
+            flex: 1.25; /* 觸控/滑鼠移上去時展開 */
+            filter: brightness(1.05);
         }
-        .arrow-btn:hover { background-color: #111; color: white; border-color: #111; }
-        .left-arrow { left: -30px; }
-        .right-arrow { right: -30px; }
-        .page-indicator { margin-top: 25px; font-size: 0.95rem; color: #888; font-weight: 500; }
+
+        .tile-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: 2px;
+        }
+
+        /* 色塊配色設定 (參考示意圖色彩) */
+        .tile-fb      { background-color: #48c9b0; }
+        .tile-line    { background-color: #3498db; }
+        .tile-banner  { background-color: #d7bde2; }
+        .tile-package { background-color: #f8965d; }
+        .tile-pop     { background-color: #c0392b; }
+        .tile-pop .tile-text { color: #ffffff; }
+
+        /* 橫向滾動畫廊容器 */
+        .horizontal-gallery-wrapper {
+            display: none; /* 點擊色塊後才展開 */
+            position: relative;
+            width: 100%;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .horizontal-gallery-wrapper.active {
+            display: block;
+        }
+
+        /* 橫向滾動畫廊列 */
+        .horizontal-scroll-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 15px 5px 25px 5px;
+            scrollbar-width: thin;
+            scrollbar-color: #3498db #f1f1f1;
+        }
+
+        .horizontal-scroll-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        .horizontal-scroll-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .horizontal-scroll-grid::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 10px;
+        }
+
+        /* 橫向畫廊單張卡片 */
+        .horizontal-item {
+            flex: 0 0 auto;
+            width: 320px;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .horizontal-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .horizontal-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .horizontal-item::after {
+            content: "點擊放大";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .horizontal-item:hover::after {
+            opacity: 1;
+        }
+
+        .current-category-label {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
 
         /* ==========================================
            6. 【聯絡方式】頁面
@@ -239,7 +320,6 @@
                 <div class="hero-title">詹沅叡 (小卷)</div>
                 <div class="hero-subtitle">平面設計 / 多媒體視覺創作 / 動態視覺</div>
                 
-                <!-- 【按鈕區域】新增 關於我 與 聯絡我 選項 -->
                 <div class="hero-btn-group">
                     <a class="hero-btn" onclick="navigateTo('portfolio')">專案作品</a>
                     <a class="hero-btn btn-secondary" onclick="navigateTo('about')">關於我</a>
@@ -262,30 +342,39 @@
         </div>
     </div>
 
-    <!-- 3. 【精選作品】頁面 (已更新標題結構與樣式) -->
+    <!-- 3. 【作品】頁面 (已更新為 5 色塊選單區) -->
     <div id="page-portfolio" class="page-view">
         <div class="portfolio-container">
-            <!-- 【核心更新】新的標題包裝容器 -->
             <div class="portfolio-title-wrapper">
                 <h2 class="portfolio-main-title">作品</h2>
                 <span class="portfolio-sub-title">Design/Portfolio</span>
             </div>
             
-            <div class="category-tabs">
-                <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
-                <button class="tab-btn" onclick="switchCategory('line', this)">LINE圖文</button>
-                <button class="tab-btn" onclick="switchCategory('banner', this)">BANNER</button>
-                <button class="tab-btn" onclick="switchCategory('package', this)">包裝設計</button>
-                <button class="tab-btn" onclick="switchCategory('pop', this)">POP</button>
+            <!-- 大色塊選單區域 -->
+            <div class="color-tiles-container">
+                <div class="color-tile tile-fb" onclick="openCategoryGallery('fb', 'FB 圖文')">
+                    <span class="tile-text">FB</span>
+                </div>
+                <div class="color-tile tile-line" onclick="openCategoryGallery('line', 'LINE 圖文')">
+                    <span class="tile-text">LINE</span>
+                </div>
+                <div class="color-tile tile-banner" onclick="openCategoryGallery('banner', 'BANNER')">
+                    <span class="tile-text">BANNER</span>
+                </div>
+                <div class="color-tile tile-package" onclick="openCategoryGallery('package', '包裝')">
+                    <span class="tile-text">包裝</span>
+                </div>
+                <div class="color-tile tile-pop" onclick="openCategoryGallery('pop', 'POP')">
+                    <span class="tile-text">POP</span>
+                </div>
             </div>
 
-            <div class="gallery-wrapper">
-                <button class="arrow-btn left-arrow" onclick="prevPage()">&#10094;</button>
-                <div class="gallery-grid" id="galleryGrid"></div>
-                <button class="arrow-btn right-arrow" onclick="nextPage()">&#10095;</button>
+            <!-- 橫向滾動畫廊 (點擊色塊後展開) -->
+            <div class="horizontal-gallery-wrapper" id="horizontalGalleryWrapper">
+                <div class="current-category-label" id="categoryLabel">專案列表</div>
+                <div class="horizontal-scroll-grid" id="horizontalScrollGrid"></div>
             </div>
 
-            <div class="page-indicator" id="pageIndicator">第 1 頁 / 共 1 頁</div>
             <br><br>
             <a class="hero-btn" onclick="navigateTo('home')">返回首頁</a>
         </div>
@@ -386,26 +475,19 @@
             ]
         };
 
-        let currentCategory = 'fb';
-        let currentPage = 0;
-        const itemsPerPage = 6;
+        // 點擊色塊時，展開橫向滾動畫廊
+        function openCategoryGallery(categoryKey, titleText) {
+            const wrapper = document.getElementById('horizontalGalleryWrapper');
+            const grid = document.getElementById('horizontalScrollGrid');
+            const label = document.getElementById('categoryLabel');
+            const images = portfolioData[categoryKey];
 
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const indicator = document.getElementById('pageIndicator');
-            const images = portfolioData[currentCategory];
-            
-            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            if (currentPage >= totalPages) currentPage = totalPages - 1;
-
-            const start = currentPage * itemsPerPage;
-            const end = start + itemsPerPage;
-            const currentImages = images.slice(start, end);
-
+            label.innerText = `▸ ${titleText} 作品列表`;
             grid.innerHTML = '';
-            currentImages.forEach(imgData => {
+
+            images.forEach(imgData => {
                 const itemDiv = document.createElement('div');
-                itemDiv.className = 'gallery-item';
+                itemDiv.className = 'horizontal-item';
 
                 const img = document.createElement('img');
                 img.src = imgData.src;
@@ -416,9 +498,21 @@
                 grid.appendChild(itemDiv);
             });
 
-            indicator.innerText = `第 ${currentPage + 1} / 共 ${totalPages} 頁`;
+            // 展開畫廊
+            wrapper.classList.add('active');
+
+            // 平滑滾動至畫廊區域
+            wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
+        // 監聽畫廊區塊的滑鼠滾輪事件，讓垂直滾輪直接變「左右橫滑」
+        const scrollGrid = document.getElementById('horizontalScrollGrid');
+        scrollGrid.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            scrollGrid.scrollLeft += evt.deltaY;
+        }, { passive: false });
+
+        // 燈箱控制邏輯
         function openLightbox(imgSrc, captionText) {
             const modal = document.getElementById('lightboxModal');
             const modalImg = document.getElementById('lightboxImg');
@@ -432,30 +526,6 @@
         function closeLightbox() {
             document.getElementById('lightboxModal').classList.remove('active');
         }
-
-        function prevPage() {
-            const images = portfolioData[currentCategory];
-            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            currentPage = (currentPage - 1 + totalPages) % totalPages;
-            renderGallery();
-        }
-
-        function nextPage() {
-            const images = portfolioData[currentCategory];
-            const totalPages = Math.ceil(images.length / itemsPerPage) || 1;
-            currentPage = (currentPage + 1) % totalPages;
-            renderGallery();
-        }
-
-        function switchCategory(categoryKey, btnElement) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
-            btnElement.classList.add('active-tab');
-            currentCategory = categoryKey;
-            currentPage = 0;
-            renderGallery();
-        }
-
-        renderGallery();
     </script>
 </body>
 </html>
