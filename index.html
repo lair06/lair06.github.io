@@ -73,20 +73,41 @@
             margin-bottom: 30px;
             text-shadow: 0 1px 5px rgba(255,255,255,0.8);
         }
+
+        /* 【新增】多按鈕組合容器 */
+        .hero-btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
         .hero-btn {
             display: inline-block;
             background-color: #3498db;
             color: white;
-            padding: 12px 32px;
+            padding: 12px 28px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            border: 2px solid #3498db;
         }
         .hero-btn:hover {
             background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        /* 次要按鈕樣式（如：關於我、聯絡我） */
+        .hero-btn.btn-secondary {
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #111111;
+            border: 2px solid #111111;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .hero-btn.btn-secondary:hover {
+            background-color: #111111;
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
@@ -105,10 +126,11 @@
             color: #111;
             font-weight: 700;
             margin-bottom: 20px;
+            /* 💡 若需要在「關於我」頁面也加上英文輔助說明，可參考作品頁面的結構 */
         }
 
         /* ==========================================
-           5. 【精選作品】頁面
+           5. 【作品】頁面 (已更新標題樣式)
            ========================================== */
         #page-portfolio { background-color: #ffffff; }
         .portfolio-container {
@@ -117,6 +139,29 @@
             padding: 40px 20px;
             text-align: center;
         }
+        
+        /* 【新增】作品集標題樣式 */
+        .portfolio-title-wrapper {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .portfolio-main-title {
+            font-size: 2.5rem;
+            color: #111;
+            font-weight: 700;
+            margin: 0;
+        }
+        .portfolio-sub-title {
+            font-size: 1.1rem; /* 較小的字體 */
+            color: #888;       /* 較淡的顏色 */
+            font-weight: 400;
+            margin-top: 10px;  /* 與中文字微調對齊 */
+        }
+
+        /* 分類籤切換按鈕 */
         .category-tabs {
             display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;
         }
@@ -193,12 +238,18 @@
             <div class="hero-overlay">
                 <div class="hero-title">詹沅叡 (小卷)</div>
                 <div class="hero-subtitle">平面設計 / 多媒體視覺創作 / 動態視覺</div>
-                <a class="hero-btn" onclick="navigateTo('portfolio')">瀏覽精選作品</a>
+                
+                <!-- 【按鈕區域】新增 關於我 與 聯絡我 選項 -->
+                <div class="hero-btn-group">
+                    <a class="hero-btn" onclick="navigateTo('portfolio')">專案作品</a>
+                    <a class="hero-btn btn-secondary" onclick="navigateTo('about')">關於我</a>
+                    <a class="hero-btn btn-secondary" onclick="navigateTo('contact')">聯絡我</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- 2. 【關於我】頁面 (已更新年資) -->
+    <!-- 2. 【關於我】頁面 -->
     <div id="page-about" class="page-view">
         <div class="content-container">
             <div class="page-title">關於我</div>
@@ -211,10 +262,14 @@
         </div>
     </div>
 
-    <!-- 3. 【精選作品】頁面 -->
+    <!-- 3. 【精選作品】頁面 (已更新標題結構與樣式) -->
     <div id="page-portfolio" class="page-view">
         <div class="portfolio-container">
-            <div class="page-title">精選作品</div>
+            <!-- 【核心更新】新的標題包裝容器 -->
+            <div class="portfolio-title-wrapper">
+                <h2 class="portfolio-main-title">作品</h2>
+                <span class="portfolio-sub-title">Design/Portfolio</span>
+            </div>
             
             <div class="category-tabs">
                 <button class="tab-btn active-tab" onclick="switchCategory('fb', this)">FB圖文</button>
@@ -236,13 +291,12 @@
         </div>
     </div>
 
-    <!-- 4. 【聯絡方式】頁面 (已更新 Email) -->
+    <!-- 4. 【聯絡方式】頁面 -->
     <div id="page-contact" class="page-view">
         <div class="content-container">
             <div class="contact-box">
                 <div class="page-title" style="color: white;">聯絡方式</div>
                 <p style="color: #ccc;">有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
-                <!-- 已更新 Email 信箱連結 -->
                 <a href="mailto:alir940167@gmail.com" class="contact-btn">發送電子郵件</a>
                 <br><br>
                 <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
@@ -362,7 +416,7 @@
                 grid.appendChild(itemDiv);
             });
 
-            indicator.innerText = `第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁`;
+            indicator.innerText = `第 ${currentPage + 1} / 共 ${totalPages} 頁`;
         }
 
         function openLightbox(imgSrc, captionText) {
