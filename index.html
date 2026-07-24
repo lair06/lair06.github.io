@@ -209,7 +209,7 @@
             transform: rotate(180deg);
         }
 
-        /* 💡【關鍵已套用】由深至淺（由上往下）渐層色板，並設定對應的高對比字色 */
+        /* 💡【關鍵已套用】由深至淺（由上往下）漸層色板 */
         .tile-fb      { background-color: #10406b; } /* 1. 深藍 */
         .tile-fb .tile-text, .tile-fb .tile-arrow { color: #ffffff; }
 
@@ -231,12 +231,6 @@
         .tile-motion  { background-color: #5ec493; } /* 7. 淺綠 */
         .tile-motion .tile-text, .tile-motion .tile-arrow { color: #111111; }
 
-        /* 未來預留之更淺色碼 (備用)：
-           #82d68b (黃綠 8)
-           #a3e288 (淺黃綠 9)
-           #d9ed92 (最淺嫩綠 10)
-        */
-
         .tile-gallery-content {
             max-height: 0;
             overflow: hidden;
@@ -246,7 +240,7 @@
         }
 
         .accordion-item.active .tile-gallery-content {
-            max-height: 380px; /* 💡【可調整】展開區塊的最大高度，若畫廊預覽卡片加大可提高此數值 */
+            max-height: 380px; /* 💡【可調整】展開區塊的最大高度 */
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -319,7 +313,7 @@
         }
 
         /* ==========================================
-           6. 【聯絡方式】頁面設定
+           6. 【聯絡方式】與燈箱視窗設定
            ========================================== */
         #page-contact { background-color: #f7f8fa; }
         .contact-box {
@@ -330,51 +324,89 @@
             border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px;
         }
 
-        /* 燈箱視窗 */
+        /* 💡【燈箱與左右切換按鈕設定】 */
         .lightbox-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); z-index: 9999; flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.88); z-index: 9999; flex-direction: column;
             justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; backdrop-filter: blur(5px);
         }
         .lightbox-modal.active { display: flex; }
         .lightbox-content { max-width: 85%; max-height: 75vh; object-fit: contain; border-radius: 6px; }
         .lightbox-iframe { width: 80%; max-width: 900px; height: 506px; max-height: 70vh; border-radius: 12px; border: none; }
-        .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
+        .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; text-align: center; }
+
+        /* 💡【可調整】燈箱左右切換按鈕 */
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15); /* 💡 按鈕背景顏色 */
+            color: #ffffff; /* 💡 箭頭顏色 */
+            border: none;
+            font-size: 2.2rem;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            user-select: none;
+            z-index: 10000;
+        }
+        .lightbox-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-prev { left: 25px; } /* 💡 左箭頭距離左邊距離 */
+        .lightbox-next { right: 25px; } /* 💡 右箭頭距離右邊距離 */
+
+        /* 關閉按鈕 */
+        .lightbox-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10000;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .lightbox-close-btn:hover { opacity: 1; }
 
         /* ==========================================
-           7. 📱 📱 手機版響應式專用優化 (Mobile RWD)
+           7. 📱 手機版響應式專用優化 (Mobile RWD)
            ========================================== */
         @media (max-width: 768px) {
             .hero-banner {
-                /* 💡【關鍵可調整】手機版貓咪定位與放大比例 */
-                background-position: center bottom; /* 貓咪圖片靠底部 */
-                background-size: 160% auto;          /* 160% 為放大貓咪填滿下方，若想再大可改 180%，若想小一點可改 130% */
+                background-position: center bottom;
+                background-size: 160% auto;
                 background-color: #ffffff;
             }
 
             .hero-overlay {
                 padding-left: 20px;
                 padding-right: 20px;
-                padding-bottom: 20vh; /* 💡【可調整】抬高文字高度：數值越大文字越靠上，留給下方貓咪更多空間 */
-                align-items: center;  /* 水平置中 */
-                text-align: center;   /* 文字向中對齊 */
-                
-                /* 💡【關鍵可調整】手機版半透明白色漸層保護底色（上濃下淡） */
+                padding-bottom: 20vh;
+                align-items: center;
+                text-align: center;
                 background: linear-gradient(to bottom, 
-                    rgba(255, 255, 255, 0.95) 0%,   /* 上方最濃 (95% 白) */
-                    rgba(255, 255, 255, 0.8) 55%,   /* 中間半透明 (80% 白) */
-                    rgba(255, 255, 255, 0) 100%);   /* 下方完全透明露出貓咪 */
+                    rgba(255, 255, 255, 0.95) 0%, 
+                    rgba(255, 255, 255, 0.8) 55%, 
+                    rgba(255, 255, 255, 0) 100%);
             }
             
             .hero-title {
-                font-size: 2.2rem; /* 💡【可調整】手機版姓名標題大小 */
+                font-size: 2.2rem;
                 margin-bottom: 8px;
-                /* 💡【可調整】文字白色發光陰影，數值越大光暈越強 */
                 text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 2px 6px rgba(255, 255, 255, 0.8);
             }
             
             .hero-subtitle {
-                font-size: 0.95rem; /* 💡【可調整】手機版副標題大小 */
+                font-size: 0.95rem;
                 margin-bottom: 25px;
                 line-height: 1.5;
                 text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 1px 4px rgba(255, 255, 255, 0.8);
@@ -383,7 +415,7 @@
             .hero-btn-group {
                 flex-direction: column;
                 width: 100%;
-                max-width: 220px; /* 💡【可調整】手機版按鈕容器寬度 */
+                max-width: 220px;
                 gap: 12px;
                 align-items: center;
             }
@@ -393,26 +425,34 @@
                 padding: 10px 0;
                 box-sizing: border-box;
                 font-size: 0.95rem;
-                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.8); /* 白光光暈襯托按鈕 */
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.8);
             }
 
             .color-tile-header {
-                padding: 18px 22px; /* 💡【可調整】手機版手風琴色塊高度 */
+                padding: 18px 22px;
             }
 
             .tile-text {
-                font-size: 1.3rem; /* 💡【可調整】手機版手風琴色塊字體大小 */
+                font-size: 1.3rem;
             }
 
             .horizontal-item {
-                width: 230px; /* 💡【可調整】手機版畫廊卡片寬度 */
-                height: 155px; /* 💡【可調整】手機版畫廊卡片高度 */
+                width: 230px;
+                height: 155px;
             }
 
             .lightbox-iframe {
                 width: 95%;
                 height: 250px;
             }
+
+            .lightbox-nav-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1.5rem;
+            }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
         }
 
         /* ===== 首頁豐富化區域設定 ===== */
@@ -452,7 +492,6 @@
         .home-cta .section-heading-v2 { color:#fff; }
         .home-cta p { color:#bbb; }
         .site-footer { padding:25px 20px; text-align:center; color:#777; border-top:1px solid #eee; font-size:.82rem; }
-        .lightbox-detail { color:#bbb; margin-top:6px; text-align:center; max-width:700px; font-size:.9rem; }
         @media(max-width:900px){ .featured-grid{grid-template-columns:1fr 1fr}.featured-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr)}.workflow-grid{grid-template-columns:repeat(2,1fr)}.home-cta{align-items:flex-start;flex-direction:column} }
         @media(max-width:600px){ .home-content{padding:72px 16px}.featured-grid,.stats-grid,.skills-grid,.workflow-grid{grid-template-columns:1fr}.featured-card:last-child{grid-column:auto}.featured-card{min-height:320px}.home-cta{padding:38px 24px}.photo-placeholder{aspect-ratio:1/1} }
     </style>
@@ -464,7 +503,6 @@
         <!-- 封面區塊 -->
         <div class="hero-banner">
             <div class="hero-overlay">
-                <!-- 💡【可調整】首頁個人姓名與職稱文字 -->
                 <div class="hero-title">詹沅叡 (小卷)</div>
                 <div class="hero-subtitle">平面設計 / 多媒體視覺創作 / 動態視覺</div>
                 
@@ -483,17 +521,16 @@
                 <div class="section-label">Selected Work</div>
                 <h2 class="section-heading-v2">精選作品</h2>
                 <p class="section-lead">從品牌識別、商業宣傳到動態影像，以下精選三項最能代表我目前工作範圍與視覺整合能力的作品。</p>
-                <!-- 💡【可調整】精選作品的三張圖片與標題資訊 -->
                 <div class="featured-grid">
-                    <article class="featured-card" onclick="openImageLightbox('images/Packaging Design/Packaging Design-02.jpg','品牌包裝設計｜商業包裝與視覺延伸')">
+                    <article class="featured-card" onclick="openSingleImageLightbox('images/Packaging Design/Packaging Design-02.jpg','品牌包裝設計｜商業包裝與視覺延伸')">
                         <img src="images/Packaging Design/Packaging Design-02.jpg" alt="品牌包裝設計">
                         <div class="featured-meta"><small>PACKAGING</small><h3>品牌包裝設計</h3></div>
                     </article>
-                    <article class="featured-card" onclick="openImageLightbox('images/Banner/BANNER-01.jpg','商業 Banner 系列｜活動主視覺與數位宣傳')">
+                    <article class="featured-card" onclick="openSingleImageLightbox('images/Banner/BANNER-01.jpg','商業 Banner 系列｜活動主視覺與數位宣傳')">
                         <img src="images/Banner/BANNER-01.jpg" alt="商業 Banner">
                         <div class="featured-meta"><small>CAMPAIGN</small><h3>商業 Banner 系列</h3></div>
                     </article>
-                    <article class="featured-card" onclick="openVideoLightbox('eS85xcwkIPc','動態視覺專案｜品牌影音與社群短片')">
+                    <article class="featured-card" onclick="openSingleVideoLightbox('eS85xcwkIPc','動態視覺專案｜品牌影音與社群短片')">
                         <img src="https://img.youtube.com/vi/eS85xcwkIPc/hqdefault.jpg" alt="動態視覺">
                         <div class="featured-meta"><small>MOTION</small><h3>動態視覺專案</h3></div>
                     </article>
@@ -516,7 +553,6 @@
                     <h2 class="section-heading-v2">設計不只要漂亮，也要讓訊息被看見。</h2>
                     <p class="section-lead">嗨，我是小卷，具備三年以上視覺設計與美編經驗。現任鬍鬚張行銷企劃美編，擅長將企劃需求轉化為符合品牌調性、兼具美感與溝通效率的視覺成果。</p>
                     
-                    <!-- 💡【可調整】統計數據卡片數字與說明 -->
                     <div class="stats-grid">
                         <div class="stat-card"><strong>3+</strong><span>Years Experience</span></div>
                         <div class="stat-card"><strong>7</strong><span>Portfolio Categories</span></div>
@@ -533,7 +569,6 @@
                 <div class="section-label">Tools & Skills</div>
                 <h2 class="section-heading-v2">技能與工具</h2>
                 <p class="section-lead">主要使用 Adobe 系列工具，涵蓋品牌識別、影像處理、排版、動態視覺與影片剪輯。</p>
-                <!-- 💡【可調整】技能名稱與進度條百分比 (如 width:90%) -->
                 <div class="skills-grid">
                     <div class="skill-card"><strong>Illustrator</strong><div class="skill-bar"><span style="width:90%"></span></div><small>品牌、排版、向量</small></div>
                     <div class="skill-card"><strong>Photoshop</strong><div class="skill-bar"><span style="width:88%"></span></div><small>影像合成、社群</small></div>
@@ -576,7 +611,6 @@
             </div>
         </section>
         
-        <!-- 💡【可調整】頁尾版權宣告文字 -->
         <footer class="site-footer">© 2026 Yuan Rui Chan Studio. Visual design & portfolio by 詹沅叡.</footer>
     </div>
 
@@ -584,7 +618,6 @@
     <div id="page-about" class="page-view">
         <div class="content-container">
             <div class="page-title">關於我</div>
-            <!-- 💡【可調整】關於我頁面的詳細介紹文字 -->
             <div style="font-size:1.05rem;color:#555;line-height:1.9;text-align:left;">
                 <p>我畢業於龍華科技大學多媒體遊戲動畫系，具備三年以上視覺設計與美編經驗。擅長精準解讀企劃需求，並將文字與抽象概念轉化為符合品牌調性、清楚且具吸引力的視覺成果。</p>
                 <p>目前任職於鬍鬚張股份有限公司，負責文宣視覺編排、產品拍攝、社群素材與短影音製作。從早期的尺寸調整、重新排版與修圖，逐步成長到能獨立負責文宣視覺，並參與企業形象影片及品牌識別專案。</p>
@@ -619,9 +652,7 @@
                 <span class="portfolio-sub-title">Design/Portfolio</span>
             </div>
             
-            <!-- 直式手風琴選單區域 -->
             <div class="vertical-accordion-container">
-                
                 <!-- FB -->
                 <div class="accordion-item" id="item-fb">
                     <div class="color-tile-header tile-fb" onclick="toggleAccordion('fb')">
@@ -711,11 +742,11 @@
         <div class="content-container">
             <div class="contact-box">
                 <div class="page-title" style="color: white;">Let’s Work Together</div>
-                <!-- 💡【可調整】聯絡我頁面的文字內容 -->
                 <p style="color: #ccc;">如果你正在尋找兼顧美感與溝通效率的設計夥伴，歡迎來信討論合作、工作機會或下一個品牌故事。</p>
-                <!-- 💡【可調整】收件 Email 網址 (to=你的Email) -->
+                
                 <a href="mailto:alir940167@gmail.com" class="contact-btn">發送電子郵件</a>
                 <a href="Roll.pdf" target="_blank" rel="noopener" class="contact-btn" style="margin-left:10px;background:#fff;color:#111;">查看 PDF 履歷</a>
+                
                 <p style="color:#aaa;margin-top:20px;">alir940167@gmail.com</p>
                 <br>
                 <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
@@ -723,11 +754,19 @@
         </div>
     </div>
 
-    <!-- 燈箱視窗 -->
+    <!-- 💡【全新升級】燈箱放大與左右切換視窗 -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-        <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖" style="display:none;">
-        <iframe class="lightbox-iframe" id="lightboxIframe" src="" allow="autoplay; encrypted-media" allowfullscreen style="display:none;"></iframe>
-        <div class="lightbox-caption" id="lightboxCaption">專案名稱</div>
+        <!-- 右上角關閉 X -->
+        <span class="lightbox-close-btn" onclick="closeLightbox()">&times;</span>
+        
+        <!-- 💡 左右切換按鈕 -->
+        <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" onclick="changeLightboxItem(-1, event)">❮</button>
+        <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" onclick="changeLightboxItem(1, event)">❯</button>
+
+        <img class="lightbox-content" id="lightboxImg" src="" alt="放大原圖" style="display:none;" onclick="event.stopPropagation()">
+        <iframe class="lightbox-iframe" id="lightboxIframe" src="" allow="autoplay; encrypted-media" allowfullscreen style="display:none;" onclick="event.stopPropagation()"></iframe>
+        
+        <div class="lightbox-caption" id="lightboxCaption" onclick="event.stopPropagation()">專案名稱</div>
     </div>
 
     <!-- 互動邏輯 Script -->
@@ -739,7 +778,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 💡【關鍵可調整】作品集資料庫：可在此新增、刪除或修改圖片路徑/說明與影片 ID
+        // 作品集資料庫
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB 社群宣傳圖文 01" },
@@ -834,38 +873,31 @@
             const currentItem = document.getElementById(`item-${key}`);
             const isAlreadyActive = currentItem.classList.contains('active');
 
-            // 1. 先把全部手風琴關閉
             document.querySelectorAll('.accordion-item').forEach(item => {
                 item.classList.remove('active');
             });
 
-            // 2. 如果點擊的目標剛好是開啟狀態，則純收合即可
-            if (isAlreadyActive) {
-                return;
-            }
+            if (isAlreadyActive) return;
 
-            // 3. 第一次打開時才動態載入圖片內容，提升效能
             if (!loadedCategories[key]) {
                 renderCategoryItems(key);
                 loadedCategories[key] = true;
             }
 
-            // 4. 開開啟選取的色塊
             currentItem.classList.add('active');
 
-            // 5. 畫面稍微平滑對齊開展的區域
             setTimeout(() => {
                 currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 200);
         }
 
-        // 渲染對應區塊內部的畫廊內容
+        // 渲染對應區塊內部的畫廊內容 (帶有索引 index)
         function renderCategoryItems(key) {
             const grid = document.getElementById(`grid-${key}`);
             const items = portfolioData[key];
             const isVideo = key === 'motion';
 
-            items.forEach(itemData => {
+            items.forEach((itemData, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = `horizontal-item ${isVideo ? 'is-video' : ''}`;
 
@@ -874,34 +906,96 @@
                 if (isVideo) {
                     img.src = `https://img.youtube.com/vi/${itemData.videoId}/hqdefault.jpg`;
                     img.alt = itemData.alt;
-                    itemDiv.onclick = () => openVideoLightbox(itemData.videoId, itemData.alt);
+                    itemDiv.onclick = () => openCategoryLightbox(key, index);
                 } else {
                     img.src = encodeURI(itemData.src);
                     img.alt = itemData.alt;
-                    itemDiv.onclick = () => openImageLightbox(encodeURI(itemData.src), itemData.alt);
+                    itemDiv.onclick = () => openCategoryLightbox(key, index);
                 }
 
                 itemDiv.appendChild(img);
                 grid.appendChild(itemDiv);
             });
 
-            // 為橫向滾動支援滾輪直向轉橫向滑動
             grid.addEventListener('wheel', (evt) => {
                 evt.preventDefault();
                 grid.scrollLeft += evt.deltaY;
             }, { passive: false });
         }
 
-        // 燈箱控制邏輯：開啟圖片
-        function openImageLightbox(imgSrc, captionText) {
+        /* ==========================================
+           💡【關鍵全新邏輯】燈箱切換與藝廊輪播機制
+           ========================================== */
+        let currentCategoryKey = null;
+        let currentItemIndex = 0;
+
+        // 開啟分類畫廊燈箱
+        function openCategoryLightbox(key, index) {
+            currentCategoryKey = key;
+            currentItemIndex = index;
+            updateLightboxContent();
+
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 更新燈箱畫面內容
+        function updateLightboxContent() {
+            if (!currentCategoryKey) return;
+
+            const items = portfolioData[currentCategoryKey];
+            const item = items[currentItemIndex];
+            const isVideo = currentCategoryKey === 'motion';
+
+            const modalImg = document.getElementById('lightboxImg');
+            const modalIframe = document.getElementById('lightboxIframe');
+            const modalCaption = document.getElementById('lightboxCaption');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+
+            // 如果只有 1 張圖就不顯示左右按鈕
+            prevBtn.style.display = items.length > 1 ? 'flex' : 'none';
+            nextBtn.style.display = items.length > 1 ? 'flex' : 'none';
+
+            if (isVideo) {
+                modalImg.style.display = 'none';
+                modalImg.src = '';
+                modalIframe.src = `https://www.youtube.com/embed/${item.videoId}?autoplay=1`;
+                modalIframe.style.display = 'block';
+                modalCaption.innerText = `${item.alt} (${currentItemIndex + 1}/${items.length})`;
+            } else {
+                modalIframe.style.display = 'none';
+                modalIframe.src = '';
+                modalImg.src = encodeURI(item.src);
+                modalImg.style.display = 'block';
+                modalCaption.innerText = `${item.alt} (${currentItemIndex + 1}/${items.length})`;
+            }
+        }
+
+        // 💡 左右切換圖片 (往左 -1, 往右 +1)
+        function changeLightboxItem(direction, event) {
+            if (event) event.stopPropagation(); // 避免點按鈕觸發背景關閉
+            if (!currentCategoryKey) return;
+
+            const items = portfolioData[currentCategoryKey];
+            currentItemIndex = (currentItemIndex + direction + items.length) % items.length;
+            updateLightboxContent();
+        }
+
+        // 首頁獨立單張圖片燈箱 (不顯示左右按鈕)
+        function openSingleImageLightbox(imgSrc, captionText) {
+            currentCategoryKey = null;
             const modal = document.getElementById('lightboxModal');
             const modalImg = document.getElementById('lightboxImg');
             const modalIframe = document.getElementById('lightboxIframe');
             const modalCaption = document.getElementById('lightboxCaption');
             
+            document.getElementById('lightboxPrev').style.display = 'none';
+            document.getElementById('lightboxNext').style.display = 'none';
+
             modalIframe.style.display = 'none';
             modalIframe.src = '';
-
             modalImg.src = imgSrc;
             modalImg.style.display = 'block';
             modalCaption.innerText = captionText;
@@ -909,16 +1003,19 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // 燈箱控制邏輯：開啟 YouTube 影片
-        function openVideoLightbox(videoId, captionText) {
+        // 首頁獨立單張影片燈箱
+        function openSingleVideoLightbox(videoId, captionText) {
+            currentCategoryKey = null;
             const modal = document.getElementById('lightboxModal');
             const modalImg = document.getElementById('lightboxImg');
             const modalIframe = document.getElementById('lightboxIframe');
             const modalCaption = document.getElementById('lightboxCaption');
             
+            document.getElementById('lightboxPrev').style.display = 'none';
+            document.getElementById('lightboxNext').style.display = 'none';
+
             modalImg.style.display = 'none';
             modalImg.src = '';
-
             modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             modalIframe.style.display = 'block';
             modalCaption.innerText = captionText;
@@ -935,7 +1032,16 @@
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+
+        // 💡 鍵盤控制：按 ESC 關閉，按 Left/Right 鍵左右切換圖片
+        document.addEventListener('keydown', (event) => { 
+            const modal = document.getElementById('lightboxModal');
+            if (!modal.classList.contains('active')) return;
+
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowLeft') changeLightboxItem(-1);
+            if (event.key === 'ArrowRight') changeLightboxItem(1);
+        });
     </script>
 </body>
 </html>
