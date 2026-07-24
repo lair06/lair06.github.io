@@ -397,6 +397,47 @@
                 height: 250px;
             }
         }
+
+        /* ===== Portfolio V2 additions ===== */
+        .home-content { padding: 96px 20px; }
+        .home-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { color:#3498db; font-weight:700; letter-spacing:.14em; font-size:.78rem; text-transform:uppercase; }
+        .section-heading-v2 { font-size:clamp(2rem,5vw,3.5rem); line-height:1.12; margin:8px 0 18px; color:#111; }
+        .section-lead { max-width:680px; color:#687078; }
+        .featured-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:38px; }
+        .featured-card { min-height:360px; border-radius:22px; overflow:hidden; position:relative; background:#e9ebef; box-shadow:0 18px 45px rgba(0,0,0,.11); cursor:pointer; transition:.3s ease; }
+        .featured-card:hover { transform:translateY(-7px); box-shadow:0 25px 55px rgba(0,0,0,.16); }
+        .featured-card img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+        .featured-card:after { content:''; position:absolute; inset:40% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.78)); }
+        .featured-meta { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; color:#fff; }
+        .featured-meta small { letter-spacing:.12em; opacity:.8; }
+        .featured-meta h3 { margin:5px 0 0; font-size:1.35rem; }
+        .about-preview { background:#f7f8fa; }
+        .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center; }
+        .photo-placeholder { aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg,#e5e8ed,#fafafa); display:grid; place-items:center; color:#8a8f96; font-weight:700; box-shadow:0 15px 40px rgba(0,0,0,.08); }
+        .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:28px 0; }
+        .stat-card { padding:20px 16px; border:1px solid #e3e6ea; border-radius:15px; background:#fff; }
+        .stat-card strong { display:block; font-size:1.8rem; line-height:1; }
+        .stat-card span { color:#777; font-size:.82rem; }
+        .skills-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
+        .skill-card { padding:22px 16px; border:1px solid #e3e6ea; border-radius:15px; }
+        .skill-card strong { display:block; margin-bottom:12px; }
+        .skill-bar { height:7px; background:#eceef1; border-radius:99px; overflow:hidden; }
+        .skill-bar span { display:block; height:100%; background:#111; border-radius:99px; }
+        .skill-card small { display:block; margin-top:8px; color:#777; }
+        .workflow-section { background:#f7f8fa; }
+        .workflow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
+        .workflow-card { min-height:185px; padding:22px; border-radius:16px; border:1px solid #e3e6ea; background:#fff; }
+        .workflow-card b { color:#3498db; }
+        .workflow-card h3 { margin:30px 0 8px; }
+        .workflow-card p { color:#777; font-size:.88rem; margin:0; }
+        .home-cta { padding:65px; border-radius:28px; background:#111; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; }
+        .home-cta .section-heading-v2 { color:#fff; }
+        .home-cta p { color:#bbb; }
+        .site-footer { padding:25px 20px; text-align:center; color:#777; border-top:1px solid #eee; font-size:.82rem; }
+        .lightbox-detail { color:#bbb; margin-top:6px; text-align:center; max-width:700px; font-size:.9rem; }
+        @media(max-width:900px){ .featured-grid{grid-template-columns:1fr 1fr}.featured-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr)}.workflow-grid{grid-template-columns:repeat(2,1fr)}.home-cta{align-items:flex-start;flex-direction:column} }
+        @media(max-width:600px){ .home-content{padding:72px 16px}.featured-grid,.stats-grid,.skills-grid,.workflow-grid{grid-template-columns:1fr}.featured-card:last-child{grid-column:auto}.featured-card{min-height:320px}.home-cta{padding:38px 24px}.photo-placeholder{aspect-ratio:1/1} }
     </style>
 </head>
 <body>
@@ -415,6 +456,49 @@
                 </div>
             </div>
         </div>
+
+        <section class="home-content" id="featured">
+            <div class="home-inner">
+                <div class="section-label">Selected Work</div>
+                <h2 class="section-heading-v2">精選作品</h2>
+                <p class="section-lead">先放三件最能代表你的作品。專案名稱、年份、客戶與成果文字之後都可以再補上。</p>
+                <div class="featured-grid">
+                    <article class="featured-card" onclick="openImageLightbox('images/Packaging Design/Packaging Design-02.jpg','品牌包裝設計｜專案資訊待補')"><img src="images/Packaging Design/Packaging Design-02.jpg" alt="品牌包裝設計"><div class="featured-meta"><small>PACKAGING</small><h3>品牌包裝設計</h3></div></article>
+                    <article class="featured-card" onclick="openImageLightbox('images/Banner/BANNER-01.jpg','商業 Banner｜專案資訊待補')"><img src="images/Banner/BANNER-01.jpg" alt="商業 Banner"><div class="featured-meta"><small>CAMPAIGN</small><h3>商業 Banner 系列</h3></div></article>
+                    <article class="featured-card" onclick="openVideoLightbox('eS85xcwkIPc','動態視覺專案｜專案資訊待補')"><img src="https://img.youtube.com/vi/eS85xcwkIPc/hqdefault.jpg" alt="動態視覺"><div class="featured-meta"><small>MOTION</small><h3>動態視覺專案</h3></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-content about-preview">
+            <div class="home-inner about-grid">
+                <div class="photo-placeholder">個人照片待補</div>
+                <div><div class="section-label">About Me</div><h2 class="section-heading-v2">設計不只要漂亮，也要讓訊息被看見。</h2><p class="section-lead">嗨，我是小卷，擁有 3 年平面設計與多媒體影片製作經驗。擅長社群圖文、Banner、包裝、POP、品牌識別與動態影像。</p><div class="stats-grid"><div class="stat-card"><strong>3+</strong><span>Years Experience</span></div><div class="stat-card"><strong>XX+</strong><span>Projects 待填</span></div><div class="stat-card"><strong>XX+</strong><span>Designs 待填</span></div></div><a class="hero-btn" onclick="navigateTo('about')">更多關於我</a></div>
+            </div>
+        </section>
+
+        <section class="home-content">
+            <div class="home-inner"><div class="section-label">Tools & Skills</div><h2 class="section-heading-v2">技能與工具</h2><p class="section-lead">熟練度目前為示意，可依實際情況調整。</p><div class="skills-grid">
+                <div class="skill-card"><strong>Illustrator</strong><div class="skill-bar"><span style="width:90%"></span></div><small>品牌、排版、向量</small></div>
+                <div class="skill-card"><strong>Photoshop</strong><div class="skill-bar"><span style="width:88%"></span></div><small>影像合成、社群</small></div>
+                <div class="skill-card"><strong>After Effects</strong><div class="skill-bar"><span style="width:80%"></span></div><small>動態視覺</small></div>
+                <div class="skill-card"><strong>Premiere</strong><div class="skill-bar"><span style="width:78%"></span></div><small>影片剪輯</small></div>
+                <div class="skill-card"><strong>Figma</strong><div class="skill-bar"><span style="width:65%"></span></div><small>介面與協作</small></div>
+            </div></div>
+        </section>
+
+        <section class="home-content workflow-section">
+            <div class="home-inner"><div class="section-label">Workflow</div><h2 class="section-heading-v2">合作流程</h2><div class="workflow-grid">
+                <div class="workflow-card"><b>01</b><h3>需求討論</h3><p>確認目標、受眾、尺寸、時程與交付內容。</p></div>
+                <div class="workflow-card"><b>02</b><h3>方向提案</h3><p>整理視覺關鍵字與參考方向。</p></div>
+                <div class="workflow-card"><b>03</b><h3>設計製作</h3><p>展開設計並建立一致視覺。</p></div>
+                <div class="workflow-card"><b>04</b><h3>修改優化</h3><p>依回饋調整細節與資訊層級。</p></div>
+                <div class="workflow-card"><b>05</b><h3>完稿交付</h3><p>整理格式並提供完整成果檔。</p></div>
+            </div></div>
+        </section>
+
+        <section class="home-content"><div class="home-inner"><div class="home-cta"><div><div class="section-label">Let's Work Together</div><h2 class="section-heading-v2">有下一個專案嗎？<br>一起把它做得更有記憶點。</h2><p>合作委託、工作機會或想聊聊設計，都歡迎來信。</p></div><a class="hero-btn" onclick="navigateTo('contact')">開始聊聊</a></div></div></section>
+        <footer class="site-footer">© 2026 Yuan Rui Chan Studio. Designed by 詹沅叡.</footer>
     </div>
 
     <!-- 2. 【關於我】頁面 -->
@@ -423,7 +507,8 @@
             <div class="page-title">關於我</div>
             <p style="font-size: 1.1rem; color: #555; line-height: 2;">
                 嗨！我是小卷。擁有 3 年平面設計與多媒體影片製作經驗，擅長將品牌靈感轉化為具有質感與商業價值的視覺語言。<br>
-                無論是社群圖文、吸睛 Banner、精美包裝還是 POP，我都致力於為每個專案注入獨特的靈魂與美感。
+                無論是社群圖文、吸睛 Banner、精美包裝、POP、品牌識別或動態視覺，我都希望在美感、資訊清楚度與實際商業需求之間找到平衡。<br><br>
+                <strong>工作經歷、合作品牌、得獎／證照與個人設計理念可在這裡繼續補充。</strong>
             </p>
             <br>
             <a class="hero-btn" onclick="navigateTo('home')">返回首頁</a>
@@ -529,8 +614,8 @@
     <div id="page-contact" class="page-view">
         <div class="content-container">
             <div class="contact-box">
-                <div class="page-title" style="color: white;">聯絡方式</div>
-                <p style="color: #ccc;">有任何合作機會、專案委託或想聊聊設計嗎？歡迎隨時與我聯繫！</p>
+                <div class="page-title" style="color: white;">Let’s Work Together</div>
+                <p style="color: #ccc;">如果你正在尋找兼顧美感與溝通效率的設計夥伴，歡迎來信討論合作、工作機會或下一個品牌故事。</p>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alir940167@gmail.com" target="_blank" class="contact-btn">發送電子郵件</a>
                 <br><br>
                 <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
@@ -721,6 +806,7 @@
             modalImg.style.display = 'block';
             modalCaption.innerText = captionText;
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         // 燈箱控制邏輯：開啟 YouTube 影片
@@ -737,6 +823,7 @@
             modalIframe.style.display = 'block';
             modalCaption.innerText = captionText;
             modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         // 關閉燈箱
@@ -746,7 +833,9 @@
             
             modalIframe.src = ''; // 關閉時停止影片播放
             modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
     </script>
 </body>
 </html>
