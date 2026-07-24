@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>詹沅叡 Studio | 視覺設計師作品集</title>
+    <title>詹沅叡 Studio | 視覺設計 作品集</title>
     <!-- 引入 Google Fonts 英文字型 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -39,7 +39,7 @@
             position: relative;
             width: 100%;
             height: 100vh; /* 💡【可調整】封面高度：100vh 為滿版螢幕 */
-            background-image: url('images/mimi/mimi2.jpg?v=2'); /* 💡【可調整】電腦版封面背景圖片路徑 */
+            background-image: url('images/mimi/mimi2.jpg?v=2'); /* 【請更換：首頁封面圖路徑】 */ /* 💡【可調整】電腦版封面背景圖片路徑 */
             background-size: cover; /* 💡【可調整】 cover 為自動裁切填滿，contain 為完整顯示 */
             background-position: center; /* 💡【可調整】圖片對齊位置 (如 center top, center bottom) */
             background-repeat: no-repeat;
@@ -498,13 +498,26 @@
 </head>
 <body>
 
+    <!-- ============================================================
+         ✏️ 給不會寫程式的你：填寫說明
+         1. 按 Ctrl+F（Mac：Command+F）搜尋「【請填寫」
+         2. 只改【】裡面的文字，不要刪除 < > 或引號
+         3. 圖片請放進 images 資料夾，檔名需與下方路徑完全相同
+         4. 履歷 PDF 請命名為 Roll.pdf，放在這個 HTML 同一層
+         5. YouTube 影片只需更換 videoId，例如網址 youtu.be/ABC123，videoId 就是 ABC123
+         ============================================================ -->
+
+    <div style="background:#fff4c7;color:#443600;padding:14px 20px;text-align:center;font-weight:700;border-bottom:1px solid #ead98a;">
+        編輯提醒：搜尋「【請填寫」即可逐項替換。完成後可刪除這一整個黃色提醒區。
+    </div>
+
     <!-- 1. 【首頁】 -->
     <div id="page-home" class="page-view active-page">
         <!-- 封面區塊 -->
         <div class="hero-banner">
             <div class="hero-overlay">
-                <div class="hero-title">詹沅叡 (小卷)</div>
-                <div class="hero-subtitle">平面設計 / 多媒體視覺創作 / 動態視覺</div>
+                <div class="hero-title">【詹沅叡／小卷】</div>
+                <div class="hero-subtitle">【品牌視覺／平面設計／動態影像】</div>
                 
                 <div class="hero-btn-group">
                     <a class="hero-btn" onclick="navigateTo('portfolio')">專案作品</a>
@@ -520,19 +533,19 @@
             <div class="home-inner">
                 <div class="section-label">Selected Work</div>
                 <h2 class="section-heading-v2">精選作品</h2>
-                <p class="section-lead">從品牌識別、商業宣傳到動態影像，以下精選三項最能代表我目前工作範圍與視覺整合能力的作品。</p>
+                <p class="section-lead">【專注品牌視覺與商業設計，讓每一張圖片都能提升品牌價值。】</p>
                 <div class="featured-grid">
-                    <article class="featured-card" onclick="openSingleImageLightbox('images/Packaging Design/Packaging Design-02.jpg','品牌包裝設計｜商業包裝與視覺延伸')">
+                    <article class="featured-card" onclick="openSingleImageLightbox('images/Packaging Design/Packaging Design-02.jpg','【豬腳禮盒 提袋設計】')">
                         <img src="images/Packaging Design/Packaging Design-02.jpg" alt="品牌包裝設計">
-                        <div class="featured-meta"><small>PACKAGING</small><h3>品牌包裝設計</h3></div>
+                        <div class="featured-meta"><small>【作品類型 1】</small><h3>【豬腳禮盒提袋】</h3></div>
                     </article>
-                    <article class="featured-card" onclick="openSingleImageLightbox('images/Banner/BANNER-01.jpg','商業 Banner 系列｜活動主視覺與數位宣傳')">
+                    <article class="featured-card" onclick="openSingleImageLightbox('images/Banner/BANNER-01.jpg','【新品 霸王麻瘦】')">
                         <img src="images/Banner/BANNER-01.jpg" alt="商業 Banner">
-                        <div class="featured-meta"><small>CAMPAIGN</small><h3>商業 Banner 系列</h3></div>
+                        <div class="featured-meta"><small>【作品類型 2】</small><h3>【霸王麻瘦】</h3></div>
                     </article>
-                    <article class="featured-card" onclick="openSingleVideoLightbox('eS85xcwkIPc','動態視覺專案｜品牌影音與社群短片')">
-                        <img src="https://img.youtube.com/vi/eS85xcwkIPc/hqdefault.jpg" alt="動態視覺">
-                        <div class="featured-meta"><small>MOTION</small><h3>動態視覺專案</h3></div>
+                    <article class="featured-card" onclick="openSingleVideoLightbox('72mIxgVHXo0','【端午粽 形象影片】')">
+                        <img src="https://img.youtube.com/vi/72mIxgVHXo0/hqdefault.jpg" alt="動態視覺">
+                        <div class="featured-meta"><small>【作品類型 3】</small><h3>【端午形象影片】</h3></div>
                     </article>
                 </div>
             </div>
@@ -544,19 +557,19 @@
                 <div class="photo-placeholder" style="padding:34px;box-sizing:border-box;text-align:left;place-items:start;align-content:center;">
                     <div>
                         <div class="section-label">CURRENT ROLE</div>
-                        <h3 style="font-size:1.7rem;color:#111;margin:10px 0 12px;">行銷企劃美編</h3>
-                        <p style="margin:0;color:#687078;">鬍鬚張股份有限公司<br>2023.06 - Present</p>
+                        <h3 style="font-size:1.7rem;color:#111;margin:10px 0 12px;">【請填寫：目前職稱】</h3>
+                        <p style="margin:0;color:#687078;">【請填寫：公司／單位名稱】<br>【請填寫：任職期間，例如 2023.06－至今】</p>
                     </div>
                 </div>
                 <div>
                     <div class="section-label">About Me</div>
-                    <h2 class="section-heading-v2">設計不只要漂亮，也要讓訊息被看見。</h2>
-                    <p class="section-lead">嗨，我是小卷，具備三年以上視覺設計與美編經驗。現任鬍鬚張行銷企劃美編，擅長將企劃需求轉化為符合品牌調性、兼具美感與溝通效率的視覺成果。</p>
+                    <h2 class="section-heading-v2">【請填寫：一句代表你的設計理念】</h2>
+                    <p class="section-lead">【請填寫：80～120 字自我介紹。可包含年資、目前工作、擅長領域，以及你能為團隊或客戶帶來什麼。】</p>
                     
                     <div class="stats-grid">
-                        <div class="stat-card"><strong>3+</strong><span>Years Experience</span></div>
-                        <div class="stat-card"><strong>7</strong><span>Portfolio Categories</span></div>
-                        <div class="stat-card"><strong>CIS</strong><span>Brand Identity Project</span></div>
+                        <div class="stat-card"><strong>【數字】</strong><span>【請填寫：年資／專案數等】</span></div>
+                        <div class="stat-card"><strong>【數字】</strong><span>【請填寫：作品類別／完成件數等】</span></div>
+                        <div class="stat-card"><strong>【關鍵字】</strong><span>【請填寫：代表性專案】</span></div>
                     </div>
                     <a class="hero-btn" onclick="navigateTo('about')">更多關於我</a>
                 </div>
@@ -568,7 +581,7 @@
             <div class="home-inner">
                 <div class="section-label">Tools & Skills</div>
                 <h2 class="section-heading-v2">技能與工具</h2>
-                <p class="section-lead">主要使用 Adobe 系列工具，涵蓋品牌識別、影像處理、排版、動態視覺與影片剪輯。</p>
+                <p class="section-lead">【請填寫：你常用的工具，以及你能完成的工作內容。】</p>
                 <div class="skills-grid">
                     <div class="skill-card"><strong>Illustrator</strong><div class="skill-bar"><span style="width:90%"></span></div><small>品牌、排版、向量</small></div>
                     <div class="skill-card"><strong>Photoshop</strong><div class="skill-bar"><span style="width:88%"></span></div><small>影像合成、社群</small></div>
@@ -600,8 +613,8 @@
                 <div class="home-cta">
                     <div>
                         <div class="section-label">Let's Work Together</div>
-                        <h2 class="section-heading-v2">有下一個專案嗎？<br>一起把它做得更有記憶點。</h2>
-                        <p>合作委託、工作機會或想聊聊設計，都歡迎來信。</p>
+                        <h2 class="section-heading-v2">【請填寫：合作邀請標題】<br>【請填寫：一句吸引對方聯絡你的話】</h2>
+                        <p>【請填寫：希望收到哪些聯絡，例如合作委託、正職機會、交流等。】</p>
                     </div>
                     <div class="hero-btn-group">
                         <a class="hero-btn" onclick="navigateTo('contact')">開始聊聊</a>
@@ -611,7 +624,7 @@
             </div>
         </section>
         
-        <footer class="site-footer">© 2026 Yuan Rui Chan Studio. Visual design & portfolio by 詹沅叡.</footer>
+        <footer class="site-footer">© 2026 【請填寫：英文姓名或工作室名稱】. Portfolio by 【請填寫：中文姓名】.</footer>
     </div>
 
     <!-- 2. 【關於我】獨立頁面 -->
@@ -619,22 +632,22 @@
         <div class="content-container">
             <div class="page-title">關於我</div>
             <div style="font-size:1.05rem;color:#555;line-height:1.9;text-align:left;">
-                <p>我畢業於龍華科技大學多媒體遊戲動畫系，具備三年以上視覺設計與美編經驗。擅長精準解讀企劃需求，並將文字與抽象概念轉化為符合品牌調性、清楚且具吸引力的視覺成果。</p>
-                <p>目前任職於鬍鬚張股份有限公司，負責文宣視覺編排、產品拍攝、社群素材與短影音製作。從早期的尺寸調整、重新排版與修圖，逐步成長到能獨立負責文宣視覺，並參與企業形象影片及品牌識別專案。</p>
+                <p>【請填寫：第一段自我介紹。建議包含學歷背景、工作年資、核心能力。】</p>
+                <p>【請填寫：第二段工作經驗。說明目前負責內容，以及你從中累積的能力。】</p>
 
-                <h3 style="color:#111;margin-top:34px;">代表專案｜馥牛 PHONIU 越式料理 CIS</h3>
-                <p>2025 年參與公司新品牌「馥牛 PHONIU 越式料理」的 CIS 視覺設計。透過越南文化、傳統圖騰與配色研究，發展 Logo 與品牌視覺，並在美感與商業落地之間反覆溝通、調整與整合。</p>
-                <p><strong>負責內容：</strong>Logo 發想與繪製、品牌命名協作、CIS 設計、門市店面視覺、文宣海報設計。</p>
+                <h3 style="color:#111;margin-top:34px;">代表專案｜【請填寫：專案名稱】</h3>
+                <p>【請填寫：專案年份、背景、目標、研究內容與設計方向。】</p>
+                <p><strong>負責內容：</strong>【請填寫：你在專案中實際負責的項目。】</p>
 
                 <h3 style="color:#111;margin-top:34px;">工作經歷</h3>
-                <p><strong>鬍鬚張股份有限公司｜行銷企劃美編</strong><br>2023.06 - 至今<br>文宣專案視覺規劃、排版與影像處理、產品拍攝、社群素材及短影音製作。</p>
+                <p><strong>【請填寫：公司名稱｜職稱】</strong><br>【請填寫：任職期間】<br>【請填寫：主要工作內容與成果。】</p>
 
                 <h3 style="color:#111;margin-top:34px;">學歷</h3>
-                <p><strong>龍華科技大學｜多媒體遊戲動畫系</strong><br>2018 - 2022</p>
-                <p><strong>復興商工｜廣告設計科</strong><br>2015 - 2018</p>
+                <p><strong>【請填寫：大學／學校｜科系】</strong><br>【請填寫：就讀期間】</p>
+                <p><strong>【請填寫：高中職／學校｜科系】</strong><br>【請填寫：就讀期間】</p>
 
                 <h3 style="color:#111;margin-top:34px;">職涯方向</h3>
-                <p>希望持續探索靜態平面、動態影像與社群跨媒體設計，成為不受載體限制、能兼顧品牌溝通與商業價值的全方位視覺創作者。</p>
+                <p>【請填寫：你接下來想發展的方向、理想職位或希望累積的能力。】</p>
             </div>
             <br>
             <div class="hero-btn-group" style="justify-content:center;">
@@ -742,12 +755,12 @@
         <div class="content-container">
             <div class="contact-box">
                 <div class="page-title" style="color: white;">Let’s Work Together</div>
-                <p style="color: #ccc;">如果你正在尋找兼顧美感與溝通效率的設計夥伴，歡迎來信討論合作、工作機會或下一個品牌故事。</p>
+                <p style="color: #ccc;">【請填寫：邀請對方聯絡你的文字。】</p>
                 
-                <a href="mailto:alir940167@gmail.com" class="contact-btn">發送電子郵件</a>
+                <a href="mailto:【請填寫你的Email】" class="contact-btn">發送電子郵件</a>
                 <a href="Roll.pdf" target="_blank" rel="noopener" class="contact-btn" style="margin-left:10px;background:#fff;color:#111;">查看 PDF 履歷</a>
                 
-                <p style="color:#aaa;margin-top:20px;">alir940167@gmail.com</p>
+                <p style="color:#aaa;margin-top:20px;">【請填寫你的 Email】</p>
                 <br>
                 <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
             </div>
@@ -779,6 +792,7 @@
         }
 
         // 作品集資料庫
+        /* 【作品圖片填寫區】替換 src 後面的圖片路徑，alt 改成作品名稱 */
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB 社群宣傳圖文 01" },
@@ -848,6 +862,7 @@
                 alt: `馥牛 CIS 品牌識別規範 手冊頁面 ${i + 1}`
             })),
             motion: [
+                // 【請更換：videoId 為 YouTube 網址中的影片代碼】
                 { videoId: "eS85xcwkIPc", alt: "動態視覺專案 01" },
                 { videoId: "gF6n7bkb0dc", alt: "動態視覺專案 02" },
                 { videoId: "72mIxgVHXo0", alt: "動態視覺專案 03" },
