@@ -196,13 +196,11 @@
         .tile-text {
             font-size: 1.8rem; /* 💡【可調整】色塊英文/中文標題大小 */
             font-weight: 700;
-            color: #111111;
             letter-spacing: 2px; /* 💡【可調整】字間距 */
         }
 
         .tile-arrow {
             font-size: 1.4rem;
-            color: #111111;
             transition: transform 0.4s ease;
             font-weight: bold;
         }
@@ -211,17 +209,33 @@
             transform: rotate(180deg);
         }
 
-        /* 💡【關鍵可調整】7 大分類色塊自訂顏色 */
-        .tile-fb      { background-color: #48c9b0; } /* FB 色塊色碼 */
-        .tile-line    { background-color: #3498db; } /* LINE 色塊色碼 */
-        .tile-banner  { background-color: #d7bde2; } /* Banner 色塊色碼 */
-        .tile-package { background-color: #f8965d; } /* 包裝色塊色碼 */
-        .tile-pop     { background-color: #c0392b; } /* POP 色塊色碼 */
+        /* 💡【關鍵已套用】由深至淺（由上往下）渐層色板，並設定對應的高對比字色 */
+        .tile-fb      { background-color: #10406b; } /* 1. 深藍 */
+        .tile-fb .tile-text, .tile-fb .tile-arrow { color: #ffffff; }
+
+        .tile-line    { background-color: #0c6396; } /* 2. 深中藍 */
+        .tile-line .tile-text, .tile-line .tile-arrow { color: #ffffff; }
+
+        .tile-banner  { background-color: #0080b0; } /* 3. 藍 */
+        .tile-banner .tile-text, .tile-banner .tile-arrow { color: #ffffff; }
+
+        .tile-package { background-color: #009bb6; } /* 4. 藍綠 */
+        .tile-package .tile-text, .tile-package .tile-arrow { color: #ffffff; }
+
+        .tile-pop     { background-color: #12a3a8; } /* 5. 湖水綠 */
         .tile-pop .tile-text, .tile-pop .tile-arrow { color: #ffffff; }
-        .tile-cis     { background-color: #2c3e50; } /* CIS 色塊色碼 */
-        .tile-cis .tile-text, .tile-cis .tile-arrow { color: #ffffff; }
-        .tile-motion  { background-color: #8e44ad; } /* MOTION 色塊色碼 */
-        .tile-motion .tile-text, .tile-motion .tile-arrow { color: #ffffff; }
+
+        .tile-cis     { background-color: #39b29e; } /* 6. 綠 */
+        .tile-cis .tile-text, .tile-cis .tile-arrow { color: #111111; }
+
+        .tile-motion  { background-color: #5ec493; } /* 7. 淺綠 */
+        .tile-motion .tile-text, .tile-motion .tile-arrow { color: #111111; }
+
+        /* 未來預留之更淺色碼 (備用)：
+           #82d68b (黃綠 8)
+           #a3e288 (淺黃綠 9)
+           #d9ed92 (最淺嫩綠 10)
+        */
 
         .tile-gallery-content {
             max-height: 0;
@@ -243,7 +257,7 @@
             scroll-behavior: smooth;
             padding: 25px 20px;
             scrollbar-width: thin;
-            scrollbar-color: #3498db #f1f1f1;
+            scrollbar-color: #0080b0 #f1f1f1;
         }
 
         .horizontal-scroll-grid::-webkit-scrollbar {
@@ -254,7 +268,7 @@
             border-radius: 10px;
         }
         .horizontal-scroll-grid::-webkit-scrollbar-thumb {
-            background: #3498db; /* 💡【可調整】橫向滾動條顏色 */
+            background: #0080b0; /* 💡【可調整】橫向滾動條顏色 */
             border-radius: 10px;
         }
 
@@ -836,7 +850,7 @@
                 loadedCategories[key] = true;
             }
 
-            // 4. 開啟選取的色塊
+            // 4. 開開啟選取的色塊
             currentItem.classList.add('active');
 
             // 5. 畫面稍微平滑對齊開展的區域
