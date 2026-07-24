@@ -325,33 +325,42 @@
         .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
 
         /* ==========================================
-           7. 📱 手機版響應式專用優化 (貓咪靠下 + 文字置中)
+           7. 📱 手機版響應式專用優化 (貓咪放大佔滿 + 半透明白底保護)
            ========================================== */
         @media (max-width: 768px) {
             .hero-banner {
                 background-position: center bottom; /* 貓咪靠底部 */
-                background-size: contain;           /* 完整等比例縮放 */
+                background-size: 160% auto;          /* 放大貓咪，讓半身/2/3佔滿下方畫面 */
                 background-color: #ffffff;
             }
 
             .hero-overlay {
                 padding-left: 20px;
                 padding-right: 20px;
-                padding-bottom: 25vh; /* 抬高文字，避免跟底部貓咪相疊 */
-                align-items: center;  /* 水平置中 */
+                padding-bottom: 20vh; /* 適度留出下方貓咪展現空間 */
+                align-items: center;  /* 文字與按鈕水平置中 */
                 text-align: center;   /* 文字向中對齊 */
-                background: none;     /* 清除黑背景遮罩 */
+                
+                /* 半透明白色保護底色：上濃下淡，確保上半部文字區塊乾淨清晰 */
+                background: linear-gradient(to bottom, 
+                    rgba(255, 255, 255, 0.95) 0%, 
+                    rgba(255, 255, 255, 0.8) 55%, 
+                    rgba(255, 255, 255, 0) 100%);
             }
             
             .hero-title {
                 font-size: 2.2rem;
                 margin-bottom: 8px;
+                /* 白色光暈陰影，分離文字與背景 */
+                text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 2px 6px rgba(255, 255, 255, 0.8);
             }
             
             .hero-subtitle {
                 font-size: 0.95rem;
                 margin-bottom: 25px;
                 line-height: 1.5;
+                /* 白色光暈陰影 */
+                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 1px 4px rgba(255, 255, 255, 0.8);
             }
 
             .hero-btn-group {
@@ -367,6 +376,7 @@
                 padding: 10px 0;
                 box-sizing: border-box;
                 font-size: 0.95rem;
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.8); /* 白光光暈襯托按鈕 */
             }
 
             .color-tile-header {
@@ -655,7 +665,7 @@
                 loadedCategories[key] = true;
             }
 
-            // 4. 開啟選取的色塊
+            // 4. 開開啟選取的色塊
             currentItem.classList.add('active');
 
             // 5. 畫面稍微平滑對齊開展的區域
