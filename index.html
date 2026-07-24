@@ -19,7 +19,7 @@
         }
 
         /* ==========================================
-           2. 頁面控制與無導覽列置頂設定
+           2. 頁面控制與置頂設定
            ========================================== */
         .page-view {
             display: none; 
@@ -46,7 +46,6 @@
             align-items: center;
         }
 
-        /* 文字與按鈕區域：靠左排列 */
         .hero-overlay {
             background-color: transparent; 
             width: 100%;
@@ -54,11 +53,11 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* 靠左邊線對齊 */
-            padding-left: 10%;       /* 距離左邊邊界 10% 的留白 */
+            align-items: flex-start;
+            padding-left: 10%;
             padding-right: 20px;
             box-sizing: border-box;
-            text-align: left;        /* 文字靠左 */
+            text-align: left;
         }
         .hero-title {
             font-size: 3.5rem;
@@ -75,7 +74,6 @@
             font-weight: 600;
         }
 
-        /* 多按鈕組合容器 */
         .hero-btn-group {
             display: flex;
             gap: 15px;
@@ -100,7 +98,6 @@
             border-color: #2980b9;
             transform: translateY(-2px);
         }
-        /* 次要按鈕樣式 */
         .hero-btn.btn-secondary {
             background-color: rgba(255, 255, 255, 0.9);
             color: #111111;
@@ -131,11 +128,11 @@
         }
 
         /* ==========================================
-           5. 【作品】頁面 (7 大色塊區版本)
+           5. 【作品】頁面 (直式手風琴展開版本)
            ========================================== */
         #page-portfolio { background-color: #ffffff; }
         .portfolio-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 40px 20px;
             text-align: center;
@@ -161,31 +158,38 @@
             margin-top: 10px;
         }
 
-        /* 大色塊選單容器 */
-        .color-tiles-container {
+        /* 直式色塊選單容器 */
+        .vertical-accordion-container {
             display: flex;
+            flex-direction: column;
             width: 100%;
-            height: 380px;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .color-tile {
-            flex: 1;
+        .accordion-item {
+            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 直式色塊標題列 */
+        .color-tile-header {
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 35px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 35px;
             cursor: pointer;
-            transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
             user-select: none;
+            transition: filter 0.3s ease, padding 0.3s ease;
         }
 
-        .color-tile:hover {
-            flex: 1.25; /* 觸控/滑鼠移上去時展開 */
-            filter: brightness(1.05);
+        .color-tile-header:hover {
+            filter: brightness(1.06);
         }
 
         .tile-text {
@@ -195,38 +199,51 @@
             letter-spacing: 2px;
         }
 
-        /* 色塊配色設定 */
+        .tile-arrow {
+            font-size: 1.4rem;
+            color: #111111;
+            transition: transform 0.4s ease;
+            font-weight: bold;
+        }
+
+        /* 展開時箭頭旋轉 */
+        .accordion-item.active .tile-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* 各色塊背景顏色 */
         .tile-fb      { background-color: #48c9b0; }
         .tile-line    { background-color: #3498db; }
         .tile-banner  { background-color: #d7bde2; }
         .tile-package { background-color: #f8965d; }
         .tile-pop     { background-color: #c0392b; }
-        .tile-pop .tile-text { color: #ffffff; }
+        .tile-pop .tile-text, .tile-pop .tile-arrow { color: #ffffff; }
         .tile-cis     { background-color: #2c3e50; }
-        .tile-cis .tile-text { color: #ffffff; }
+        .tile-cis .tile-text, .tile-cis .tile-arrow { color: #ffffff; }
         .tile-motion  { background-color: #8e44ad; }
-        .tile-motion .tile-text { color: #ffffff; }
+        .tile-motion .tile-text, .tile-motion .tile-arrow { color: #ffffff; }
 
-        /* 橫向滾動畫廊容器 */
-        .horizontal-gallery-wrapper {
-            display: none; /* 點擊色塊後才展開 */
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
-            text-align: left;
+        /* 內嵌展開內容區塊 */
+        .tile-gallery-content {
+            max-height: 0;
+            overflow: hidden;
+            background-color: #fcfcfc;
+            transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            border-bottom: 0px solid #eee;
         }
 
-        .horizontal-gallery-wrapper.active {
-            display: block;
+        .accordion-item.active .tile-gallery-content {
+            max-height: 380px; /* 展開高度，確保橫向畫廊順暢顯示 */
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        /* 橫向滾動畫廊列 */
+        /* 橫向滾動 grid 區域 */
         .horizontal-scroll-grid {
             display: flex;
             gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 15px 5px 25px 5px;
+            padding: 25px 20px;
             scrollbar-width: thin;
             scrollbar-color: #3498db #f1f1f1;
         }
@@ -243,22 +260,21 @@
             border-radius: 10px;
         }
 
-        /* 橫向畫廊單張卡片 */
         .horizontal-item {
             flex: 0 0 auto;
-            width: 320px;
-            height: 220px;
+            width: 280px;
+            height: 190px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             cursor: pointer;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .horizontal-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .horizontal-item img {
@@ -289,14 +305,6 @@
             opacity: 1;
         }
 
-        .current-category-label {
-            display: inline-block;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #111;
-            margin-bottom: 10px;
-        }
-
         /* ==========================================
            6. 【聯絡方式】頁面
            ========================================== */
@@ -309,7 +317,7 @@
             border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px;
         }
 
-        /* 燈箱視窗 (支援圖片與影片) */
+        /* 燈箱視窗 */
         .lightbox-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.85); z-index: 9999; flex-direction: column;
@@ -321,11 +329,11 @@
         .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
 
         /* ==========================================
-           7. 📱 手機版響應式專用優化 (Mobile RWD)
+           7. 📱 手機版響應式專用優化
            ========================================== */
         @media (max-width: 768px) {
             .hero-banner {
-                background-position: 80% center; /* 手機版將主視覺貓咪向右微調，避免遮擋文字 */
+                background-position: 80% center;
             }
 
             .hero-overlay {
@@ -359,20 +367,17 @@
                 font-size: 0.95rem;
             }
 
-            .color-tiles-container {
-                height: 280px;
+            .color-tile-header {
+                padding: 18px 22px;
             }
 
             .tile-text {
-                font-size: 1rem;
-                writing-mode: vertical-lr; /* 手機版色塊文字改直排，提升排版質感 */
-                letter-spacing: 4px;
-                padding-bottom: 15px;
+                font-size: 1.3rem;
             }
 
             .horizontal-item {
-                width: 260px;
-                height: 180px;
+                width: 230px;
+                height: 155px;
             }
 
             .lightbox-iframe {
@@ -413,7 +418,7 @@
         </div>
     </div>
 
-    <!-- 3. 【作品】頁面 (7 大色塊區版本) -->
+    <!-- 3. 【作品】頁面 (直式手風琴展開版本) -->
     <div id="page-portfolio" class="page-view">
         <div class="portfolio-container">
             <div class="portfolio-title-wrapper">
@@ -421,38 +426,89 @@
                 <span class="portfolio-sub-title">Design/Portfolio</span>
             </div>
             
-            <!-- 大色塊選單區域 (包含 MOTION 與 CIS) -->
-            <div class="color-tiles-container">
-                <div class="color-tile tile-fb" onclick="openCategoryGallery('fb', 'FB 圖文')">
-                    <span class="tile-text">FB</span>
+            <!-- 直式手風琴選單區域 -->
+            <div class="vertical-accordion-container">
+                
+                <!-- FB -->
+                <div class="accordion-item" id="item-fb">
+                    <div class="color-tile-header tile-fb" onclick="toggleAccordion('fb')">
+                        <span class="tile-text">FB</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-fb"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-line" onclick="openCategoryGallery('line', 'LINE 圖文')">
-                    <span class="tile-text">LINE</span>
+
+                <!-- LINE -->
+                <div class="accordion-item" id="item-line">
+                    <div class="color-tile-header tile-line" onclick="toggleAccordion('line')">
+                        <span class="tile-text">LINE</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-line"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-banner" onclick="openCategoryGallery('banner', 'BANNER')">
-                    <span class="tile-text">BANNER</span>
+
+                <!-- BANNER -->
+                <div class="accordion-item" id="item-banner">
+                    <div class="color-tile-header tile-banner" onclick="toggleAccordion('banner')">
+                        <span class="tile-text">BANNER</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-banner"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-package" onclick="openCategoryGallery('package', '包裝')">
-                    <span class="tile-text">包裝</span>
+
+                <!-- 包裝 -->
+                <div class="accordion-item" id="item-package">
+                    <div class="color-tile-header tile-package" onclick="toggleAccordion('package')">
+                        <span class="tile-text">包裝</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-package"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-pop" onclick="openCategoryGallery('pop', 'POP')">
-                    <span class="tile-text">POP</span>
+
+                <!-- POP -->
+                <div class="accordion-item" id="item-pop">
+                    <div class="color-tile-header tile-pop" onclick="toggleAccordion('pop')">
+                        <span class="tile-text">POP</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-pop"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-cis" onclick="openCategoryGallery('cis', 'CIS 品牌識別')">
-                    <span class="tile-text">CIS</span>
+
+                <!-- CIS -->
+                <div class="accordion-item" id="item-cis">
+                    <div class="color-tile-header tile-cis" onclick="toggleAccordion('cis')">
+                        <span class="tile-text">CIS</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-cis"></div>
+                    </div>
                 </div>
-                <div class="color-tile tile-motion" onclick="openCategoryGallery('motion', 'MOTION 動態視覺')">
-                    <span class="tile-text">MOTION</span>
+
+                <!-- MOTION -->
+                <div class="accordion-item" id="item-motion">
+                    <div class="color-tile-header tile-motion" onclick="toggleAccordion('motion')">
+                        <span class="tile-text">MOTION</span>
+                        <span class="tile-arrow">▾</span>
+                    </div>
+                    <div class="tile-gallery-content">
+                        <div class="horizontal-scroll-grid" id="grid-motion"></div>
+                    </div>
                 </div>
+
             </div>
 
-            <!-- 橫向滾動畫廊 (點擊色塊後展開) -->
-            <div class="horizontal-gallery-wrapper" id="horizontalGalleryWrapper">
-                <div class="current-category-label" id="categoryLabel">專案列表</div>
-                <div class="horizontal-scroll-grid" id="horizontalScrollGrid"></div>
-            </div>
-
-            <br><br>
+            <br>
             <a class="hero-btn" onclick="navigateTo('home')">返回首頁</a>
         </div>
     </div>
@@ -486,7 +542,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 作品集資料
+        // 作品集資料庫
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB 社群宣傳圖文 01" },
@@ -573,19 +629,47 @@
             ]
         };
 
-        // 點擊色塊時，展開橫向滾動畫廊
-        function openCategoryGallery(categoryKey, titleText) {
-            const wrapper = document.getElementById('horizontalGalleryWrapper');
-            const grid = document.getElementById('horizontalScrollGrid');
-            const label = document.getElementById('categoryLabel');
-            const items = portfolioData[categoryKey];
+        // 已動態渲染紀錄
+        const loadedCategories = {};
 
-            label.innerText = `▸ ${titleText} 作品列表`;
-            grid.innerHTML = '';
+        // 手風琴展開/收合控制邏輯
+        function toggleAccordion(key) {
+            const currentItem = document.getElementById(`item-${key}`);
+            const isAlreadyActive = currentItem.classList.contains('active');
+
+            // 1. 先把全部手風琴關閉
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 2. 如果點擊的目標剛好是開啟狀態，則純收合即可
+            if (isAlreadyActive) {
+                return;
+            }
+
+            // 3. 第一次打開時才動態載入圖片內容，提升效能
+            if (!loadedCategories[key]) {
+                renderCategoryItems(key);
+                loadedCategories[key] = true;
+            }
+
+            // 4. 開啟選取的色塊
+            currentItem.classList.add('active');
+
+            // 5. 畫面稍微平滑對齊開展的區域
+            setTimeout(() => {
+                currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 200);
+        }
+
+        // 渲染對應區塊內部的畫廊內容
+        function renderCategoryItems(key) {
+            const grid = document.getElementById(`grid-${key}`);
+            const items = portfolioData[key];
+            const isVideo = key === 'motion';
 
             items.forEach(itemData => {
                 const itemDiv = document.createElement('div');
-                const isVideo = categoryKey === 'motion';
                 itemDiv.className = `horizontal-item ${isVideo ? 'is-video' : ''}`;
 
                 const img = document.createElement('img');
@@ -604,19 +688,12 @@
                 grid.appendChild(itemDiv);
             });
 
-            // 展開畫廊
-            wrapper.classList.add('active');
-
-            // 平滑滾動至畫廊區域
-            wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // 為橫向滾動支援滾輪直向轉橫向滑動
+            grid.addEventListener('wheel', (evt) => {
+                evt.preventDefault();
+                grid.scrollLeft += evt.deltaY;
+            }, { passive: false });
         }
-
-        // 監聽畫廊區塊的滑鼠滾輪事件，讓垂直滾輪直接變「左右橫滑」
-        const scrollGrid = document.getElementById('horizontalScrollGrid');
-        scrollGrid.addEventListener('wheel', (evt) => {
-            evt.preventDefault();
-            scrollGrid.scrollLeft += evt.deltaY;
-        }, { passive: false });
 
         // 燈箱控制邏輯：開啟圖片
         function openImageLightbox(imgSrc, captionText) {
