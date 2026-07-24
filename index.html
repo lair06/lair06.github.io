@@ -65,13 +65,14 @@
             color: #111111; 
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+            text-shadow: 0 2px 10px rgba(255,255,255,0.9);
         }
         .hero-subtitle {
             font-size: 1.3rem;
-            color: #444444;
+            color: #333333;
             margin-bottom: 30px;
-            text-shadow: 0 1px 5px rgba(255,255,255,0.8);
+            text-shadow: 0 1px 8px rgba(255,255,255,0.9);
+            font-weight: 600;
         }
 
         /* 多按鈕組合容器 */
@@ -92,6 +93,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
             border: 2px solid #3498db;
+            text-align: center;
         }
         .hero-btn:hover {
             background-color: #2980b9;
@@ -100,7 +102,7 @@
         }
         /* 次要按鈕樣式 */
         .hero-btn.btn-secondary {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.9);
             color: #111111;
             border: 2px solid #111111;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -202,7 +204,6 @@
         .tile-pop .tile-text { color: #ffffff; }
         .tile-cis     { background-color: #2c3e50; }
         .tile-cis .tile-text { color: #ffffff; }
-        /* 新增：Motion 動態視覺色塊（質感深紫色） */
         .tile-motion  { background-color: #8e44ad; }
         .tile-motion .tile-text { color: #ffffff; }
 
@@ -318,6 +319,67 @@
         .lightbox-content { max-width: 85%; max-height: 75vh; object-fit: contain; border-radius: 6px; }
         .lightbox-iframe { width: 80%; max-width: 900px; height: 506px; max-height: 70vh; border-radius: 12px; border: none; }
         .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
+
+        /* ==========================================
+           7. 📱 手機版響應式專用優化 (Mobile RWD)
+           ========================================== */
+        @media (max-width: 768px) {
+            .hero-banner {
+                background-position: 80% center; /* 手機版將主視覺貓咪向右微調，避免遮擋文字 */
+            }
+
+            .hero-overlay {
+                padding-left: 8%;
+                padding-right: 8%;
+                background: linear-gradient(to right, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 75%, transparent 100%);
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+
+            .hero-btn-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 240px;
+                gap: 12px;
+            }
+
+            .hero-btn {
+                width: 100%;
+                padding: 10px 0;
+                box-sizing: border-box;
+                font-size: 0.95rem;
+            }
+
+            .color-tiles-container {
+                height: 280px;
+            }
+
+            .tile-text {
+                font-size: 1rem;
+                writing-mode: vertical-lr; /* 手機版色塊文字改直排，提升排版質感 */
+                letter-spacing: 4px;
+                padding-bottom: 15px;
+            }
+
+            .horizontal-item {
+                width: 260px;
+                height: 180px;
+            }
+
+            .lightbox-iframe {
+                width: 95%;
+                height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -469,7 +531,7 @@
             package: [
                 { src: "images/Packaging Design/Packaging Design-02.jpg", alt: "產品包裝設計 02" },
                 { src: "images/Packaging Design/Packaging Design-03.jpg", alt: "產品包裝設計 03" },
-                { src: "images/Packaging Design/Packaging Design-04.jpg", alt: "產品包装設計 04" },
+                { src: "images/Packaging Design/Packaging Design-04.jpg", alt: "產品包裝設計 04" },
                 { src: "images/Packaging Design/Packaging Design-05.jpg", alt: "產品包裝設計 05" },
                 { src: "images/Packaging Design/Packaging Design-06.jpg", alt: "產品包裝設計 06" }
             ],
@@ -493,7 +555,6 @@
                 src: `CIS/馥牛 CIS_${i + 1}.jpg`,
                 alt: `馥牛 CIS 品牌識別規範 手冊頁面 ${i + 1}`
             })),
-            // 新增 MOTION 影片資料 (包含影片 ID 與預設高畫質縮圖)
             motion: [
                 { videoId: "eS85xcwkIPc", alt: "動態視覺專案 01" },
                 { videoId: "gF6n7bkb0dc", alt: "動態視覺專案 02" },
@@ -530,7 +591,6 @@
                 const img = document.createElement('img');
                 
                 if (isVideo) {
-                    // YouTube 自動取得高畫質預覽圖
                     img.src = `https://img.youtube.com/vi/${itemData.videoId}/hqdefault.jpg`;
                     img.alt = itemData.alt;
                     itemDiv.onclick = () => openVideoLightbox(itemData.videoId, itemData.alt);
