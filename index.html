@@ -177,7 +177,6 @@
             border-bottom: none;
         }
 
-        /* 直式色塊標題列 */
         .color-tile-header {
             display: flex;
             align-items: center;
@@ -185,7 +184,7 @@
             padding: 24px 35px;
             cursor: pointer;
             user-select: none;
-            transition: filter 0.3s ease, padding 0.3s ease;
+            transition: filter 0.3s ease;
         }
 
         .color-tile-header:hover {
@@ -206,7 +205,6 @@
             font-weight: bold;
         }
 
-        /* 展開時箭頭旋轉 */
         .accordion-item.active .tile-arrow {
             transform: rotate(180deg);
         }
@@ -223,7 +221,6 @@
         .tile-motion  { background-color: #8e44ad; }
         .tile-motion .tile-text, .tile-motion .tile-arrow { color: #ffffff; }
 
-        /* 內嵌展開內容區塊 */
         .tile-gallery-content {
             max-height: 0;
             overflow: hidden;
@@ -233,11 +230,10 @@
         }
 
         .accordion-item.active .tile-gallery-content {
-            max-height: 380px; /* 展開高度，確保橫向畫廊順暢顯示 */
+            max-height: 380px;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* 橫向滾動 grid 區域 */
         .horizontal-scroll-grid {
             display: flex;
             gap: 20px;
@@ -329,26 +325,31 @@
         .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; }
 
         /* ==========================================
-           7. 📱 手機版響應式專用優化
+           7. 📱 手機版響應式專用優化 (貓咪靠下 + 文字置中)
            ========================================== */
         @media (max-width: 768px) {
             .hero-banner {
-                background-position: 80% center;
+                background-position: center bottom; /* 貓咪靠底部 */
+                background-size: contain;           /* 完整等比例縮放 */
+                background-color: #ffffff;
             }
 
             .hero-overlay {
-                padding-left: 8%;
-                padding-right: 8%;
-                background: linear-gradient(to right, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 75%, transparent 100%);
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 25vh; /* 抬高文字，避免跟底部貓咪相疊 */
+                align-items: center;  /* 水平置中 */
+                text-align: center;   /* 文字向中對齊 */
+                background: none;     /* 清除黑背景遮罩 */
             }
             
             .hero-title {
                 font-size: 2.2rem;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
             
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-bottom: 25px;
                 line-height: 1.5;
             }
@@ -356,8 +357,9 @@
             .hero-btn-group {
                 flex-direction: column;
                 width: 100%;
-                max-width: 240px;
+                max-width: 220px;
                 gap: 12px;
+                align-items: center;
             }
 
             .hero-btn {
