@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================
-           1. 全域基礎設定
+           1. 全域基礎設定 (套用 mimi 色系風格)
            ========================================== */
         body { 
             font-family: 'Montserrat', 'Helvetica Neue', Arial, "PingFang TC", sans-serif; 
             margin: 0; padding: 0; 
-            color: #222222; 
-            background-color: #ffffff; 
+            color: #e2e8f0; 
+            background-color: #1e2229; 
             line-height: 1.6; 
             -webkit-font-smoothing: antialiased;
         }
@@ -62,16 +62,16 @@
         }
         .hero-title {
             font-size: 3.5rem;
-            color: #111111;
+            color: #ffffff;
             font-weight: 700;
             margin-bottom: 12px;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.9);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .hero-subtitle {
             font-size: 1.3rem;
-            color: #333333;
+            color: #f0f4f8;
             margin-bottom: 30px;
-            text-shadow: 0 1px 8px rgba(255,255,255,0.9);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
             font-weight: 600;
         }
 
@@ -101,21 +101,23 @@
             transform: translateY(-2px);
         }
         .hero-btn.btn-secondary {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #111111;
-            border: 2px solid #111111;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background-color: rgba(30, 34, 41, 0.85);
+            color: #ffffff;
+            border: 2px solid #5a6578;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
         }
         .hero-btn.btn-secondary:hover {
-            background-color: #111111;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #111111;
+            border-color: #ffffff;
             transform: translateY(-2px);
         }
 
         /* ==========================================
            4. 【關於我】頁面設定
            ========================================== */
-        #page-about { background-color: #f7f8fa; }
+        #page-about { background-color: #1e2229; }
         .content-container {
             max-width: 850px;
             margin: 60px auto;
@@ -124,7 +126,7 @@
         }
         .page-title {
             font-size: 2.5rem;
-            color: #111;
+            color: #ffffff;
             font-weight: 700;
             margin-bottom: 20px;
         }
@@ -132,7 +134,7 @@
         /* ==========================================
            5. 【作品】頁面 (直式手風琴展開版本)
            ========================================== */
-        #page-portfolio { background-color: #ffffff; }
+        #page-portfolio { background-color: #1e2229; }
         .portfolio-container {
             max-width: 1000px;
             margin: 40px auto;
@@ -149,13 +151,13 @@
         }
         .portfolio-main-title {
             font-size: 2.5rem;
-            color: #111;
+            color: #ffffff;
             font-weight: 700;
             margin: 0;
         }
         .portfolio-sub-title {
             font-size: 1.1rem;
-            color: #888;
+            color: #a0aec0;
             font-weight: 400;
             margin-top: 10px;
         }
@@ -167,7 +169,7 @@
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             margin-bottom: 40px;
         }
 
@@ -190,7 +192,7 @@
         }
 
         .color-tile-header:hover {
-            filter: brightness(1.06);
+            filter: brightness(1.15);
         }
 
         .tile-text {
@@ -226,22 +228,22 @@
         .tile-pop .tile-text, .tile-pop .tile-arrow { color: #ffffff; }
 
         .tile-cis     { background-color: #39b29e; }
-        .tile-cis .tile-text, .tile-cis .tile-arrow { color: #111111; }
+        .tile-cis .tile-text, .tile-cis .tile-arrow { color: #ffffff; }
 
         .tile-motion  { background-color: #5ec493; }
-        .tile-motion .tile-text, .tile-motion .tile-arrow { color: #111111; }
+        .tile-motion .tile-text, .tile-motion .tile-arrow { color: #ffffff; }
 
         .tile-gallery-content {
             max-height: 0;
             overflow: hidden;
-            background-color: #fcfcfc;
+            background-color: #252a33;
             transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             border-bottom: 0px solid #eee;
         }
 
         .accordion-item.active .tile-gallery-content {
             max-height: 380px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #333a45;
         }
 
         .horizontal-scroll-grid {
@@ -251,14 +253,14 @@
             scroll-behavior: smooth;
             padding: 25px 20px;
             scrollbar-width: thin;
-            scrollbar-color: #0080b0 #f1f1f1;
+            scrollbar-color: #0080b0 #1e2229;
         }
 
         .horizontal-scroll-grid::-webkit-scrollbar {
             height: 8px;
         }
         .horizontal-scroll-grid::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #1e2229;
             border-radius: 10px;
         }
         .horizontal-scroll-grid::-webkit-scrollbar-thumb {
@@ -272,7 +274,7 @@
             height: 190px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             cursor: pointer;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -280,7 +282,7 @@
 
         .horizontal-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .horizontal-item img {
@@ -294,7 +296,7 @@
             content: "點擊放大";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.6);
             color: white;
             font-weight: 600;
             font-size: 0.95rem;
@@ -314,9 +316,9 @@
         /* ==========================================
            6. 【聯絡方式】與燈箱視窗設定
            ========================================== */
-        #page-contact { background-color: #f7f8fa; }
+        #page-contact { background-color: #1e2229; }
         .contact-box {
-            background-color: #111; color: white; padding: 60px 30px; border-radius: 16px; margin-top: 30px;
+            background-color: #252a33; color: white; padding: 60px 30px; border-radius: 16px; margin-top: 30px; border: 1px solid #333a45;
         }
         .contact-btn {
             display: inline-block; background-color: #3498db; color: white; padding: 14px 32px;
@@ -325,8 +327,8 @@
 
         .lightbox-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.88); z-index: 9999; flex-direction: column;
-            justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.92); z-index: 9999; flex-direction: column;
+            justify-content: center; align-items: center; padding: 30px; box-sizing: border-box; backdrop-filter: blur(8px);
         }
         .lightbox-modal.active { display: flex; }
         .lightbox-content { max-width: 85%; max-height: 75vh; object-fit: contain; border-radius: 6px; }
@@ -374,51 +376,51 @@
         .lightbox-close-btn:hover { opacity: 1; }
 
         /* ==========================================
-           7. 首頁豐富化區域設定 & 技能區塊優化
+           7. 首頁區域與卡片顏色調整 (與 mimi 搭配)
            ========================================== */
         .home-content { padding: 96px 20px; }
         .home-inner { max-width: 1100px; margin: 0 auto; }
         .section-label { color:#3498db; font-weight:700; letter-spacing:.14em; font-size:.78rem; text-transform:uppercase; }
-        .section-heading-v2 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.2; margin:8px 0 18px; color:#111; }
-        .section-lead { max-width:680px; color:#687078; font-size: 1.05rem; }
+        .section-heading-v2 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.2; margin:8px 0 18px; color:#ffffff; }
+        .section-lead { max-width:680px; color:#a0aec0; font-size: 1.05rem; }
         
         .featured-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:38px; }
-        .featured-card { min-height:360px; border-radius:22px; overflow:hidden; position:relative; background:#e9ebef; box-shadow:0 18px 45px rgba(0,0,0,.11); cursor:pointer; transition:.3s ease; }
-        .featured-card:hover { transform:translateY(-7px); box-shadow:0 25px 55px rgba(0,0,0,.16); }
+        .featured-card { min-height:360px; border-radius:22px; overflow:hidden; position:relative; background:#2a303b; box-shadow:0 18px 45px rgba(0,0,0,.3); cursor:pointer; transition:.3s ease; }
+        .featured-card:hover { transform:translateY(-7px); box-shadow:0 25px 55px rgba(0,0,0,.45); }
         .featured-card img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
         .featured-card:after { content:''; position:absolute; inset:35% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.85)); }
         .featured-meta { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; color:#fff; }
         .featured-meta small { letter-spacing:.12em; opacity:.85; color: #3498db; font-weight: 600; }
         .featured-meta h3 { margin:5px 0 0; font-size:1.35rem; }
         
-        .about-preview { background:#f7f8fa; }
+        .about-preview { background:#252a33; }
         .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center; }
-        .photo-placeholder { aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg,#e5e8ed,#fafafa); display:grid; place-items:center; color:#8a8f96; font-weight:700; box-shadow:0 15px 40px rgba(0,0,0,.08); }
+        .photo-placeholder { aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg,#2a303b,#1e2229); display:grid; place-items:center; color:#8a8f96; font-weight:700; box-shadow:0 15px 40px rgba(0,0,0,.3); }
         
         .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:28px 0; }
-        .stat-card { padding:20px 16px; border:1px solid #e3e6ea; border-radius:15px; background:#fff; text-align: left; }
-        .stat-card strong { display:block; font-size:1.8rem; line-height:1; color: #111; }
-        .stat-card span { color:#666; font-size:.82rem; margin-top: 6px; display: block; }
+        .stat-card { padding:20px 16px; border:1px solid #333a45; border-radius:15px; background:#2a303b; text-align: left; }
+        .stat-card strong { display:block; font-size:1.8rem; line-height:1; color: #ffffff; }
+        .stat-card span { color:#a0aec0; font-size:.82rem; margin-top: 6px; display: block; }
         
-        /* 💡 技能區域：進化為實務應用卡片（無爭議進度條） */
+        /* 技能區域卡片 */
         .skills-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:35px; }
-        .skill-card { padding:22px 18px; border:1px solid #e3e6ea; border-radius:16px; background: #fff; text-align: left; transition: transform 0.3s ease; }
-        .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .skill-card { padding:22px 18px; border:1px solid #333a45; border-radius:16px; background: #2a303b; text-align: left; transition: transform 0.3s ease; }
+        .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .skill-card strong { display:block; font-size: 1.1rem; margin-bottom: 8px; }
-        .skill-card .skill-desc { font-size: 0.85rem; color: #555; margin-bottom: 12px; line-height: 1.4; }
-        .skill-card .skill-tag { display: inline-block; font-size: 0.75rem; background: #f0f3f7; color: #666; padding: 3px 8px; border-radius: 4px; }
+        .skill-card .skill-desc { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 12px; line-height: 1.4; }
+        .skill-card .skill-tag { display: inline-block; font-size: 0.75rem; background: #1e2229; color: #a0aec0; padding: 3px 8px; border-radius: 4px; }
 
-        .workflow-section { background:#f7f8fa; }
+        .workflow-section { background:#252a33; }
         .workflow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
-        .workflow-card { min-height:185px; padding:22px; border-radius:16px; border:1px solid #e3e6ea; background:#fff; text-align: left; }
+        .workflow-card { min-height:185px; padding:22px; border-radius:16px; border:1px solid #333a45; background:#2a303b; text-align: left; }
         .workflow-card b { color:#3498db; font-size: 1.2rem; }
-        .workflow-card h3 { margin:20px 0 8px; font-size: 1.1rem; }
-        .workflow-card p { color:#777; font-size:.88rem; margin:0; line-height: 1.5; }
+        .workflow-card h3 { margin:20px 0 8px; font-size: 1.1rem; color: #ffffff; }
+        .workflow-card p { color:#a0aec0; font-size:.88rem; margin:0; line-height: 1.5; }
         
-        .home-cta { padding:65px; border-radius:28px; background:#111; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; }
+        .home-cta { padding:65px; border-radius:28px; background:#252a33; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; border: 1px solid #333a45; }
         .home-cta .section-heading-v2 { color:#fff; }
-        .home-cta p { color:#bbb; }
-        .site-footer { padding:25px 20px; text-align:center; color:#777; border-top:1px solid #eee; font-size:.82rem; }
+        .home-cta p { color:#a0aec0; }
+        .site-footer { padding:25px 20px; text-align:center; color:#718096; border-top:1px solid #2d3748; font-size:.82rem; }
 
         /* ==========================================
            8. 📱 手機版響應式專用優化 (Mobile RWD)
@@ -436,7 +438,7 @@
             .hero-banner {
                 background-position: center bottom;
                 background-size: 160% auto;
-                background-color: #ffffff;
+                background-color: #1e2229;
             }
 
             .hero-overlay {
@@ -446,22 +448,22 @@
                 align-items: center;
                 text-align: center;
                 background: linear-gradient(to bottom, 
-                    rgba(255, 255, 255, 0.95) 0%, 
-                    rgba(255, 255, 255, 0.8) 55%, 
-                    rgba(255, 255, 255, 0) 100%);
+                    rgba(30, 34, 41, 0.95) 0%, 
+                    rgba(30, 34, 41, 0.8) 55%, 
+                    rgba(30, 34, 41, 0) 100%);
             }
             
             .hero-title {
                 font-size: 2.2rem;
                 margin-bottom: 8px;
-                text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 2px 6px rgba(255, 255, 255, 0.8);
+                text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
             }
             
             .hero-subtitle {
                 font-size: 0.95rem;
                 margin-bottom: 25px;
                 line-height: 1.5;
-                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 1px 4px rgba(255, 255, 255, 0.8);
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
             }
 
             .hero-btn-group {
@@ -477,7 +479,7 @@
                 padding: 10px 0;
                 box-sizing: border-box;
                 font-size: 0.95rem;
-                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.8);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             }
 
             .color-tile-header {
@@ -658,35 +660,35 @@
     <div id="page-about" class="page-view">
         <div class="content-container">
             <div class="page-title">關於我</div>
-            <div style="font-size:1.05rem;color:#444;line-height:1.9;text-align:left;">
+            <div style="font-size:1.05rem;color:#cbd5e1;line-height:1.9;text-align:left;">
                 
                 <p>我是詹沅叡（小卷），具備 3 年以上品牌視覺設計與行銷美編實戰經驗。擅長從商業策略出發，將複雜的商業訴求轉化為兼具視覺張力與資訊層級的設計作品。核心能力涵蓋品牌識別系統（CIS）、門市實體文宣（POP/DM/MENU）、數位行銷素材（Banner/LINE/FB）以及短影音動態視覺（Motion Graphics）。</p>
                 
                 <p>目前任職於 鬍鬚張股份有限公司（品牌行銷部） ，設計門市線下文宣與線上數位社群文宣。在快速節奏的商業環境中，能獨立完成從概念構想、視覺排版到印刷完稿與發包溝通的完整流程，確保品牌視覺一致性並有效提升行銷轉換率。</p>
 
-                <div style="background: #ffffff; border-left: 4px solid #3498db; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 35px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-                    <h3 style="color:#111;margin:0 0 10px 0;font-size: 1.25rem;">代表專案｜馥牛越式料理 品牌視覺識別（CIS）</h3>
-                    <p style="margin: 0 0 10px 0; font-size: 0.98rem; color: #555;">
+                <div style="background: #2a303b; border-left: 4px solid #3498db; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 35px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    <h3 style="color:#ffffff;margin:0 0 10px 0;font-size: 1.25rem;">代表專案｜馥牛越式料理 品牌視覺識別（CIS）</h3>
+                    <p style="margin: 0 0 10px 0; font-size: 0.98rem; color: #cbd5e1;">
                         <strong>專案背景：</strong> 2025 年全新餐飲品牌 CIS 系統建立。針對品牌定位打造完整視覺識別規範，成功為品牌建立鮮明且具商業吸引力的門市與數位形象。
                     </p>
-                    <p style="margin: 0; font-size: 0.98rem; color: #555;">
+                    <p style="margin: 0; font-size: 0.98rem; color: #cbd5e1;">
                         <strong>負責內容：</strong> 品牌 CIS 規範制定、Logo 與標語編排、菜單（MENU）架構設計、門市 POP/DM 規劃、數位社群素材規範。
                     </p>
                 </div>
 
-                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">工作經歷</h3>
+                <h3 style="color:#ffffff;margin-top:34px;border-bottom: 2px solid #333a45; padding-bottom: 8px;">工作經歷</h3>
                 <p style="margin-bottom: 5px;"><strong>鬍鬚張股份有限公司｜品牌行銷美編</strong></p>
-                <p style="color: #777; font-size: 0.9rem; margin-top: 0;">2023.06 － 至今</p>
-                <ul style="color: #555; padding-left: 20px; line-height: 1.8;">
+                <p style="color: #a0aec0; font-size: 0.9rem; margin-top: 0;">2023.06 － 至今</p>
+                <ul style="color: #cbd5e1; padding-left: 20px; line-height: 1.8;">
                     <li>主導全台連鎖門市實體文宣（POP / 檔期 DM / 門市菜單）之排版設計與印前完稿溝通。</li>
                     <li>規劃線上數位行銷管道（FB 粉專、LINE 官方帳號、官網 Banner）視覺，維持品牌一致性。</li>
                     <li>製作節慶商品與新品推廣之短影音/動態視覺素材（Motion），顯著提升社群互動與門市新品曝光度。</li>
                 </ul>
 
-                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">學歷與專業背景</h3>
-                <p><strong>多媒體設計學系／視覺傳達相關科系</strong><br><span style="color: #777; font-size: 0.9rem;">2019 － 2023</span></p>
+                <h3 style="color:#ffffff;margin-top:34px;border-bottom: 2px solid #333a45; padding-bottom: 8px;">學歷與專業背景</h3>
+                <p><strong>多媒體設計學系／視覺傳達相關科系</strong><br><span style="color: #a0aec0; font-size: 0.9rem;">2019 － 2023</span></p>
 
-                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">職涯方向</h3>
+                <h3 style="color:#ffffff;margin-top:34px;border-bottom: 2px solid #333a45; padding-bottom: 8px;">職涯方向</h3>
                 <p>持續深耕品牌視覺整合與商業設計，結合靜態排版美學與動態影像傳播力，打造能深刻傳遞品牌價值的視覺作品。</p>
             </div>
             <br>
@@ -795,14 +797,14 @@
         <div class="content-container">
             <div class="contact-box">
                 <div class="page-title" style="color: white;">Let’s Work Together</div>
-                <p style="color: #ccc;">歡迎透過 Email 進行視覺設計交流、作品討論或職缺諮詢。</p>
+                <p style="color: #a0aec0;">歡迎透過 Email 進行視覺設計交流、作品討論或職缺諮詢。</p>
                 
                 <a onclick="sendEmail()" class="contact-btn" style="cursor: pointer;">發送電子郵件</a>
                 <a href="Roll.pdf" target="_blank" rel="noopener" class="contact-btn" style="margin-left:10px;background:#fff;color:#111;">查看 PDF 履歷</a>
                 
-                <p style="color:#aaa;margin-top:20px;cursor:pointer;" onclick="copyEmail()">alir940167@gmail.com <small style="opacity:0.7;"></small></p>
+                <p style="color:#a0aec0;margin-top:20px;cursor:pointer;" onclick="copyEmail()">alir940167@gmail.com <small style="opacity:0.7;"></small></p>
                 <br>
-                <a style="color: #aaa; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
+                <a style="color: #a0aec0; cursor: pointer; text-decoration: underline;" onclick="navigateTo('home')">返回首頁</a>
             </div>
         </div>
     </div>
