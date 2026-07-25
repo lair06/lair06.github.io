@@ -1067,25 +1067,13 @@
             if (event.key === 'ArrowRight') changeLightboxItem(1);
         });
 
-        // 💡 點擊「發送電子郵件」邏輯
+       // 💡 點擊「發送電子郵件」直接開啟 Gmail 網頁版撰寫視窗 (填好收件人)
         function sendEmail() {
             const email = "alir940167@gmail.com";
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent('【視覺設計合作/交流】')}`;
             
-            // 先嘗試複製 Email 到剪貼簿
-            navigator.clipboard.writeText(email).then(() => {
-                alert("已為您複製 Email：\nalir940167@gmail.com\n\n即將開啟您的預設郵件軟體...");
-                window.location.href = `mailto:${email}?subject=【視覺設計合作/交流】`;
-            }).catch(() => {
-                window.location.href = `mailto:${email}?subject=【視覺設計合作/交流】`;
-            });
-        }
-
-        // 💡 點擊文字單純複製 Email
-        function copyEmail() {
-            const email = "alir940167@gmail.com";
-            navigator.clipboard.writeText(email).then(() => {
-                alert("已成功複製 Email：alir940167@gmail.com");
-            });
+            // 開啟新分頁跳轉至 Gmail 撰寫頁面
+            window.open(gmailUrl, '_blank');
         }
     </script>
 </body>
