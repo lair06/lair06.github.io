@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>詹沅叡 Studio | 視覺設計 作品集</title>
+    <title>詹沅叡 Studio | 視覺設計與品牌行銷作品集</title>
     <!-- 引入 Google Fonts 英文字型 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -11,12 +11,12 @@
            1. 全域基礎設定
            ========================================== */
         body { 
-            /* 💡【可調整】整體網頁預設字型 */
             font-family: 'Montserrat', 'Helvetica Neue', Arial, "PingFang TC", sans-serif; 
             margin: 0; padding: 0; 
-            color: #333; /* 💡【可調整】預設內文字色 */
-            background-color: #ffffff; /* 💡【可調整】網頁背景色 */
+            color: #222222; 
+            background-color: #ffffff; 
             line-height: 1.6; 
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ==========================================
@@ -38,10 +38,10 @@
         .hero-banner {
             position: relative;
             width: 100%;
-            height: 100vh; /* 💡【可調整】封面高度：100vh 為滿版螢幕 */
-            background-image: url('images/mimi/mimi2.jpg?v=2'); /* 【請更換：首頁封面圖路徑】 */ /* 💡【可調整】電腦版封面背景圖片路徑 */
-            background-size: cover; /* 💡【可調整】 cover 為自動裁切填滿，contain 為完整顯示 */
-            background-position: center; /* 💡【可調整】圖片對齊位置 (如 center top, center bottom) */
+            height: 100vh;
+            background-image: url('images/mimi/mimi2.jpg?v=2');
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             display: flex;
             align-items: center;
@@ -55,21 +55,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            padding-left: 10%; /* 💡【可調整】電腦版文字距離左側邊界距離 */
+            padding-left: 10%;
             padding-right: 20px;
             box-sizing: border-box;
             text-align: left;
         }
         .hero-title {
-            font-size: 3.5rem; /* 💡【可調整】電腦版姓名標題字體大小 */
-            color: #111111; /* 💡【可調整】姓名標題顏色 */
+            font-size: 3.5rem;
+            color: #111111;
             font-weight: 700;
-            margin-bottom: 15px; /* 💡【可調整】標題下方間距 */
-            text-shadow: 0 2px 10px rgba(255,255,255,0.9); /* 💡【可調整】電腦版文字陰影 */
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.9);
         }
         .hero-subtitle {
-            font-size: 1.3rem; /* 💡【可調整】電腦版副標題字體大小 */
-            color: #333333; /* 💡【可調整】副標題顏色 */
+            font-size: 1.3rem;
+            color: #333333;
             margin-bottom: 30px;
             text-shadow: 0 1px 8px rgba(255,255,255,0.9);
             font-weight: 600;
@@ -78,36 +78,36 @@
         /* 主按鈕與次按鈕樣式 */
         .hero-btn-group {
             display: flex;
-            gap: 15px; /* 💡【可調整】按鈕之間的間距 */
+            gap: 15px;
             flex-wrap: wrap;
         }
         .hero-btn {
             display: inline-block;
-            background-color: #3498db; /* 💡【可調整】主要按鈕背景色 (藍色) */
-            color: white; /* 💡【可調整】主要按鈕文字顏色 */
-            padding: 12px 28px; /* 💡【可調整】按鈕內襯留白 (上下 左右) */
-            border-radius: 30px; /* 💡【可調整】按鈕圓角程度 */
+            background-color: #3498db;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); /* 💡【可調整】按鈕藍色發光陰影 */
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
             border: 2px solid #3498db;
             text-align: center;
         }
         .hero-btn:hover {
-            background-color: #2980b9; /* 💡【可調整】滑鼠移上去時按鈕變深藍色 */
+            background-color: #2980b9;
             border-color: #2980b9;
             transform: translateY(-2px);
         }
         .hero-btn.btn-secondary {
-            background-color: rgba(255, 255, 255, 0.9); /* 💡【可調整】次要按鈕半透明白底 */
+            background-color: rgba(255, 255, 255, 0.9);
             color: #111111;
             border: 2px solid #111111;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
         .hero-btn.btn-secondary:hover {
-            background-color: #111111; /* 💡【可調整】滑鼠移上去時變黑色按鈕 */
+            background-color: #111111;
             color: #ffffff;
             transform: translateY(-2px);
         }
@@ -117,7 +117,7 @@
            ========================================== */
         #page-about { background-color: #f7f8fa; }
         .content-container {
-            max-width: 800px; /* 💡【可調整】關於我頁面內容最大寬度 */
+            max-width: 850px;
             margin: 60px auto;
             padding: 40px 20px;
             text-align: center;
@@ -134,7 +134,7 @@
            ========================================== */
         #page-portfolio { background-color: #ffffff; }
         .portfolio-container {
-            max-width: 1000px; /* 💡【可調整】作品集選單區最大寬度 */
+            max-width: 1000px;
             margin: 40px auto;
             padding: 40px 20px;
             text-align: center;
@@ -165,7 +165,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            border-radius: 16px; /* 💡【可調整】手風琴整體外框圓角 */
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             margin-bottom: 40px;
@@ -173,7 +173,7 @@
 
         .accordion-item {
             width: 100%;
-            border-bottom: 1px solid rgba(255,255,255,0.15); /* 💡【可調整】色塊間分隔線 */
+            border-bottom: 1px solid rgba(255,255,255,0.15);
         }
         .accordion-item:last-child {
             border-bottom: none;
@@ -183,20 +183,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 24px 35px; /* 💡【可調整】色塊標題高度與左右留白 */
+            padding: 24px 35px;
             cursor: pointer;
             user-select: none;
             transition: filter 0.3s ease;
         }
 
         .color-tile-header:hover {
-            filter: brightness(1.06); /* 💡【可調整】滑鼠懸停時微微亮起效果 */
+            filter: brightness(1.06);
         }
 
         .tile-text {
-            font-size: 1.8rem; /* 💡【可調整】色塊英文/中文標題大小 */
+            font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 2px; /* 💡【可調整】字間距 */
+            letter-spacing: 2px;
         }
 
         .tile-arrow {
@@ -209,44 +209,44 @@
             transform: rotate(180deg);
         }
 
-        /* 💡【關鍵已套用】由深至淺（由上往下）漸層色板 */
-        .tile-fb      { background-color: #10406b; } /* 1. 深藍 */
+        /* 由深至淺漸層色板 */
+        .tile-fb      { background-color: #10406b; }
         .tile-fb .tile-text, .tile-fb .tile-arrow { color: #ffffff; }
 
-        .tile-line    { background-color: #0c6396; } /* 2. 深中藍 */
+        .tile-line    { background-color: #0c6396; }
         .tile-line .tile-text, .tile-line .tile-arrow { color: #ffffff; }
 
-        .tile-banner  { background-color: #0080b0; } /* 3. 藍 */
+        .tile-banner  { background-color: #0080b0; }
         .tile-banner .tile-text, .tile-banner .tile-arrow { color: #ffffff; }
 
-        .tile-package { background-color: #009bb6; } /* 4. 藍綠 */
+        .tile-package { background-color: #009bb6; }
         .tile-package .tile-text, .tile-package .tile-arrow { color: #ffffff; }
 
-        .tile-pop     { background-color: #12a3a8; } /* 5. 湖水綠 */
+        .tile-pop     { background-color: #12a3a8; }
         .tile-pop .tile-text, .tile-pop .tile-arrow { color: #ffffff; }
 
-        .tile-cis     { background-color: #39b29e; } /* 6. 綠 */
+        .tile-cis     { background-color: #39b29e; }
         .tile-cis .tile-text, .tile-cis .tile-arrow { color: #111111; }
 
-        .tile-motion  { background-color: #5ec493; } /* 7. 淺綠 */
+        .tile-motion  { background-color: #5ec493; }
         .tile-motion .tile-text, .tile-motion .tile-arrow { color: #111111; }
 
         .tile-gallery-content {
             max-height: 0;
             overflow: hidden;
-            background-color: #fcfcfc; /* 💡【可調整】展開後底部的微灰白色背景 */
+            background-color: #fcfcfc;
             transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             border-bottom: 0px solid #eee;
         }
 
         .accordion-item.active .tile-gallery-content {
-            max-height: 380px; /* 💡【可調整】展開區塊的最大高度 */
+            max-height: 380px;
             border-bottom: 1px solid #e0e0e0;
         }
 
         .horizontal-scroll-grid {
             display: flex;
-            gap: 20px; /* 💡【可調整】橫向卡片之間的間隔 */
+            gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
             padding: 25px 20px;
@@ -255,23 +255,22 @@
         }
 
         .horizontal-scroll-grid::-webkit-scrollbar {
-            height: 8px; /* 💡【可調整】橫向滾動條高度 */
+            height: 8px;
         }
         .horizontal-scroll-grid::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
         .horizontal-scroll-grid::-webkit-scrollbar-thumb {
-            background: #0080b0; /* 💡【可調整】橫向滾動條顏色 */
+            background: #0080b0;
             border-radius: 10px;
         }
 
-        /* 橫向卡片尺寸設定 */
         .horizontal-item {
             flex: 0 0 auto;
-            width: 280px; /* 💡【可調整】電腦版作品卡片寬度 */
-            height: 190px; /* 💡【可調整】電腦版作品卡片高度 */
-            border-radius: 12px; /* 💡【可調整】卡片圓角 */
+            width: 280px;
+            height: 190px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             cursor: pointer;
@@ -280,7 +279,7 @@
         }
 
         .horizontal-item:hover {
-            transform: translateY(-5px); /* 💡【可調整】滑鼠懸停時往上飄浮高度 */
+            transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
@@ -324,7 +323,6 @@
             border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 20px;
         }
 
-        /* 💡【燈箱與左右切換按鈕設定】 */
         .lightbox-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.88); z-index: 9999; flex-direction: column;
@@ -335,13 +333,12 @@
         .lightbox-iframe { width: 80%; max-width: 900px; height: 506px; max-height: 70vh; border-radius: 12px; border: none; }
         .lightbox-caption { color: #fff; margin-top: 20px; font-size: 1.1rem; text-align: center; }
 
-        /* 💡【可調整】燈箱左右切換按鈕 */
         .lightbox-nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.15); /* 💡 按鈕背景顏色 */
-            color: #ffffff; /* 💡 箭頭顏色 */
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
             border: none;
             font-size: 2.2rem;
             width: 55px;
@@ -359,10 +356,9 @@
             background: rgba(255, 255, 255, 0.4);
             transform: translateY(-50%) scale(1.1);
         }
-        .lightbox-prev { left: 25px; } /* 💡 左箭頭距離左邊距離 */
-        .lightbox-next { right: 25px; } /* 💡 右箭頭距離右邊距離 */
+        .lightbox-prev { left: 25px; }
+        .lightbox-next { right: 25px; }
 
-        /* 關閉按鈕 */
         .lightbox-close-btn {
             position: absolute;
             top: 20px;
@@ -378,8 +374,64 @@
         .lightbox-close-btn:hover { opacity: 1; }
 
         /* ==========================================
-           7. 📱 手機版響應式專用優化 (Mobile RWD)
+           7. 首頁豐富化區域設定 & 技能區塊優化
            ========================================== */
+        .home-content { padding: 96px 20px; }
+        .home-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { color:#3498db; font-weight:700; letter-spacing:.14em; font-size:.78rem; text-transform:uppercase; }
+        .section-heading-v2 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.2; margin:8px 0 18px; color:#111; }
+        .section-lead { max-width:680px; color:#687078; font-size: 1.05rem; }
+        
+        .featured-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:38px; }
+        .featured-card { min-height:360px; border-radius:22px; overflow:hidden; position:relative; background:#e9ebef; box-shadow:0 18px 45px rgba(0,0,0,.11); cursor:pointer; transition:.3s ease; }
+        .featured-card:hover { transform:translateY(-7px); box-shadow:0 25px 55px rgba(0,0,0,.16); }
+        .featured-card img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+        .featured-card:after { content:''; position:absolute; inset:35% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.85)); }
+        .featured-meta { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; color:#fff; }
+        .featured-meta small { letter-spacing:.12em; opacity:.85; color: #3498db; font-weight: 600; }
+        .featured-meta h3 { margin:5px 0 0; font-size:1.35rem; }
+        
+        .about-preview { background:#f7f8fa; }
+        .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center; }
+        .photo-placeholder { aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg,#e5e8ed,#fafafa); display:grid; place-items:center; color:#8a8f96; font-weight:700; box-shadow:0 15px 40px rgba(0,0,0,.08); }
+        
+        .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:28px 0; }
+        .stat-card { padding:20px 16px; border:1px solid #e3e6ea; border-radius:15px; background:#fff; text-align: left; }
+        .stat-card strong { display:block; font-size:1.8rem; line-height:1; color: #111; }
+        .stat-card span { color:#666; font-size:.82rem; margin-top: 6px; display: block; }
+        
+        /* 💡 技能區域：進化為實務應用卡片（無爭議進度條） */
+        .skills-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:35px; }
+        .skill-card { padding:22px 18px; border:1px solid #e3e6ea; border-radius:16px; background: #fff; text-align: left; transition: transform 0.3s ease; }
+        .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .skill-card strong { display:block; font-size: 1.1rem; margin-bottom: 8px; }
+        .skill-card .skill-desc { font-size: 0.85rem; color: #555; margin-bottom: 12px; line-height: 1.4; }
+        .skill-card .skill-tag { display: inline-block; font-size: 0.75rem; background: #f0f3f7; color: #666; padding: 3px 8px; border-radius: 4px; }
+
+        .workflow-section { background:#f7f8fa; }
+        .workflow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
+        .workflow-card { min-height:185px; padding:22px; border-radius:16px; border:1px solid #e3e6ea; background:#fff; text-align: left; }
+        .workflow-card b { color:#3498db; font-size: 1.2rem; }
+        .workflow-card h3 { margin:20px 0 8px; font-size: 1.1rem; }
+        .workflow-card p { color:#777; font-size:.88rem; margin:0; line-height: 1.5; }
+        
+        .home-cta { padding:65px; border-radius:28px; background:#111; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; }
+        .home-cta .section-heading-v2 { color:#fff; }
+        .home-cta p { color:#bbb; }
+        .site-footer { padding:25px 20px; text-align:center; color:#777; border-top:1px solid #eee; font-size:.82rem; }
+
+        /* ==========================================
+           8. 📱 手機版響應式專用優化 (Mobile RWD)
+           ========================================== */
+        @media (max-width: 900px) {
+            .featured-grid { grid-template-columns:1fr 1fr; }
+            .featured-card:last-child { grid-column:1/-1; }
+            .about-grid { grid-template-columns:1fr; }
+            .skills-grid { grid-template-columns:repeat(2,1fr); }
+            .workflow-grid { grid-template-columns:repeat(2,1fr); }
+            .home-cta { align-items:flex-start; flex-direction:column; }
+        }
+
         @media (max-width: 768px) {
             .hero-banner {
                 background-position: center bottom;
@@ -455,45 +507,14 @@
             .lightbox-next { right: 10px; }
         }
 
-        /* ===== 首頁豐富化區域設定 ===== */
-        .home-content { padding: 96px 20px; }
-        .home-inner { max-width: 1100px; margin: 0 auto; }
-        .section-label { color:#3498db; font-weight:700; letter-spacing:.14em; font-size:.78rem; text-transform:uppercase; }
-        .section-heading-v2 { font-size:clamp(2rem,5vw,3.5rem); line-height:1.12; margin:8px 0 18px; color:#111; }
-        .section-lead { max-width:680px; color:#687078; }
-        .featured-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:38px; }
-        .featured-card { min-height:360px; border-radius:22px; overflow:hidden; position:relative; background:#e9ebef; box-shadow:0 18px 45px rgba(0,0,0,.11); cursor:pointer; transition:.3s ease; }
-        .featured-card:hover { transform:translateY(-7px); box-shadow:0 25px 55px rgba(0,0,0,.16); }
-        .featured-card img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
-        .featured-card:after { content:''; position:absolute; inset:40% 0 0; background:linear-gradient(transparent,rgba(0,0,0,.78)); }
-        .featured-meta { position:absolute; z-index:2; left:22px; right:22px; bottom:20px; color:#fff; }
-        .featured-meta small { letter-spacing:.12em; opacity:.8; }
-        .featured-meta h3 { margin:5px 0 0; font-size:1.35rem; }
-        .about-preview { background:#f7f8fa; }
-        .about-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center; }
-        .photo-placeholder { aspect-ratio:4/5; border-radius:24px; background:linear-gradient(135deg,#e5e8ed,#fafafa); display:grid; place-items:center; color:#8a8f96; font-weight:700; box-shadow:0 15px 40px rgba(0,0,0,.08); }
-        .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:28px 0; }
-        .stat-card { padding:20px 16px; border:1px solid #e3e6ea; border-radius:15px; background:#fff; }
-        .stat-card strong { display:block; font-size:1.8rem; line-height:1; }
-        .stat-card span { color:#777; font-size:.82rem; }
-        .skills-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
-        .skill-card { padding:22px 16px; border:1px solid #e3e6ea; border-radius:15px; }
-        .skill-card strong { display:block; margin-bottom:12px; }
-        .skill-bar { height:7px; background:#d5d9e0; border-radius:99px; overflow:hidden; }
-        .skill-bar span { display:block; height:100%; background:#111; border-radius:99px; }
-        .skill-card small { display:block; margin-top:8px; color:#777; }
-        .workflow-section { background:#f7f8fa; }
-        .workflow-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:35px; }
-        .workflow-card { min-height:185px; padding:22px; border-radius:16px; border:1px solid #e3e6ea; background:#fff; }
-        .workflow-card b { color:#3498db; }
-        .workflow-card h3 { margin:30px 0 8px; }
-        .workflow-card p { color:#777; font-size:.88rem; margin:0; }
-        .home-cta { padding:65px; border-radius:28px; background:#111; color:#fff; display:flex; justify-content:space-between; align-items:center; gap:30px; }
-        .home-cta .section-heading-v2 { color:#fff; }
-        .home-cta p { color:#bbb; }
-        .site-footer { padding:25px 20px; text-align:center; color:#777; border-top:1px solid #eee; font-size:.82rem; }
-        @media(max-width:900px){ .featured-grid{grid-template-columns:1fr 1fr}.featured-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr)}.workflow-grid{grid-template-columns:repeat(2,1fr)}.home-cta{align-items:flex-start;flex-direction:column} }
-        @media(max-width:600px){ .home-content{padding:72px 16px}.featured-grid,.stats-grid,.skills-grid,.workflow-grid{grid-template-columns:1fr}.featured-card:last-child{grid-column:auto}.featured-card{min-height:320px}.home-cta{padding:38px 24px}.photo-placeholder{aspect-ratio:1/1} }
+        @media (max-width: 600px) {
+            .home-content { padding: 60px 16px; }
+            .featured-grid, .stats-grid, .skills-grid, .workflow-grid { grid-template-columns: 1fr; }
+            .featured-card:last-child { grid-column: auto; }
+            .featured-card { min-height: 320px; }
+            .home-cta { padding: 38px 24px; }
+            .photo-placeholder { aspect-ratio: 1/1; }
+        }
     </style>
 </head>
 <body>
@@ -520,7 +541,7 @@
             <div class="home-inner">
                 <div class="section-label">Selected Work</div>
                 <h2 class="section-heading-v2">精選作品</h2>
-                <p class="section-lead">專注品牌視覺與商業設計，讓每一張圖片都能提升品牌價值。</p>
+                <p class="section-lead">專注品牌視覺與商業設計，讓每一張圖片與影像都能創造商業價值。</p>
                 <div class="featured-grid">
                     <article class="featured-card" onclick="openSingleImageLightbox('images/Packaging Design/Packaging Design-02.jpg','豬腳禮盒 提袋設計')">
                         <img src="images/Packaging Design/Packaging Design-02.jpg" alt="品牌包裝設計">
@@ -538,10 +559,9 @@
             </div>
         </section>
 
-      <!-- 首頁：關於我預覽 -->
+        <!-- 首頁：關於我預覽 -->
         <section class="home-content about-preview">
             <div class="home-inner about-grid">
-                <!-- 💡 已調整為靠左下角對齊 (display:flex; flex-direction:column; justify-content:flex-end;) -->
                 <div class="photo-placeholder" style="padding:34px;box-sizing:border-box;text-align:left;display:flex;flex-direction:column;justify-content:flex-end;background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('images/mimi/222.jpg') center/cover no-repeat;">
                     <div>
                         <div class="section-label" style="color: #3498db;">CURRENT ROLE</div>
@@ -551,49 +571,49 @@
                 </div>
                 <div>
                     <div class="section-label">About Me</div>
-                    <h2 class="section-heading-v2">喜歡將抽象概念轉換成具象且有影響力的視覺設計</h2>
-                    <p class="section-lead">持續精進品牌識別、排版美學與數位影像處理，希望結合創意思維，打造兼具商業價值與美感張力的設計作品。</p>
+                    <h2 class="section-heading-v2">將抽象概念轉化為具備商業影響力的視覺語言</h2>
+                    <p class="section-lead">深耕連鎖餐飲與品牌視覺 3 年以上，擅長整合線上數位行銷（Banner/社群/動態）與線下實體門市物料（POP/菜單/包裝），確保品牌傳達一致且強大的視覺吸引力。</p>
                     
                     <div class="stats-grid">
-                        <div class="stat-card"><strong>3+</strong><span>品牌行銷美編經驗</span></div>
-                        <div class="stat-card"><strong>50+</strong><span>線上數位 / 實體文宣</span></div>
-                        <div class="stat-card"><strong>CIS</strong><span>馥牛越式料理 品牌識別</span></div>
+                        <div class="stat-card"><strong>3+ 年</strong><span>品牌行銷美編經驗</span></div>
+                        <div class="stat-card"><strong>50+ 檔</strong><span>整合行銷與實體專案</span></div>
+                        <div class="stat-card"><strong>CIS</strong><span>馥牛越式料理 品牌系統</span></div>
                     </div>
                     <a class="hero-btn" onclick="navigateTo('portfolio')">專案作品</a>
                 </div>
             </div>
         </section>
         
-        <!-- 首頁：技能熟練度 -->
+        <!-- 首頁：技能與工具（實務應用版） -->
         <section class="home-content">
             <div class="home-inner">
                 <div class="section-label">Tools & Skills</div>
-                <h2 class="section-heading-v2">技能與工具</h2>
+                <h2 class="section-heading-v2">技能與商業實務</h2>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <strong style="color: #ff7c00;">Illustrator</strong>
-                        <div class="skill-bar"><span style="width:90%; background:#ff7c00;"></span></div>
-                        <small>品牌、排版、向量</small>
+                        <div class="skill-desc">品牌 CIS 規範制定、門市 POP/菜單精準排版、向量標誌與輔助圖形設計。</div>
+                        <span class="skill-tag">平面與向量排版</span>
                     </div>
                     <div class="skill-card">
                         <strong style="color: #00a8ff;">Photoshop</strong>
-                        <div class="skill-bar"><span style="width:88%; background:#00a8ff;"></span></div>
-                        <small>影像合成、社群</small>
+                        <div class="skill-desc">餐點高階修圖、商業視覺合成、LINE/FB 行銷 Banner 與社群懶人包製作。</div>
+                        <span class="skill-tag">影像合成與社群</span>
                     </div>
                     <div class="skill-card">
                         <strong style="color: #9975ff;">After Effects</strong>
-                        <div class="skill-bar"><span style="width:80%; background:#9975ff;"></span></div>
-                        <small>動態視覺</small>
+                        <div class="skill-desc">產品動態展示、節慶檔期 MG 動畫、標題特效與社群短影音動態視覺。</div>
+                        <span class="skill-tag">動態視覺設計</span>
                     </div>
                     <div class="skill-card">
                         <strong style="color: #e052ff;">Premiere</strong>
-                        <div class="skill-bar"><span style="width:78%; background:#e052ff;"></span></div>
-                        <small>影片剪輯</small>
+                        <div class="skill-desc">門市宣傳影片剪輯、Shorts/Reels 節奏剪輯、配樂音效整合與字幕編排。</div>
+                        <span class="skill-tag">短影音與剪輯</span>
                     </div>
                     <div class="skill-card">
-                        <strong>Visual Design</strong>
-                        <div class="skill-bar"><span style="width:85%"></span></div>
-                        <small>品牌、社群、商業視覺</small>
+                        <strong style="color: #3498db;">Visual Design</strong>
+                        <div class="skill-desc">連鎖門市實體物料印刷完稿、印前發包溝通、數位整合行銷視覺規範。</div>
+                        <span class="skill-tag">視覺整合與落地</span>
                     </div>
                 </div>
             </div>
@@ -605,11 +625,11 @@
                 <div class="section-label">Workflow</div>
                 <h2 class="section-heading-v2">工作流程</h2>
                 <div class="workflow-grid">
-                    <div class="workflow-card"><b>01</b><h3>需求討論</h3><p>確認目標、受眾、尺寸、時程與交付內容。</p></div>
-                    <div class="workflow-card"><b>02</b><h3>方向提案</h3><p>整理視覺關鍵字與參考方向。</p></div>
-                    <div class="workflow-card"><b>03</b><h3>設計製作</h3><p>展開設計並建立一致視覺。</p></div>
-                    <div class="workflow-card"><b>04</b><h3>修改優化</h3><p>依回饋調整細節與資訊層級。</p></div>
-                    <div class="workflow-card"><b>05</b><h3>完稿交付</h3><p>整理格式並提供完整成果檔。</p></div>
+                    <div class="workflow-card"><b>01</b><h3>需求討論</h3><p>確認商業目標、目標受眾、規格尺寸、時程與交付內容。</p></div>
+                    <div class="workflow-card"><b>02</b><h3>方向提案</h3><p>整理視覺關鍵字、Moodboard 與風格參考進行前置溝通。</p></div>
+                    <div class="workflow-card"><b>03</b><h3>設計製作</h3><p>展開核心視覺設計，並建立跨管道的一致性視覺規範。</p></div>
+                    <div class="workflow-card"><b>04</b><h3>修改優化</h3><p>依據專業回饋與實戰測試，精細調整資訊層級與視覺細節。</p></div>
+                    <div class="workflow-card"><b>05</b><h3>完稿交付</h3><p>輸出精確印刷檔（CMYK/出血）或數位最佳化格式交付。</p></div>
                 </div>
             </div>
         </section>
@@ -620,8 +640,8 @@
                 <div class="home-cta">
                     <div>
                         <div class="section-label">Let's Work Together</div>
-                        <h2 class="section-heading-v2">從靜態平面到動態影像，<br>持續探索視覺創作的各種可能。</h2>
-                        <p>涵蓋品牌識別、實體門市文宣編排、數位社群素材與動態影像製作。</p>
+                        <h2 class="section-heading-v2">從靜態平面到動態影像，<br>持續探索商業視覺創作的各種可能。</h2>
+                        <p>涵蓋品牌識別（CIS）、連鎖門市文宣、數位社群行銷與短影音動態製作。</p>
                     </div>
                     <div class="hero-btn-group">
                         <a class="hero-btn" onclick="navigateTo('contact')">開始聊聊</a>
@@ -638,24 +658,36 @@
     <div id="page-about" class="page-view">
         <div class="content-container">
             <div class="page-title">關於我</div>
-            <div style="font-size:1.05rem;color:#555;line-height:1.9;text-align:left;">
+            <div style="font-size:1.05rem;color:#444;line-height:1.9;text-align:left;">
                 
-                <p>我是詹沅叡（小卷），具備 3 年以上視覺設計與行銷美編經驗。擅長從品牌策略出發，將商業需求轉化為兼具美感與資訊層級的視覺設計。核心能力涵蓋品牌識別（CIS）、門市實體文宣（POP/DM/MENU）、數位行銷素材（Banner/LINE/FB）以及短影音動態視覺。</p>
+                <p>我是詹沅叡（小卷），具備 3 年以上品牌視覺設計與行銷美編實戰經驗。擅長從商業策略出發，將複雜的商業訴求轉化為兼具視覺張力與資訊層級的設計作品。核心能力涵蓋**品牌識別系統（CIS）、門市實體文宣（POP/DM/MENU）、數位行銷素材（Banner/LINE/FB）以及短影音動態視覺（Motion Graphics）**。</p>
                 
-                <p>目前任職於鬍鬚張品牌行銷部，負責門市文宣與線上數位社文宣。在快速節奏的商業環境中，能獨立完成從概念構想、視覺排版到印刷完稿與發包溝通的完整流程，確保品牌視覺一致性並提升行銷轉換率。</p>
+                <p>目前任職於**鬍鬚張股份有限公司（品牌行銷部）**，主導連鎖門市線下文宣落地與線上數位社群視覺整合。在快速節奏的商業環境中，能獨立完成從概念構想、視覺排版到印刷完稿與發包溝通的完整流程，確保品牌視覺一致性並有效提升行銷轉換率。</p>
 
-                <h3 style="color:#111;margin-top:34px;">代表專案｜馥牛越式料理 品牌視覺識別（CIS）</h3>
-                <p>2025年 全新餐飲品牌 CIS 系統建立。針對品牌定位建立完整視覺識別規範，包含 Logo 設計、標準色、標準字、輔助圖形、餐點菜單編排及門市應用物料設計，成功為品牌建立鮮明且具商業吸引力的視覺形象。</p>
-                <p><strong>負責內容：</strong>品牌 CIS 規範制定、菜單（MENU）設計排版、門市 POP/DM 規劃、數位社群素材規範。</p>
+                <div style="background: #ffffff; border-left: 4px solid #3498db; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 35px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                    <h3 style="color:#111;margin:0 0 10px 0;font-size: 1.25rem;">代表專案｜馥牛越式料理 品牌視覺識別（CIS）</h3>
+                    <p style="margin: 0 0 10px 0; font-size: 0.98rem; color: #555;">
+                        <strong>專案背景：</strong> 2025 年全新餐飲品牌 CIS 系統建立。針對品牌定位打造完整視覺識別規範，成功為品牌建立鮮明且具商業吸引力的門市與數位形象。
+                    </p>
+                    <p style="margin: 0; font-size: 0.98rem; color: #555;">
+                        <strong>負責內容：</strong> 品牌 CIS 規範制定、Logo 與標語編排、菜單（MENU）架構設計、門市 POP/DM 規劃、數位社群素材規範。
+                    </p>
+                </div>
 
-                <h3 style="color:#111;margin-top:34px;">工作經歷</h3>
-                <p><strong>鬍鬚張股份有限公司｜品牌行銷美編</strong><br>2023.06 － 至今<br>製作門市實體文宣（POP/DM/菜單）與線上數位文宣（FB/LINE/Banner）視覺設計；製作節慶商品與新品推廣之短影音/動態視覺素材，提升社群互動與門市活動曝光度。</p>
+                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">工作經歷</h3>
+                <p style="margin-bottom: 5px;"><strong>鬍鬚張股份有限公司｜品牌行銷美編</strong></p>
+                <p style="color: #777; font-size: 0.9rem; margin-top: 0;">2023.06 － 至今</p>
+                <ul style="color: #555; padding-left: 20px; line-height: 1.8;">
+                    <li>主導全台連鎖門市實體文宣（POP / 檔期 DM / 門市菜單）之排版設計與印前完稿溝通。</li>
+                    <li>規劃線上數位行銷管道（FB 粉專、LINE 官方帳號、官網 Banner）視覺，維持品牌一致性。</li>
+                    <li>製作節慶商品與新品推廣之短影音/動態視覺素材（Motion），顯著提升社群互動與門市新品曝光度。</li>
+                </ul>
 
-                <h3 style="color:#111;margin-top:34px;">學歷</h3>
-                <p><strong>多媒體設計學系／視覺傳達相關科系</strong><br>2019 － 2023</p>
+                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">學歷與專業背景</h3>
+                <p><strong>多媒體設計學系／視覺傳達相關科系</strong><br><span style="color: #777; font-size: 0.9rem;">2019 － 2023</span></p>
 
-                <h3 style="color:#111;margin-top:34px;">職涯方向</h3>
-                <p>持續深耕品牌視覺整合與商業設計，結合平面排版美學與動態影像傳播力，打造能深刻傳遞品牌價值的視覺作品。</p>
+                <h3 style="color:#111;margin-top:34px;border-bottom: 2px solid #eee; padding-bottom: 8px;">職涯方向</h3>
+                <p>持續深耕品牌視覺整合與商業設計，結合靜態排版美學與動態影像傳播力，打造能深刻傳遞品牌價值的視覺作品。</p>
             </div>
             <br>
             <div class="hero-btn-group" style="justify-content:center;">
@@ -765,7 +797,6 @@
                 <div class="page-title" style="color: white;">Let’s Work Together</div>
                 <p style="color: #ccc;">歡迎透過 Email 進行視覺設計交流、作品討論或職缺諮詢。</p>
                 
-                <!-- 💡 修改為點擊觸發 JS 複製與寄信流程 -->
                 <a onclick="sendEmail()" class="contact-btn" style="cursor: pointer;">發送電子郵件</a>
                 <a href="Roll.pdf" target="_blank" rel="noopener" class="contact-btn" style="margin-left:10px;background:#fff;color:#111;">查看 PDF 履歷</a>
                 
@@ -776,12 +807,10 @@
         </div>
     </div>
 
-    <!-- 💡【全新升級】燈箱放大與左右切換視窗 -->
+    <!-- 燈箱放大與左右切換視窗 -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-        <!-- 右上角關閉 X -->
         <span class="lightbox-close-btn" onclick="closeLightbox()">&times;</span>
         
-        <!-- 💡 左右切換按鈕 -->
         <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" onclick="changeLightboxItem(-1, event)">❮</button>
         <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" onclick="changeLightboxItem(1, event)">❯</button>
 
@@ -801,7 +830,6 @@
         }
 
         // 作品集資料庫
-        /* 【作品圖片填寫區】替換 src 後面的圖片路徑，alt 改成作品名稱 */
         const portfolioData = {
             fb: [
                 { src: "images/FB/FB-01.jpg", alt: "FB 社群宣傳圖文 01" },
@@ -871,7 +899,6 @@
                 alt: `馥牛 CIS 品牌識別規範 手冊頁面 ${i + 1}`
             })),
             motion: [
-                // 【請更換：videoId 為 YouTube 網址中的影片代碼】
                 { videoId: "eS85xcwkIPc", alt: "動態視覺專案 01" },
                 { videoId: "gF6n7bkb0dc", alt: "動態視覺專案 02" },
                 { videoId: "72mIxgVHXo0", alt: "動態視覺專案 03" },
@@ -889,7 +916,6 @@
             ]
         };
 
-        // 已動態渲染紀錄
         const loadedCategories = {};
 
         // 手風琴展開/收合控制邏輯
@@ -915,7 +941,7 @@
             }, 200);
         }
 
-        // 渲染對應區塊內部的畫廊內容 (帶有索引 index)
+        // 渲染畫廊內容
         function renderCategoryItems(key) {
             const grid = document.getElementById(`grid-${key}`);
             const items = portfolioData[key];
@@ -947,13 +973,10 @@
             }, { passive: false });
         }
 
-        /* ==========================================
-           💡【關鍵全新邏輯】燈箱切換與藝廊輪播機制
-           ========================================== */
+        // 燈箱控制機制
         let currentCategoryKey = null;
         let currentItemIndex = 0;
 
-        // 開啟分類畫廊燈箱
         function openCategoryLightbox(key, index) {
             currentCategoryKey = key;
             currentItemIndex = index;
@@ -964,7 +987,6 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // 更新燈箱畫面內容
         function updateLightboxContent() {
             if (!currentCategoryKey) return;
 
@@ -978,7 +1000,6 @@
             const prevBtn = document.getElementById('lightboxPrev');
             const nextBtn = document.getElementById('lightboxNext');
 
-            // 如果只有 1 張圖就不顯示左右按鈕
             prevBtn.style.display = items.length > 1 ? 'flex' : 'none';
             nextBtn.style.display = items.length > 1 ? 'flex' : 'none';
 
@@ -997,9 +1018,8 @@
             }
         }
 
-        // 💡 左右切換圖片 (往左 -1, 往右 +1)
         function changeLightboxItem(direction, event) {
-            if (event) event.stopPropagation(); // 避免點按鈕觸發背景關閉
+            if (event) event.stopPropagation();
             if (!currentCategoryKey) return;
 
             const items = portfolioData[currentCategoryKey];
@@ -1007,7 +1027,6 @@
             updateLightboxContent();
         }
 
-        // 首頁獨立單張圖片燈箱 (不顯示左右按鈕)
         function openSingleImageLightbox(imgSrc, captionText) {
             currentCategoryKey = null;
             const modal = document.getElementById('lightboxModal');
@@ -1027,7 +1046,6 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // 首頁獨立單張影片燈箱
         function openSingleVideoLightbox(videoId, captionText) {
             currentCategoryKey = null;
             const modal = document.getElementById('lightboxModal');
@@ -1047,17 +1065,15 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // 關閉燈箱
         function closeLightbox() {
             const modal = document.getElementById('lightboxModal');
             const modalIframe = document.getElementById('lightboxIframe');
             
-            modalIframe.src = ''; // 關閉時停止影片播放
+            modalIframe.src = '';
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // 💡 鍵盤控制：按 ESC 關閉，按 Left/Right 鍵左右切換圖片
         document.addEventListener('keydown', (event) => { 
             const modal = document.getElementById('lightboxModal');
             if (!modal.classList.contains('active')) return;
@@ -1067,13 +1083,17 @@
             if (event.key === 'ArrowRight') changeLightboxItem(1);
         });
 
-       // 💡 點擊「發送電子郵件」直接開啟 Gmail 網頁版撰寫視窗 (填好收件人)
         function sendEmail() {
             const email = "alir940167@gmail.com";
             const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent('【視覺設計合作/交流】')}`;
-            
-            // 開啟新分頁跳轉至 Gmail 撰寫頁面
             window.open(gmailUrl, '_blank');
+        }
+
+        function copyEmail() {
+            const email = "alir940167@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                alert("已複製電子郵件地址： " + email);
+            });
         }
     </script>
 </body>
