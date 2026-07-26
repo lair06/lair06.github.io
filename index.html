@@ -236,7 +236,14 @@
         /* 關於我預覽與數據數據卡 */
         .about-preview { background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px; align-items: center; }
-        .photo-placeholder { aspect-ratio: 4/5; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .photo-placeholder { 
+            aspect-ratio: 4/5; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-color); 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+            background-color: var(--bg-base);
+        }
         
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
         .stat-card { padding: 20px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-base); }
@@ -480,7 +487,7 @@
         <!-- 關於我預覽 -->
         <section class="home-content about-preview">
             <div class="home-inner about-grid">
-                <div class="photo-placeholder" style="padding:30px; display:flex; flex-direction:column; justify-content:flex-end; background: linear-gradient(rgba(0,0,0,0.2), rgba(14,17,23,0.9)), url('images/mimi/222.jpg') center/cover no-repeat;">
+                <div class="photo-placeholder" style="padding:30px; display:flex; flex-direction:column; justify-content:flex-end; background: linear-gradient(180deg, rgba(14,17,23,0.1) 0%, rgba(14,17,23,0.98) 100%), url('images/mimi/222.jpg') center/cover no-repeat; overflow: hidden;">
                     <div>
                         <div class="section-label">CURRENT ROLE</div>
                         <h3 style="font-size:1.6rem; color:#ffffff; margin:6px 0;">行銷美編</h3>
