@@ -487,21 +487,15 @@
         <!-- 關於我預覽 -->
         <section class="home-content about-preview">
             <div class="home-inner about-grid">
-               <!-- 替換後的修正版程式碼 -->
-<div class="photo-placeholder" style="position: relative; overflow: hidden; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-    <!-- 底圖獨立定位，多延伸 2px 避免邊緣縫隙 -->
-    <img src="images/mimi/222.jpg" alt="Current Role" style="position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); object-fit: cover; z-index: 1;">
-    
-    <!-- 漸層遮罩，延伸至邊界下緣 -->
-    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,17,23,0.1) 20%, rgba(22,27,34,0.95) 85%, rgba(22,27,34,1) 100%); z-index: 2;"></div>
-    
-    <!-- 文字內容 -->
-    <div style="position: relative; z-index: 3; padding: 30px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
-        <div class="section-label">CURRENT ROLE</div>
-        <h3 style="font-size:1.6rem; color:#ffffff; margin:6px 0;">行銷美編</h3>
-        <p style="margin:0; color:var(--text-muted); font-size:0.9rem;">鬍鬚張／品牌行銷部<br>2023.06 － 至今</p>
-    </div>
-</div>
+                <div class="photo-placeholder" style="position: relative; overflow: hidden; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                    <img src="images/mimi/222.jpg" alt="Current Role" style="position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); object-fit: cover; z-index: 1;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,17,23,0.1) 20%, rgba(22,27,34,0.95) 85%, rgba(22,27,34,1) 100%); z-index: 2;"></div>
+                    <div style="position: relative; z-index: 3; padding: 30px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <div class="section-label">CURRENT ROLE</div>
+                        <h3 style="font-size:1.6rem; color:#ffffff; margin:6px 0;">行銷美編</h3>
+                        <p style="margin:0; color:var(--text-muted); font-size:0.9rem;">鬍鬚張／品牌行銷部<br>2023.06 － 至今</p>
+                    </div>
+                </div>
                 <div>
                     <div class="section-label">About Me</div>
                     <h2 class="section-heading-v2">將抽象概念轉化為具備商業價值的視覺語言</h2>
@@ -588,7 +582,6 @@
                     </div>
                     <div class="hero-btn-group">
                         <a class="hero-btn" onclick="navigateTo('contact')">開始聊聊</a>
-                        <a class="hero-btn btn-secondary" href="Roll.pdf" target="_blank" rel="noopener">檢視 PDF 履歷</a>
                     </div>
                 </div>
             </div>
@@ -735,7 +728,6 @@
                 
                 <div class="hero-btn-group" style="justify-content: center; margin-bottom: 24px;">
                     <a onclick="sendEmail()" class="hero-btn">發送電子郵件</a>
-                    <a href="Roll.pdf" target="_blank" rel="noopener" class="hero-btn btn-secondary">檢視 PDF 履歷</a>
                 </div>
                 
                 <p style="color: var(--text-muted); cursor: pointer; font-size: 0.95rem;" onclick="copyEmail()">
